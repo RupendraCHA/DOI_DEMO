@@ -1,0 +1,126 @@
+/* table {
+  text-align: center;
+  border-radius: 12px;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Roboto";
+  width: 100%;
+}
+th,
+td,
+tbody,
+tr {
+  border: 2px solid #924d4d;
+  padding: 2px;
+}
+thead .column-name {
+  color: #fff;
+  background-color: #000;
+  padding: 0 6px 6px 6px;
+  font-size: 16px;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.bg-container {
+  background-image: linear-gradient(to right, #6c928f, #86a4c0);
+}
+.app {
+  width: 60%;
+  margin: auto;
+  padding: 50px 0px;
+}
+.date-selector-container {
+  text-align: center;
+
+  .date-selector {
+    border-radius: 20px;
+  }
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+  border-collapse: collapse;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #000;
+  border: 2px solid white;
+  padding: 12px;
+}
+th,
+td {
+  background-color: rgb(121, 121, 189);
+  font-weight: 600;
+  padding: 10px;
+  color: #fff;
+}
+header {
+  height: 50vh;
+  overflow: auto;
+  background-color: #7d9795;
+  padding: 50px;
+  border-radius: 12px;
+  border: 2px solid #fff;
+}
+h1 {
+  padding: 20px 0px 20px 10px;
+  background-color: #fff;
+  margin: 20px 0px;
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Roboto";
+
+  .records-count {
+    color: red;
+    font-size: inherit;
+  }
+
+  .start-date {
+    color: red;
+    font-size: inherit;
+  }
+  .end-date {
+    color: red;
+    font-size: inherit;
+  }
+
+  span {
+    font-size: 16px;
+    margin-left: 10px;
+  }
+}
+.refresh {
+  margin: 20px 0px;
+  padding: 6px 12px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.refresh:hover {
+  background-color: #7c5050;
+}
+.empty-text {
+  text-align: center;
+  padding: 20px 0px;
+  color: #000;
+  /* position: sticky;
+    top: 0;
+    z-index: 1; */
+}
