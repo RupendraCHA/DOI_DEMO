@@ -14,8 +14,8 @@ const App = () => {
 
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const [startDate, setStartDate] = useState(new Date("2023-08-19"));
-  const [endDate, setEndDate] = useState(new Date("2025-03-01"));
+  const [startDate, setStartDate] = useState(new Date("2023-01-01"));
+  const [endDate, setEndDate] = useState(new Date("2025-01-03"));
   const [recordsCount, setRecordCount] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [firstCount, setFirstCount] = useState(0);
@@ -55,13 +55,17 @@ const App = () => {
         bill_document_no: record.VBELN,
         billing_type: record.FKART,
         billing_category: record.FKTYP,
+        billing_date: date.toLocaleDateString(),
+        payer: record.KUNRG,
+        sold_to_party: record.KUNAG,
+        net_value: record.NETWR,
+        destination_country: record.LAND1,
         sd_doc_cate: record.VBTYP,
         sd_doc_curr: record.WAERK,
         sales_org: record.VKORG,
         pricing_proc: record.KALSM,
         doc_con_num: record.KNUMV,
         shipping_cond: record.VSBED,
-        billing_date: date.toLocaleDateString(),
       };
       newArray.push(newObject);
     });
@@ -137,7 +141,11 @@ const App = () => {
         </h1>
         {isLoading && (
           <div>
-            <Spinner size="80px" color="#ff6347" message="Data is Lading..." />
+            <Spinner
+              size="80px"
+              color="#ff6347"
+              message="Please wait, Data is Lading..."
+            />
           </div>
         )}
         <header>
@@ -150,6 +158,10 @@ const App = () => {
                 <th>Billing_Type</th>
                 <th>Billing_Category</th>
                 <th>Billing_Date</th>
+                <th>Payer</th>
+                <th>Sold_to_Party</th>
+                <th>Net Value</th>
+                <th>Destination Country</th>
                 <th>SD_Doc_Category</th>
                 <th>SD_Doc_Currency</th>
                 <th>Sales_Organization</th>
@@ -170,6 +182,10 @@ const App = () => {
                     <td>{eachProduct.billing_type}</td>
                     <td>{eachProduct.billing_category}</td>
                     <td>{eachProduct.billing_date}</td>
+                    <td>{eachProduct.payer}</td>
+                    <td>{eachProduct.sold_to_party}</td>
+                    <td>{eachProduct.net_value}</td>
+                    <td>{eachProduct.destination_country}</td>
                     <td>{eachProduct.sd_doc_cate}</td>
                     <td>{eachProduct.sd_doc_curr}</td>
                     <td>{eachProduct.sales_org}</td>

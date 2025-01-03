@@ -64,17 +64,18 @@ thead th {
 }
 th,
 td {
-  background-color: rgb(119, 119, 196);
+  background-color: rgb(121, 121, 189);
   font-weight: 600;
   padding: 10px;
   color: #fff;
 }
 header {
-  height: 70vh;
+  height: 50vh;
   overflow: auto;
-  background-color: rgb(197, 190, 180);
+  background-color: #7d9795;
   padding: 50px;
   border-radius: 12px;
+  border: 2px solid #fff;
 }
 h1 {
   padding: 20px 0px 20px 10px;
@@ -102,6 +103,18 @@ h1 {
     font-size: 16px;
     margin-left: 10px;
   }
+}
+.refresh {
+  margin: 20px 0px;
+  padding: 6px 12px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  font-size: 12px;
+  border-radius: 4px;
+}
+.refresh:hover {
+  background-color: #7c5050;
 }
 .empty-text {
   text-align: center;
