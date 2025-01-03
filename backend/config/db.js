@@ -2,7 +2,7 @@ import hana from "@sap/hana-client";
 
 const connOptions = {
   host: process.env.HOST,
-  port: process.env.PORT, // Default HANA port
+  port: process.env.PORT,
   user: process.env.USER,
   password: `${process.env.PASSWORD}#1234`,
 };
