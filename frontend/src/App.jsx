@@ -7,6 +7,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 // import { tableData } from "./VBRKTableData";
 import { StoreContext } from "./context/StoreContext";
+import Spinner from "./components/spinner/spinner";
 
 const App = () => {
   const { url } = useContext(StoreContext);
@@ -16,7 +17,7 @@ const App = () => {
   const [startDate, setStartDate] = useState(new Date("2023-08-19"));
   const [endDate, setEndDate] = useState(new Date("2024-12-30"));
   const [recordsCount, setRecordCount] = useState(0);
-  const [isTrue, setTrueValue] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [firstCount, setFirstCount] = useState(0);
 
   // const getProductsData = async () => {
@@ -31,6 +32,7 @@ const App = () => {
   // };
 
   const convertingTheData = async () => {
+    setLoading(true);
     let newArray = [];
     let id = 0;
 
@@ -49,19 +51,24 @@ const App = () => {
       const date = new Date(year, month, day);
       let newObject = {
         id: id,
+        client: record.MANDT,
         bill_document_no: record.VBELN,
-        currency: record.WAERK,
+        billing_type: record.FKART,
+        billing_category: record.FKTYP,
+        sd_doc_cate: record.VBTYP,
+        sd_doc_curr: record.WAERK,
+        sales_org: record.VKORG,
+        pricing_proc: record.KALSM,
+        doc_con_num: record.KNUMV,
+        shipping_cond: record.VSBED,
         billing_date: date.toLocaleDateString(),
       };
       newArray.push(newObject);
     });
     console.log(newArray);
+    setLoading(false);
     setProducts(newArray);
     setAllProducts(newArray);
-
-    // console.log(response.data);
-    // setProducts(response.data);
-    // setAllProducts(response.data);
   };
 
   // let data = convertingTheData();
@@ -101,9 +108,18 @@ const App = () => {
   return (
     <div className="bg-container">
       <div className="app">
-        <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
+        <h1>Select the start and end date to view the data.</h1>
+        <div className="date-selector-container">
+          <DateRangePicker
+            ranges={[selectionRange]}
+            onChange={handleSelect}
+            className="date-selector"
+          />
+        </div>
+
         <h1>
-          This data is between{" "}
+          <span className="records-count">{`${products.length}`} </span>records
+          found between
           <span className="start-date">{`${startDate.toLocaleDateString(
             "en-US",
             {
@@ -119,25 +135,47 @@ const App = () => {
             day: "numeric",
           })}`}</span>
         </h1>
+        {isLoading && (
+          <div>
+            <Spinner size="80px" color="#ff6347" message="Data is Lading..." />
+          </div>
+        )}
         <header>
           <table style={{ width: "100%" }}>
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Bill_Document_no</th>
-                <th>Currency</th>
+                <th>Client</th>
+                <th>Billing_Document</th>
+                <th>Billing_Type</th>
+                <th>Billing_Category</th>
                 <th>Billing_Date</th>
+                <th>SD_Doc_Category</th>
+                <th>SD_Doc_Currency</th>
+                <th>Sales_Organization</th>
+                <th title="Pricing Procedure in Pricing">Pricing_Procedure</th>
+                <th title="Document Condition Number">Doc_Con_Number</th>
+                <th>Shipping_Conditions</th>
               </tr>
             </thead>
+
             <tbody>
               {products.map((eachProduct) => {
                 // let date = new Date(eachProduct.createdAt);
                 return (
                   <tr key={eachProduct.id}>
                     <td>{eachProduct.id}</td>
+                    <td>{eachProduct.client}</td>
                     <td>{eachProduct.bill_document_no}</td>
-                    <td>{eachProduct.currency}</td>
+                    <td>{eachProduct.billing_type}</td>
+                    <td>{eachProduct.billing_category}</td>
                     <td>{eachProduct.billing_date}</td>
+                    <td>{eachProduct.sd_doc_cate}</td>
+                    <td>{eachProduct.sd_doc_curr}</td>
+                    <td>{eachProduct.sales_org}</td>
+                    <td>{eachProduct.pricing_proc}</td>
+                    <td>{eachProduct.doc_con_num}</td>
+                    <td>{eachProduct.shipping_cond}</td>
                   </tr>
                 );
               })}

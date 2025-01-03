@@ -40,6 +40,13 @@ thead .column-name {
   margin: auto;
   padding: 50px 0px;
 }
+.date-selector-container {
+  text-align: center;
+
+  .date-selector {
+    border-radius: 20px;
+  }
+}
 table,
 th,
 td {
@@ -52,23 +59,35 @@ thead th {
   top: 0;
   z-index: 1;
   background-color: #000;
-  color: #fff;
+  border: 2px solid white;
+  padding: 12px;
 }
 th,
 td {
-  background-color: azure;
+  background-color: rgb(52, 52, 77);
   font-weight: 600;
-  padding: 8px;
+  padding: 10px;
+  color: #fff;
 }
 header {
-  height: 100vh;
+  height: 70vh;
   overflow: auto;
+  background-color: rgb(197, 190, 180);
+  padding: 50px;
+  border-radius: 12px;
 }
 h1 {
   padding: 20px 0px 20px 10px;
   background-color: #fff;
   margin: 20px 0px;
   border-radius: 5px;
+  text-align: center;
+  font-family: "Roboto";
+
+  .records-count {
+    color: red;
+    font-size: inherit;
+  }
 
   .start-date {
     color: red;
@@ -88,4 +107,7 @@ h1 {
   text-align: center;
   padding: 20px 0px;
   color: #000;
+  /* position: sticky;
+  top: 0;
+  z-index: 1; */
 }
