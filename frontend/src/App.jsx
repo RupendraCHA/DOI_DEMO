@@ -15,7 +15,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [startDate, setStartDate] = useState(new Date("2023-08-19"));
-  const [endDate, setEndDate] = useState(new Date("2024-12-30"));
+  const [endDate, setEndDate] = useState(new Date("2025-03-01"));
   const [recordsCount, setRecordCount] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [firstCount, setFirstCount] = useState(0);
@@ -145,7 +145,7 @@ const App = () => {
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Client</th>
+                {/* <th>Client</th> */}
                 <th>Billing_Document</th>
                 <th>Billing_Type</th>
                 <th>Billing_Category</th>
@@ -165,7 +165,7 @@ const App = () => {
                 return (
                   <tr key={eachProduct.id}>
                     <td>{eachProduct.id}</td>
-                    <td>{eachProduct.client}</td>
+                    {/* <td>{eachProduct.client}</td> */}
                     <td>{eachProduct.bill_document_no}</td>
                     <td>{eachProduct.billing_type}</td>
                     <td>{eachProduct.billing_category}</td>
