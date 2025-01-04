@@ -3,10 +3,32 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* min-height: 100vh; */
+  min-height: 100vh;
   background-color: #7886d31f;
-  padding: 20px;
+  padding: 20px 0px;
+  /* margin-top: 10vh; */
 }
 .main-container {
-  /* background-color: #7886d37e; */
+  height: 50vh;
+  div {
+    background-color: #000000ce;
+    color: #fff;
+    text-align: center;
+    padding: 12px 10px;
+    border-radius: 4px;
+
+    h3 {
+      font-size: 28px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    div {
+      h3 {
+        font-size: 18px;
+      }
+    }
+  }
 }

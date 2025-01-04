@@ -17,17 +17,18 @@ const Header = () => {
     <div className="header-container">
       <nav className="container header-section-container">
         <div className="logo-container">
-          <div>
+          <div className="website-name-section">
             <Link to="/">
               <img src="./dlogo.jpg" className="website-logo" />
             </Link>
+            <h3>DOI</h3>
           </div>
         </div>
         <div className="tabs-bar-section">
           <ul className={isOpen ? "tabs-container active1" : "tabs-container"}>
             <li>
               <a
-                href="/"
+                href="#home"
                 onClick={() => setMenu("home")}
                 className={menu === "home" ? "active" : ""}
               >
@@ -36,16 +37,16 @@ const Header = () => {
             </li>
             <li>
               <a
-                href="#explore-offerings"
-                onClick={() => setMenu("explore-offerings")}
-                className={menu === "explore-offerings" ? "active" : ""}
+                href="#solutions"
+                onClick={() => setMenu("solutions")}
+                className={menu === "solutions" ? "active" : ""}
               >
-                Explore Offerings
+                Solutions
               </a>
             </li>
             <li>
               <a
-                href="/about"
+                href="#about"
                 onClick={() => setMenu("about")}
                 className={menu === "about" ? "active" : ""}
               >
@@ -54,7 +55,7 @@ const Header = () => {
             </li>
             <li>
               <a
-                href="/contact"
+                href="#contact"
                 onClick={() => setMenu("contact")}
                 className={menu === "contact" ? "active" : ""}
               >

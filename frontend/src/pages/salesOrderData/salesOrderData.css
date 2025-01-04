@@ -77,7 +77,15 @@ header {
   border-radius: 12px;
   border: 2px solid #fff;
 }
-h1 {
+.date-range {
+  padding: 20px 0px 20px 10px;
+  background-color: #fff;
+  margin: 20px 0px;
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Roboto";
+}
+.records-dates {
   padding: 20px 0px 20px 10px;
   background-color: #fff;
   margin: 20px 0px;

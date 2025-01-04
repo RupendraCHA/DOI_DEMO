@@ -112,7 +112,9 @@ const SalesOrderData = () => {
   return (
     <div className="bg-container">
       <div className="app">
-        <h1>Select the start and end date to view the data.</h1>
+        <h1 className="date-range">
+          Select the start and end date to view the data.
+        </h1>
         <div className="date-selector-container">
           <DateRangePicker
             ranges={[selectionRange]}
@@ -121,7 +123,7 @@ const SalesOrderData = () => {
           />
         </div>
 
-        <h1>
+        <h1 className="records-dates">
           <span className="records-count">{`${products.length}`} </span>records
           found between
           <span className="start-date">{`${startDate.toLocaleDateString(

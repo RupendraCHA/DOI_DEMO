@@ -11,9 +11,21 @@
   /* padding: 10px; */
   background-color: transparent;
 }
+.website-name-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  h3 {
+    font-size: 22px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+}
 .website-logo {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 .tabs-bar-section {
@@ -35,7 +47,7 @@
   .tabs-container {
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #7886d37e;
+    background-color: #000;
     position: absolute;
     width: 350px;
     height: 30vh;
@@ -73,9 +85,9 @@
   padding-bottom: 2px;
   /* border-bottom: 2px solid #495579; */
   background-color: #7886d37e;
-  background-color: #000;
+  background-color: grey;
   border-radius: 6px;
-  padding: 8px;
+  padding: 4px 8px;
 }
 .user-icon-container button {
   padding: 8px 16px;
