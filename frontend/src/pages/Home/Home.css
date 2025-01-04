@@ -3,5 +3,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  background-color: #7886d31f;
+  padding: 20px;
+}
+.main-container {
+  /* background-color: #7886d37e; */
 }
