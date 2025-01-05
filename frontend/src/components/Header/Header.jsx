@@ -37,11 +37,11 @@ const Header = () => {
             </li>
             <li>
               <a
-                href="#solutions"
-                onClick={() => setMenu("solutions")}
-                className={menu === "solutions" ? "active" : ""}
+                href="#explore-offerings"
+                onClick={() => setMenu("explore-offerings")}
+                className={menu === "explore-offerings" ? "active" : ""}
               >
-                Solutions
+                Explore Offerings
               </a>
             </li>
             <li>
@@ -68,7 +68,7 @@ const Header = () => {
           </div>
         </div>
         <div className="user-icon-container">
-          <button>Sign In</button>
+          <button>Sign Up</button>
         </div>
       </nav>
     </div>

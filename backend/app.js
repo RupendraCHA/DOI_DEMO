@@ -7,7 +7,8 @@ import cors from "cors";
 import hana from "@sap/hana-client";
 import "dotenv/config.js";
 
-import connectToSAPHana from "./config/db.js";
+// import connectToSAPHana from "./config/db.js";
+import connectDB from "./config/db.js";
 
 const app = express();
 app.use(cors());
@@ -75,8 +76,9 @@ app.get("/", async (req, res) => {
   }
 });
 
-connectToSAPHana();
+const port = process.env.DB_PORT;
+connectDB();
 
-app.listen(5000, () => {
+app.listen(port, () => {
   console.log(`Server listening on port: http://localhost:5000`);
 });
