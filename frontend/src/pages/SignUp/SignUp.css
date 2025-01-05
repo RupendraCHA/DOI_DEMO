@@ -3,11 +3,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 100vw; */
 
   .signup-section {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* width: 30%; */
+    padding: 30px 10px;
+
+    .signup-section-container {
+      border: 1px solid #80808094;
+      border-radius: 20px;
+      padding: 20px;
+      height: 60vh;
+
+      h1 {
+        text-align: center;
+        font-family: "Bree Serif";
+      }
+    }
   }
 }
