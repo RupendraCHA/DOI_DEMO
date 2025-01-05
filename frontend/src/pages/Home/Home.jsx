@@ -27,8 +27,8 @@ const Home = () => {
         <ExploreOfferings />
         <About />
         <Contact />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

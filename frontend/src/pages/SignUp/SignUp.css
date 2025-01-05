@@ -1,0 +1,13 @@
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100vw; */
+
+  .signup-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

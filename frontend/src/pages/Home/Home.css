@@ -5,6 +5,8 @@
   align-items: center;
   min-height: 100vh;
   background-color: #7886d31f;
+  /* background-image: url("./data_present_2.jpg"); */
+  background-size: cover;
   padding: 20px 0px;
   /* margin-top: 10vh; */
 }

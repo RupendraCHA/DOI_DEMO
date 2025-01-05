@@ -7,6 +7,7 @@
 .contact-heading {
   font-weight: 600;
   /* font-size: 28px; */
+  text-decoration: underline;
 }
 .contact-input-section-1 {
   margin-top: 20px;

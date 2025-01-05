@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className="container about-container" id="about">
       <div>
-        <h1 className="about-section-heading">About Us</h1>
+        <h1 className="about-section-heading">About Us:</h1>
         <p>
           VisionSoft is born to address key challenges in your industry with
           complexity of Big Data, HANA Solutions, Cloud Managed Services, and

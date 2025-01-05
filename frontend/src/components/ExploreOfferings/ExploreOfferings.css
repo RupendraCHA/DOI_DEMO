@@ -7,8 +7,54 @@
     text-align: justify;
   }
 
+  div {
+    .explore-section-heading {
+      text-decoration: underline;
+    }
+  }
+
   .sap-gui-details {
     background-color: aliceblue;
     padding: 20px;
+
+    h4 {
+      margin-left: 20px;
+    }
+
+    .data-types {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex: wrap;
+
+      .data-card {
+        height: 300px;
+        width: 300px;
+        background-color: transparent;
+        color: #fff;
+        margin: 20px;
+        /* margin-left: 0px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        box-shadow: 2px 2px 5px #235a8d;
+        border: 1px solid #000;
+        p {
+          color: #000;
+          text-align: center;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .explore-container {
+    .sap-gui-details {
+      .data-types {
+        flex-direction: column;
+      }
+    }
   }
 }

@@ -5,7 +5,7 @@ const Contact = () => {
   return (
     <div className="container contact-container" id="contact">
       <div>
-        <h1 className="contact-heading">Contact Us</h1>
+        <h1 className="contact-heading">Contact Us:</h1>
         <div className="contact-input-section-1">
           <input type="text" placeholder="Name*" />
           <input type="text" placeholder="Email*" />
