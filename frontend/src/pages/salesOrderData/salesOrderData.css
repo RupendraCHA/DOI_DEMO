@@ -33,7 +33,6 @@ thead .column-name {
   padding: 0;
 }
 .bg-container {
-  background-image: linear-gradient(to right, #6c928f, #86a4c0);
 }
 .app {
   width: 60%;
@@ -72,7 +71,7 @@ td {
 header {
   height: 50vh;
   overflow: auto;
-  background-color: #7d9795;
+  background-color: #5f94c02a;
   padding: 50px;
   border-radius: 12px;
   border: 2px solid #fff;

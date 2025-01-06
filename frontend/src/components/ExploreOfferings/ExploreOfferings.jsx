@@ -16,15 +16,15 @@ const ExploreOfferings = () => {
         </p>
         <div className="sap-gui-details">
           <div>
-            <h4>View Intutive data for following</h4>
+            <h4>View archived data for following</h4>
             <ul className="data-types">
-              <li className="data-card">
+              <li className="data-card image1">
                 <p>Sales & Distribution</p>
               </li>
-              <li className="data-card">
+              <li className="data-card image2">
                 <p>Material Management</p>
               </li>
-              <li className="data-card">
+              <li className="data-card image3">
                 <p>Finance</p>
               </li>
             </ul>

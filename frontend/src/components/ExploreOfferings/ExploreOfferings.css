@@ -14,7 +14,7 @@
   }
 
   .sap-gui-details {
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     padding: 20px;
 
     h4 {
@@ -26,7 +26,7 @@
       padding: 0;
       display: flex;
       flex: wrap;
-
+      gap: 100px;
       .data-card {
         height: 300px;
         width: 300px;
@@ -35,7 +35,7 @@
         margin: 20px;
         /* margin-left: 0px; */
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
         border-radius: 8px;
         box-shadow: 2px 2px 5px #235a8d;
@@ -43,8 +43,27 @@
         p {
           color: #000;
           text-align: center;
-          font-size: 18px;
+          font-size: 24px;
+          color: #fff;
+          background-color: #000000ab;
+          padding: 2px;
+          border-radius: 4px;
         }
+      }
+      .image1 {
+        background-image: url("./SAP-SD.jpg");
+        background-size: cover;
+        background-position: -160px 00px;
+      }
+      .image2 {
+        background-image: url("./mm.png");
+        background-size: cover;
+        background-position: -160px 00px;
+      }
+      .image3 {
+        background-image: url("./bitcoin.jpg");
+        background-size: inherit;
+        background-position: -160px 00px;
       }
     }
   }

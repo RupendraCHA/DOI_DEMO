@@ -31,7 +31,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <hr />
+      {/* <hr /> */}
       <div className="container footer-section">
         <div className="footer-section-one">
           <h2>Get Latest Updates</h2>
