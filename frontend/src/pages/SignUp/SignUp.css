@@ -1,5 +1,5 @@
 .signup-container {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,11 +15,88 @@
       border: 1px solid #80808094;
       border-radius: 20px;
       padding: 20px;
-      height: 60vh;
+      /* height: 60vh; */
 
       h1 {
         text-align: center;
         font-family: "Bree Serif";
+        margin-bottom: 5vh;
+      }
+
+      .info-section {
+        display: flex;
+        gap: 30px;
+        margin: 20px;
+
+        div {
+          label {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+
+          input {
+            padding: 4px 8px;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            border: 1px solid #808080;
+          }
+        }
+      }
+    }
+    .signup-button {
+      margin-left: 20px;
+
+      button {
+        padding: 6px 40px;
+        font-weight: 600;
+        border-radius: 18px;
+        outline: none;
+        border: 1px solid #000;
+        width: 96%;
+      }
+
+      button:hover {
+        background-color: #3b72b636;
+        /* color: #fff; */
+      }
+    }
+    .pass-requirement {
+      display: flex;
+      gap: 5px;
+      margin-left: 20px;
+
+      .info-icon {
+        color: #2c67b0;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    .have-account {
+      margin-left: 20px;
+      margin-top: 20px;
+      p {
+        font-size: 16px;
+
+        span {
+          color: #2c67b0;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .signup-container {
+    .signup-section-container {
+      .info-section {
+        flex-direction: column;
+        gap: 0px;
+        margin: 0px;
       }
     }
   }
