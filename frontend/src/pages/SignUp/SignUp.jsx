@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 import "./SignUp.css";
 
 const SignUp = () => {
+  const [userData, setUserData] = useState({
+    firstname: "",
+    lastname: "",
+    mobileNumber: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleUserInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUserData((userData) => ({
+      ...userData,
+      [name]: value,
+    }));
+  };
+
+  const submitUserData = (e) => {
+    e.preventDefault();
+    console.log(userData);
+  };
+
   return (
     <div className="signup-container">
       <div className="container signup-section">
-        <form className="signup-section-container">
+        <form onSubmit={submitUserData} className="signup-section-container">
           <h1>Sign Up</h1>
           <div className="info-section">
             <div>
@@ -19,6 +43,8 @@ const SignUp = () => {
                 htmlFor="firstname"
                 required
                 placeholder="Firstname*"
+                name="firstname"
+                onChange={handleUserInput}
               />
             </div>
             <div>
@@ -29,6 +55,8 @@ const SignUp = () => {
                 htmlFor="lastname"
                 required
                 placeholder="Lastname*"
+                name="lastname"
+                onChange={handleUserInput}
               />
             </div>
           </div>
@@ -41,6 +69,8 @@ const SignUp = () => {
                 htmlFor="mobile"
                 required
                 placeholder="Mobile Number*"
+                name="mobileNumber"
+                onChange={handleUserInput}
               />
             </div>
             <div>
@@ -51,6 +81,8 @@ const SignUp = () => {
                 htmlFor="email"
                 required
                 placeholder="Email*"
+                name="email"
+                onChange={handleUserInput}
               />
             </div>
           </div>
@@ -63,6 +95,8 @@ const SignUp = () => {
                 htmlFor="password"
                 required
                 placeholder="Password*"
+                name="password"
+                onChange={handleUserInput}
               />
             </div>
             <div>
@@ -73,6 +107,8 @@ const SignUp = () => {
                 htmlFor="confirm"
                 required
                 placeholder="Confirm Password*"
+                name="confirmPassword"
+                onChange={handleUserInput}
               />
             </div>
           </div>

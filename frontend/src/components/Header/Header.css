@@ -57,6 +57,8 @@
   .icon {
     width: 30px;
     height: 30px;
+    color: #fff;
+    cursor: pointer;
     /* display: none; */
   }
 }
@@ -121,7 +123,7 @@
 }
 .user-icon-container {
   display: flex;
-  gap: 20px;
+  gap: 10px;
 
   button {
     padding: 8px 16px;

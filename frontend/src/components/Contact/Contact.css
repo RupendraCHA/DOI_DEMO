@@ -1,11 +1,11 @@
 .contact-container {
-  background-color: aliceblue;
+  background-color: #f0f8ff;
   padding: 20px;
   border-radius: 6px;
   margin: 20px 0px;
 }
 .contact-heading {
-  font-weight: 600;
+  font-weight: 500;
   /* font-size: 28px; */
   text-decoration: underline;
 }

@@ -2,15 +2,17 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
-
+import { RxCross2 } from "react-icons/rx";
 import "./Header.css";
 
 const Header = ({ message = "" }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenActive, setIsOpenActive] = useState(false);
 
   const handleTabClick = () => {
     setIsOpen(!isOpen);
+    setIsOpenActive(!isOpenActive);
   };
   console.log(message);
 
@@ -94,7 +96,11 @@ const Header = ({ message = "" }) => {
               </li>
             </ul>
             <div className="menu-icon-section" onClick={handleTabClick}>
-              <FaBars className="icon" />
+              {isOpenActive === false ? (
+                <FaBars className="icon" />
+              ) : (
+                <RxCross2 className="icon" />
+              )}
             </div>
           </div>
         ) : (
