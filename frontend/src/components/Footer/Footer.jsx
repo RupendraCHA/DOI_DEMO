@@ -1,5 +1,6 @@
 import React from "react";
-import { FaFacebook } from "react-icons/fa6";
+// import { FaFacebook } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 
@@ -11,18 +12,23 @@ const Footer = () => {
       <div className="powered-by-container">
         <div className="powered-by-section">
           <p>Powered By</p>
-          <img
-            src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
-            className="website-logo"
-          />
-          {/* <img
-            src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736179306/quantum_mqvedq.jpg"
-            className="website-logo"
-          /> */}
-          <img
-            src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736179539/quantum3_m6pmde.jpg"
-            className="website-logo"
-          />
+
+          <a href="https://visionsoft.com/" target="_blank">
+            <img
+              src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736189161/visionsoft-logo-partners_gigfpv.jpg"
+              className="website-logo"
+            />
+          </a>
+          <a
+            href="https://www.quantumvision.com/it-consulting-and-staffing-solutions-about-us"
+            target="_blank"
+          >
+            <img
+              // src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736189097/QVLogo_yifukr.jpg"
+              src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736189593/QVLogo1_odx3v3.jpg"
+              className="website-logo"
+            />
+          </a>
         </div>
       </div>
       <hr />

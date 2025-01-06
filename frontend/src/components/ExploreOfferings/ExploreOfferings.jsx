@@ -19,13 +19,13 @@ const ExploreOfferings = () => {
             <h4>View Intutive data for following</h4>
             <ul className="data-types">
               <li className="data-card">
-                <p>Sales & Distribution Data</p>
+                <p>Sales & Distribution</p>
               </li>
               <li className="data-card">
-                <p>Material Management Data</p>
+                <p>Material Management</p>
               </li>
               <li className="data-card">
-                <p>Finance Data</p>
+                <p>Finance</p>
               </li>
             </ul>
           </div>
