@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 
-import { BsFillInfoCircleFill } from "react-icons/bs";
+// import { BsFillInfoCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [loginDetails, setLoginDetails] = useState({
+    email: "",
+    password: "",
+  });
+
+  const getLoginData = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setLoginDetails((loginDetails) => ({
+      ...loginDetails,
+      [name]: value,
+    }));
+  };
+
+  const sendLoginDetails = (e) => {
+    e.preventDefault();
+    console.log(loginDetails);
+  };
+
   return (
     <div className="login-container">
       <div className="container login-section">
-        <form className="login-section-container">
+        <form onSubmit={sendLoginDetails} className="login-section-container">
           <h1>Login</h1>
 
           <div className="info-section">
@@ -18,8 +38,10 @@ const Login = () => {
               <input
                 type="text"
                 htmlFor="email"
+                name="email"
                 required
                 placeholder="Email*"
+                onChange={getLoginData}
               />
             </div>
           </div>
@@ -30,8 +52,10 @@ const Login = () => {
               <input
                 type="password"
                 htmlFor="password"
+                name="password"
                 required
                 placeholder="Password*"
+                onChange={getLoginData}
               />
             </div>
           </div>

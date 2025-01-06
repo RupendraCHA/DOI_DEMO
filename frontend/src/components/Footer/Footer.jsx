@@ -8,6 +8,24 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div className="footer-container">
+      <div className="powered-by-container">
+        <div className="powered-by-section">
+          <p>Powered By</p>
+          <img
+            src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
+            className="website-logo"
+          />
+          {/* <img
+            src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736179306/quantum_mqvedq.jpg"
+            className="website-logo"
+          /> */}
+          <img
+            src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736179539/quantum3_m6pmde.jpg"
+            className="website-logo"
+          />
+        </div>
+      </div>
+      <hr />
       <div className="container footer-section">
         <div className="footer-section-one">
           <h2>Get Latest Updates</h2>

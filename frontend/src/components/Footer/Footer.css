@@ -1,9 +1,27 @@
 .footer-container {
-  background-color: #0000004f;
+  /* background-color: #0000004f; */
+  background-color: #c9ddee;
   margin-top: 6px;
   margin-bottom: 6px;
   padding: 20px;
   width: 100%;
+}
+.powered-by-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .powered-by-section {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+  }
 }
 .footer-section {
   display: flex;

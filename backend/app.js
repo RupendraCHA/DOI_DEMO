@@ -9,8 +9,11 @@ import "dotenv/config.js";
 
 // import connectToSAPHana from "./config/db.js";
 import connectDB from "./config/db.js";
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
+
+app.use(express.json());
 app.use(cors());
 
 const connOptions = {
@@ -21,6 +24,8 @@ const connOptions = {
 };
 
 const client = hana.createClient(connOptions);
+
+app.use("/doi/user", userRouter);
 
 app.get("/", async (req, res) => {
   try {

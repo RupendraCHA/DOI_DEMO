@@ -48,8 +48,11 @@ const Header = ({ message = "" }) => {
         <div className="logo-container">
           <div>
             <Link to="/" className="website-name-section">
-              <img src="./dlogo.jpg" className="website-logo" />
-              <h3>DOI</h3>
+              <img
+                src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
+                className="website-logo"
+              />
+              <h3>DOI DEMO</h3>
             </Link>
           </div>
         </div>
