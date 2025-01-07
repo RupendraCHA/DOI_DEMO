@@ -52,6 +52,7 @@ const SignUp = () => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.userName);
       setOtp(response.data.verificationCode);
+      navigate("/login");
       // console.log(response.data);
     } else {
       setRegisterErrorBool(true);

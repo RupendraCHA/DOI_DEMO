@@ -33,6 +33,8 @@ const Login = () => {
     const response = await axios.post(url + "/doi/user/login", loginDetails);
     console.log(response.data);
     if (response.data.success === true) {
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("username", response.data.name);
       navigate("/salesdata");
     } else {
       console.log(response.data);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import "./Header.css";
@@ -10,11 +10,19 @@ const Header = ({ message = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenActive, setIsOpenActive] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleTabClick = () => {
     setIsOpen(!isOpen);
     setIsOpenActive(!isOpenActive);
   };
   console.log(message);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    navigate("/");
+  };
 
   const getButton = () => {
     if (message === "signup") {
@@ -28,6 +36,12 @@ const Header = ({ message = "" }) => {
         <Link to="/signup">
           <button>Sign Up</button>
         </Link>
+      );
+    } else if (message === "sales") {
+      return (
+        // <Link to="/login">
+        // </Link>
+        <button onClick={handleLogout}>Logout</button>
       );
     }
     return (

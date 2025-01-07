@@ -1,0 +1,27 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: rgba(8, 8, 58, 0.616); */
+}
+.card {
+  padding: 30px;
+  width: 400px;
+  background-color: #2c67b036;
+  border-radius: 12px;
+  .home-link {
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 18px;
+    span {
+      text-decoration: underline;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import Header from "./components/Header/Header1";
 import Footer from "./components/Footer/Footer";
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
+import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
   return (
@@ -37,7 +38,18 @@ const App = () => {
             </>
           }
         ></Route>
-        <Route exact path="/salesData" element={<SalesOrderData />}></Route>
+        <Route
+          exact
+          path="/salesData"
+          element={
+            <>
+              <Header message="sales" />
+              <SalesOrderData />
+              <Footer />
+            </>
+          }
+        ></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   );
