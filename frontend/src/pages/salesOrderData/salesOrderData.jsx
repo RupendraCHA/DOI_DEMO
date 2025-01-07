@@ -5,7 +5,7 @@ import { DateRangePicker } from "react-date-range";
 import "./salesOrderData.css";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import { tableData } from "../../VBRKTableData.js";
+// import { tableData } from "../../VBRKTableData.js";
 import { StoreContext } from "../../context/StoreContext";
 import Spinner from "../../components/spinner/spinner";
 
@@ -36,10 +36,10 @@ const SalesOrderData = () => {
     let newArray = [];
     let id = 0;
 
-    // const response = await axios.get(url + "/");
+    const response = await axios.get(url + "/");
 
-    // console.log("Data : ", response.data);
-    // const tableData = response.data;
+    console.log("Data : ", response.data);
+    const tableData = response.data;
 
     tableData.map((record) => {
       id = id + 1;

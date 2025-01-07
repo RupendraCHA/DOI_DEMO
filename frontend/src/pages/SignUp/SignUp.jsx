@@ -42,17 +42,17 @@ const SignUp = () => {
     setRegisterErrorBool(false);
 
     e.preventDefault();
-    console.log(userData);
+    // console.log(userData);
 
     const response = await axios.post(url + "/doi/user/register", userData);
-    console.log(response.data);
+    // console.log(response.data);
 
     if (response.data.success === true) {
       setRegisterClick(true);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.userName);
       setOtp(response.data.verificationCode);
-      console.log(response.data);
+      // console.log(response.data);
     } else {
       setRegisterErrorBool(true);
       setRegisterError(response.data.message);

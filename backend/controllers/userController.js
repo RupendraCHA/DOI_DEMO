@@ -112,3 +112,62 @@ export const verifyEmail = async (req, res) => {
       .json({ success: false, message: "Internal server error" });
   }
 };
+
+export const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "*User doesn't exist*" });
+    }
+
+    const isMatched = await bcrypt.compare(password, user.password);
+
+    if (!isMatched) {
+      return res
+        .status(400)
+        .json({ success: false, message: "*Password is Incorrect*" });
+    }
+
+    const token = createToken(user._id);
+    return res.json({
+      success: true,
+      token,
+      name: `${user.firstname}`,
+      message: "Login Successful",
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "*Error*" });
+  }
+};
+
+export const updatePassword = async (req, res) => {
+  const { password, email } = req.body;
+
+  try {
+    const user = await UserModel.findOne({ email });
+
+    if (user) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      user.password = hashedPassword;
+
+      await user.save();
+      return res
+        .status(200)
+        .json({ success: true, message: "Password Updated Successfully!" });
+    } else {
+      return res
+        .status(400)
+        .json({ success: false, message: "Email doesn't exist!" });
+    }
+  } catch (error) {
+    console.log(`Error: ${error.message}`);
+  }
+};

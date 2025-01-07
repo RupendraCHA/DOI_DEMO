@@ -8,14 +8,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* width: 30%; */
     padding: 30px 10px;
 
     .login-section-container {
       border: 1px solid #80808094;
       border-radius: 20px;
       padding: 20px;
-      /* height: 60vh; */
+      width: 50%;
 
       h1 {
         text-align: center;
@@ -23,9 +22,7 @@
         margin-bottom: 5vh;
       }
 
-      .info-section {
-        display: flex;
-        gap: 30px;
+      .login-info-section {
         margin: 20px;
 
         div {
@@ -35,13 +32,15 @@
             margin-bottom: 5px;
           }
 
-          input {
-            padding: 6px 12px;
+          .input {
+            padding: 10px;
             border-radius: 4px;
             outline: none;
             cursor: pointer;
             border: 1px solid #808080;
             background-color: #f0f8ff8e;
+            width: 100%;
+            font-weight: 500;
           }
         }
       }
@@ -55,12 +54,13 @@
         border-radius: 18px;
         outline: none;
         border: 1px solid #000;
-        width: 94%;
+        width: 97%;
+        margin-top: 20px;
       }
 
       button:hover {
-        background-color: #3b72b636;
-        /* color: #fff; */
+        background-color: #2c67b0;
+        color: #fff;
       }
     }
     .new-here {
@@ -75,5 +75,115 @@
         }
       }
     }
+  }
+}
+.forgot-password {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  span {
+    background-color: #fff;
+    color: black;
+    margin-top: 8px;
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  span:hover {
+    text-decoration: underline;
+    color: blue;
+  }
+}
+.change-password-container {
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1729229000/image3_1_ac1jk3.jpg"); */
+  /* min-height: 100vh; */
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 30%;
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 12px;
+
+  .change-password-card {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    /* height: 40vh; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 20px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      input {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid gray;
+        background-color: #f0f8ff8e;
+
+        outline: none;
+        font-weight: 500;
+        /* color: blue; */
+      }
+    }
+    button {
+      border: 1px solid #000;
+      background-color: #8080801c;
+      outline: none;
+      padding: 6px 40px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 18px;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #2c67b0;
+      color: #fff;
+      /* border: 1px solid #000; */
+    }
+  }
+
+  .go-to-login {
+    display: flex;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
+    span {
+      background-color: white;
+      color: black;
+      width: 100px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+    span:hover {
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .change-password-container {
+    width: 60%;
   }
 }
