@@ -63,10 +63,10 @@ thead th {
 }
 th,
 td {
-  background-color: rgb(121, 121, 189);
+  background-color: #fff;
   font-weight: 600;
   padding: 10px;
-  color: #fff;
+  color: #000;
 }
 header {
   height: 50vh;

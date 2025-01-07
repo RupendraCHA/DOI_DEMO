@@ -67,7 +67,12 @@
             }
 
             button:hover {
-              background-color: #000;
+              background-color: #1483c4;
+              color: #fff;
+            }
+
+            .active {
+              background-color: #1483c4;
               color: #fff;
             }
           }
@@ -87,6 +92,15 @@
     .section-two {
       flex: 3;
       background-color: #e6e9e838;
+      overflow: auto;
+      padding: 20px;
+      height: 80vh;
+
+      table-section {
+        /* width: 100%; */
+        overflow: auto;
+        padding: 20px;
+      }
     }
   }
 }
@@ -94,6 +108,15 @@
   .sales-data-modules-container {
     .sales-data-modules-section {
       flex-direction: column;
+
+      .section-two {
+        height: 80vh;
+        overflow: auto;
+
+        .table-section {
+          overflow: auto;
+        }
+      }
     }
   }
 }

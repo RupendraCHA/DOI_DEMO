@@ -17,6 +17,9 @@ const SapDataModules = () => {
     if (table === "vbak") {
       endpoint = table;
       setSalesTable(table);
+    } else if (table === "vbap") {
+      endpoint = table;
+      setSalesTable(table);
     }
     const response = await axios.get(url + `/doi/sales/${endpoint}`, {
       headers: {
@@ -35,8 +38,18 @@ const SapDataModules = () => {
             <li>
               <p>Orders:</p>
               <span>
-                <button onClick={() => getVbakTableData("vbak")}>VBAK</button>
-                <button>VBAP</button>
+                <button
+                  className={`${salesTable === "vbak" ? "active" : ""}`}
+                  onClick={() => getVbakTableData("vbak")}
+                >
+                  VBAK
+                </button>
+                <button
+                  className={`${salesTable === "vbap" ? "active" : ""}`}
+                  onClick={() => getVbakTableData("vbap")}
+                >
+                  VBAP
+                </button>
               </span>
             </li>
             <li>
@@ -62,7 +75,7 @@ const SapDataModules = () => {
           </ul>
         </div>
         <div className="modules-section section-two">
-          <div>
+          <div className="table-section">
             {salesTable === "vbak" && (
               <SalesTableData
                 salesTableName={salesTable}

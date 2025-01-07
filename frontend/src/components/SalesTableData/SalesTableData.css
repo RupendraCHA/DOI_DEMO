@@ -1,0 +1,9 @@
+.header-cell {
+  background-color: #cfe3f759;
+  /* width: 200px; */
+  color: #000;
+  border: 1px solid #000;
+}
+h4 {
+  font-weight: 600;
+}
