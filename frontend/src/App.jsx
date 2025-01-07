@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import NotFound from "./components/NotFound/NotFound";
+import SapDataModules from "./pages/SapDataModules/SapDataModules";
 
 const App = () => {
   return (
@@ -34,6 +35,17 @@ const App = () => {
             <>
               <Header message="login" />
               <Login />
+              <Footer />
+            </>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/sapDataModules"
+          element={
+            <>
+              <Header message="sales" />
+              <SapDataModules />
               <Footer />
             </>
           }

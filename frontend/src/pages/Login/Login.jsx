@@ -35,7 +35,7 @@ const Login = () => {
     if (response.data.success === true) {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.name);
-      navigate("/salesdata");
+      navigate("/sapDataModules");
     } else {
       console.log(response.data);
     }

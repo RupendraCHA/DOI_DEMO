@@ -1,0 +1,94 @@
+.sales-data-modules-container {
+  /* min-height: 70vh; */
+  padding: 20px;
+
+  .sales-data-modules-section {
+    display: flex;
+    /* height: 100vh; */
+    gap: 10px;
+
+    .modules-section {
+      overflow: auto;
+      border-radius: 5px;
+      border: 1px solid #807f7f44;
+      padding: 20px;
+    }
+
+    .section-one {
+      flex: 1;
+      background-color: #b9d7eb27;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      ul {
+        padding: 0;
+        list-style-type: none;
+        border: 1px solid #000;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 2px 2px 5px #62a5d1;
+        overflow: auto;
+
+        h3 {
+          text-decoration: underline;
+          text-align: center;
+          margin-bottom: 50px;
+        }
+
+        li {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          gap: 30px;
+          margin: 20px 0px;
+          background-color: #0000004d;
+          p {
+            font-size: 20px;
+            color: #fff;
+          }
+
+          span {
+            display: flex;
+            gap: 20px;
+            /* text-align: justify; */
+
+            .delivery {
+              translate: -5px;
+            }
+
+            button {
+              width: 70px;
+              padding: 5px;
+              border: 1px solid #000;
+              border-radius: 5px;
+              box-shadow: 2px 2px 5px #62a5d1;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .sales-section {
+        height: auto;
+        background-image: url("./SAP-SD.jpg");
+        background-size: cover;
+        filter: brightness(100%);
+        background-position: -80px;
+        color: #fff;
+      }
+
+      /* justify-content: space-around; */
+    }
+    .section-two {
+      flex: 3;
+      background-color: #e6e9e838;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .sales-data-modules-container {
+    .sales-data-modules-section {
+      flex-direction: column;
+    }
+  }
+}
