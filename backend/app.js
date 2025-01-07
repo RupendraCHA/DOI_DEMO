@@ -86,7 +86,7 @@ app.get("/start", (req, res) => {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>HANElytics server</title>
+        <title>DOI Demo server</title>
         <style>
           div{
               display: flex;
