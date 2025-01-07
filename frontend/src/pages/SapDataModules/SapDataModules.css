@@ -65,6 +65,11 @@
               box-shadow: 2px 2px 5px #62a5d1;
               font-weight: 600;
             }
+
+            button:hover {
+              background-color: #000;
+              color: #fff;
+            }
           }
         }
       }

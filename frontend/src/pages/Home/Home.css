@@ -13,8 +13,8 @@
 .main-container {
   height: 20vh;
   div {
-    background-color: #000000ce;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     text-align: center;
     padding: 12px 10px;
     border-radius: 4px;

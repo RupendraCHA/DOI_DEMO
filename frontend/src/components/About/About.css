@@ -2,6 +2,7 @@
   div {
     .about-section-heading {
       text-decoration: underline;
+      text-align: center;
     }
     p {
       font-size: 18px;

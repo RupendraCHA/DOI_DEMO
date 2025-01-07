@@ -90,7 +90,7 @@ const Header = ({ message = "" }) => {
                   onClick={() => setMenu("explore-offerings")}
                   className={menu === "explore-offerings" ? "active" : ""}
                 >
-                  Explore Offerings
+                  Archived Data
                 </a>
               </li>
               <li>

@@ -10,6 +10,7 @@ import "dotenv/config.js";
 // import connectToSAPHana from "./config/db.js";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
+import salesRouter from "./routes/salesTableDataRoute.js";
 
 const app = express();
 
@@ -27,6 +28,7 @@ const connOptions = {
 const client = hana.createClient(connOptions);
 
 app.use("/doi/user", userRouter);
+app.use("/doi/sales", salesRouter);
 
 app.get("/sales", async (req, res) => {
   try {
