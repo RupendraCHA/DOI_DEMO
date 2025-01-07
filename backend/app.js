@@ -18,7 +18,8 @@ app.use(cors());
 
 const connOptions = {
   host: process.env.HOST,
-  port: process.env.PORT, // Default HANA port
+  // port: process.env.PORT,
+  port: 30215,
   user: process.env.USER,
   password: `${process.env.PASSWORD}#1234`,
 };
