@@ -8,9 +8,18 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 // import { tableData } from "../../VBRKTableData.js";
 import { StoreContext } from "../../context/StoreContext";
 import Spinner from "../../components/spinner/spinner";
+import { useNavigate } from "react-router-dom";
 
 const SalesOrderData = () => {
-  const { url } = useContext(StoreContext);
+  const { url, token, username } = useContext(StoreContext);
+
+  const navigate = useNavigate();
+
+  if (token) {
+    navigate("/salesdata");
+  } else {
+    navigate("/login");
+  }
 
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
@@ -36,7 +45,7 @@ const SalesOrderData = () => {
     let newArray = [];
     let id = 0;
 
-    const response = await axios.get(url + "/");
+    const response = await axios.get(url + "/sales");
 
     console.log("Data : ", response.data);
     const tableData = response.data;

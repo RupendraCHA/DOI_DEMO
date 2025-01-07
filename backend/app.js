@@ -28,7 +28,7 @@ const client = hana.createClient(connOptions);
 
 app.use("/doi/user", userRouter);
 
-app.get("/", async (req, res) => {
+app.get("/sales", async (req, res) => {
   try {
     // const result = await client.exec('SELECT * FROM your_table');
     // res.json(result);
@@ -80,6 +80,33 @@ app.get("/", async (req, res) => {
   } finally {
     client.disconnect();
   }
+});
+app.get("/start", (req, res) => {
+  res.send(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>HANElytics server</title>
+        <style>
+          div{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              background-color: black;
+          }
+          h1{
+              color: white;
+          }
+        </style>
+      </head>
+      <body>
+          <div>
+              <h1>You are Successfully started Visionsoft DOI Demo Server</h1>
+          </div>
+      </body>
+      </html>
+    `);
 });
 
 const port = process.env.DB_PORT;
