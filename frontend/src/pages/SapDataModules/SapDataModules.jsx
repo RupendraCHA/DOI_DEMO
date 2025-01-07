@@ -1,17 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SapDataModules.css";
 
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import SalesTableData from "../../components/SalesTableData/SalesTableData";
+import Spinner from "../../components/spinner/spinner";
 
 const SapDataModules = () => {
   const { url } = useContext(StoreContext);
 
   const [salesTable, setSalesTable] = useState("");
   const [tableData, setTableData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [count, setCount] = useState(0);
 
   const getVbakTableData = async (table) => {
+    setLoading(true);
     let endpoint;
 
     if (table === "vbak") {
@@ -26,9 +30,17 @@ const SapDataModules = () => {
         "Content-Type": "application/json",
       },
     });
-    setTableData(response.data.data);
+
+    if (response.data.success) {
+      setLoading(false);
+      setTableData(response.data.data);
+    }
     console.log(response.data.data);
   };
+
+  // useEffect(() => {
+  //   getVbakTableData("vbak");
+  // }, []);
   return (
     <div className="sales-data-modules-container">
       <div className="sales-data-modules-section">
@@ -76,6 +88,15 @@ const SapDataModules = () => {
         </div>
         <div className="modules-section section-two">
           <div className="table-section">
+            {isLoading && (
+              <div>
+                <Spinner
+                  size="80px"
+                  color="#ff6347"
+                  message="Please wait, Data is Lading..."
+                />
+              </div>
+            )}
             {salesTable === "vbak" && (
               <SalesTableData
                 salesTableName={salesTable}
