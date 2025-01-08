@@ -34,6 +34,7 @@
           text-decoration: underline;
           text-align: center;
           margin-bottom: 50px;
+          font-weight: bold;
         }
 
         li {
@@ -42,10 +43,12 @@
           align-items: center;
           gap: 30px;
           margin: 20px 0px;
-          background-color: #0000004d;
+          background-color: #00000054;
+          border-radius: 8px;
           p {
-            font-size: 20px;
+            font-size: 24px;
             color: #fff;
+            font-weight: 700;
           }
 
           span {

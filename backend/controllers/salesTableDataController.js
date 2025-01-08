@@ -56,6 +56,51 @@ export const getSalesTableDataFromLIKP = async (req, res) => {
   }
 };
 
+// Fetching LIPK (Sales Delivery Item) Table Data
+
+export const getSalesTableDataFromLIPS = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec("SELECT * FROM LIPS");
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
+// Fetching LIPK (Sales Delivery Item) Table Data
+
+export const getSalesTableDataFromVBRK = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec("SELECT * FROM VBRK");
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
+// Fetching LIPK (Sales Delivery Item) Table Data
+
+export const getSalesTableDataFromVBRP = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec("SELECT * FROM VBRP");
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
 // ITEM DATA QUERY
 
 // Fetching Sales Order Item Data W.R.T (With Respect To) Document Number
@@ -103,6 +148,30 @@ export const getSalesDocumenDeliverytItemData = async (req, res) => {
       SELECT *
       FROM LIPS
       WHERE LIPS.VBELN = '${documentNumber}'`;
+
+    const result = await clientConn.exec(query);
+    // console.log(result);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
+// Fetching Sales Invoice Item Data W.R.T (With Respect To) Document Number
+export const getSalesDocumenBillingtItemData = async (req, res) => {
+  const { documentNumber } = req.params;
+  console.log(documentNumber);
+
+  try {
+    clientConn.connect();
+
+    const query = `
+      SELECT *
+      FROM VBRP
+      WHERE VBRP.VBELN = '${documentNumber}'`;
 
     const result = await clientConn.exec(query);
     // console.log(result);

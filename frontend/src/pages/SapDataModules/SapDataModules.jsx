@@ -15,7 +15,7 @@ const SapDataModules = () => {
   const [isLoading, setLoading] = useState(false);
   const [homeText, setHomeText] = useState(true);
 
-  const getVbakTableData = async (table) => {
+  const getTableData = async (table) => {
     setHomeText(false);
     setLoading(true);
     let endpoint;
@@ -27,6 +27,15 @@ const SapDataModules = () => {
       endpoint = table;
       setSalesTable(table);
     } else if (table === "likp") {
+      endpoint = table;
+      setSalesTable(table);
+    } else if (table === "lips") {
+      endpoint = table;
+      setSalesTable(table);
+    } else if (table === "vbrk") {
+      endpoint = table;
+      setSalesTable(table);
+    } else if (table === "vbrp") {
       endpoint = table;
       setSalesTable(table);
     }
@@ -55,13 +64,13 @@ const SapDataModules = () => {
                 <span>
                   <button
                     className={`${salesTable === "vbak" ? "active" : ""}`}
-                    onClick={() => getVbakTableData("vbak")}
+                    onClick={() => getTableData("vbak")}
                   >
                     VBAK
                   </button>
                   <button
                     className={`${salesTable === "vbap" ? "active" : ""}`}
-                    onClick={() => getVbakTableData("vbap")}
+                    onClick={() => getTableData("vbap")}
                   >
                     VBAP
                   </button>
@@ -74,18 +83,35 @@ const SapDataModules = () => {
                     className={`${
                       salesTable === "likp" ? "delivery active" : "delivery"
                     }`}
-                    onClick={() => getVbakTableData("likp")}
+                    onClick={() => getTableData("likp")}
                   >
                     LIKP
                   </button>
-                  <button className="delivery">LIPS</button>
+                  <button
+                    className={`${
+                      salesTable === "lips" ? "delivery active" : "delivery"
+                    }`}
+                    onClick={() => getTableData("lips")}
+                  >
+                    LIPS
+                  </button>
                 </span>
               </li>
               <li>
                 <p>Invoice:</p>
                 <span>
-                  <button>VBRK</button>
-                  <button>VBRP</button>
+                  <button
+                    className={`${salesTable === "vbrk" ? "active" : ""}`}
+                    onClick={() => getTableData("vbrk")}
+                  >
+                    VBRK
+                  </button>
+                  <button
+                    className={`${salesTable === "vbrp" ? "active" : ""}`}
+                    onClick={() => getTableData("vbrp")}
+                  >
+                    VBRP
+                  </button>
                 </span>
               </li>
             </ul>
@@ -116,13 +142,13 @@ const SapDataModules = () => {
               )}
               {salesTable === "vbak" && (
                 <>
+                  <ScrollToTopButton />
                   <SalesTableData
                     salesTableName={salesTable}
                     salesTableData={tableData}
                     setHomeText={setHomeText}
                     setSalesTable={setSalesTable}
                   />
-                  <ScrollToTopButton />
                 </>
               )}
               {salesTable === "vbap" && (
@@ -134,6 +160,30 @@ const SapDataModules = () => {
                 />
               )}
               {salesTable === "likp" && (
+                <SalesTableData
+                  salesTableName={salesTable}
+                  salesTableData={tableData}
+                  setHomeText={setHomeText}
+                  setSalesTable={setSalesTable}
+                />
+              )}
+              {salesTable === "lips" && (
+                <SalesTableData
+                  salesTableName={salesTable}
+                  salesTableData={tableData}
+                  setHomeText={setHomeText}
+                  setSalesTable={setSalesTable}
+                />
+              )}
+              {salesTable === "vbrk" && (
+                <SalesTableData
+                  salesTableName={salesTable}
+                  salesTableData={tableData}
+                  setHomeText={setHomeText}
+                  setSalesTable={setSalesTable}
+                />
+              )}
+              {salesTable === "vbrp" && (
                 <SalesTableData
                   salesTableName={salesTable}
                   salesTableData={tableData}
