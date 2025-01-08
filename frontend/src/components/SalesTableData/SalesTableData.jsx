@@ -66,7 +66,7 @@ const SalesTableData = (props) => {
                 type="search"
                 placeholder="Enter Document Number"
                 className="doc-input"
-                value={documentNum}
+                // value={documentNum}
                 onChange={(e) => setDocumentNum(e.target.value)}
               />
               <IoSearch

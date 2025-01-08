@@ -7,6 +7,7 @@ import Contact from "../../components/Contact/Contact";
 import Header from "../../components/Header/Header1";
 import Footer from "../../components/Footer/Footer";
 import ExploreOfferings from "../../components/ExploreOfferings/ExploreOfferings";
+import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
 // import About from "../../components/About/About";
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
         <Contact />
       </div>
       <Footer />
+      <ScrollToTopButton />
     </>
   );
 };

@@ -79,7 +79,7 @@ const Header = ({ message = "" }) => {
                 <a
                   href="#home"
                   onClick={() => setMenu("home")}
-                  className={menu === "home" ? "active" : ""}
+                  className={menu === "home" ? "active" : "tab"}
                 >
                   Home
                 </a>
@@ -88,7 +88,7 @@ const Header = ({ message = "" }) => {
                 <a
                   href="#explore-offerings"
                   onClick={() => setMenu("explore-offerings")}
-                  className={menu === "explore-offerings" ? "active" : ""}
+                  className={menu === "explore-offerings" ? "active" : "tab"}
                 >
                   Archived Data
                 </a>
@@ -97,7 +97,7 @@ const Header = ({ message = "" }) => {
                 <a
                   href="#about"
                   onClick={() => setMenu("about")}
-                  className={menu === "about" ? "active" : ""}
+                  className={menu === "about" ? "active" : "tab"}
                 >
                   About
                 </a>
@@ -106,7 +106,7 @@ const Header = ({ message = "" }) => {
                 <a
                   href="#contact"
                   onClick={() => setMenu("contact")}
-                  className={menu === "contact" ? "active" : ""}
+                  className={menu === "contact" ? "active" : "tab"}
                 >
                   Contact
                 </a>
