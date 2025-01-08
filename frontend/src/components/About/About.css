@@ -3,6 +3,7 @@
     .about-section-heading {
       text-decoration: underline;
       text-align: center;
+      margin-bottom: 20px;
     }
     p {
       font-size: 18px;

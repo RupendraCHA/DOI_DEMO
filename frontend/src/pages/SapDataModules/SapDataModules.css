@@ -101,6 +101,21 @@
         overflow: auto;
         padding: 20px;
       }
+
+      .archived-data-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+        /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736344887/sapImage_ipblzl.jpg"); */
+        background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736345311/sapImage1_cnoqqt.avif");
+        background-size: cover;
+
+        h1 {
+          color: #fff;
+          font-weight: 600;
+        }
+      }
     }
   }
 }

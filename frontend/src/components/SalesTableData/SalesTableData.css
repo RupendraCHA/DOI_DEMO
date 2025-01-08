@@ -3,6 +3,17 @@
     font-size: 20px;
     text-align: left;
   }
+
+  .back-table-data-button {
+    padding: 4px 18px;
+    margin-top: 12px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 600;
+    border: none;
+    box-shadow: 2px 2px 5px #000;
+  }
 }
 .sales-order-item-heading {
   /* text-align: center; */
@@ -63,6 +74,7 @@ h4 {
     font-size: 18px;
     display: flex;
     gap: 20px;
+    font-weight: 600;
 
     span {
       color: #121ec7;

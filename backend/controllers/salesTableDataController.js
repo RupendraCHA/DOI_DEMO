@@ -11,6 +11,9 @@ const connOptions = {
 
 const clientConn = hana.createClient(connOptions);
 
+// GET TABLES DATA
+
+// Fetching VBAK (Sales Order Header) Table Data
 export const getSalesTableDataFromVBAK = async (req, res) => {
   try {
     clientConn.connect();
@@ -24,6 +27,7 @@ export const getSalesTableDataFromVBAK = async (req, res) => {
   }
 };
 
+// Fetching VBAP (Sales Order Item) Table Data
 export const getSalesTableDataFromVBAP = async (req, res) => {
   try {
     clientConn.connect();
@@ -37,9 +41,26 @@ export const getSalesTableDataFromVBAP = async (req, res) => {
   }
 };
 
-export const getSalesDocumentItemData = async (req, res) => {
-  const { documentNumber } = req.params;
+// Fetching LIPK (Sales Delivery Header) Table Data
 
+export const getSalesTableDataFromLIKP = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec("SELECT * FROM LIKP");
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
+// ITEM DATA QUERY
+
+// Fetching Sales Order Item Data W.R.T (With Respect To) Document Number
+export const getSalesDocumentOrderItemData = async (req, res) => {
+  const { documentNumber } = req.params;
   console.log(documentNumber);
 
   try {
@@ -58,6 +79,30 @@ export const getSalesDocumentItemData = async (req, res) => {
       SELECT *
       FROM VBAP
       WHERE VBAP.VBELN = '${documentNumber}'`;
+
+    const result = await clientConn.exec(query);
+    // console.log(result);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
+// Fetching Sales Order Item Data W.R.T (With Respect To) Document Number
+export const getSalesDocumenDeliverytItemData = async (req, res) => {
+  const { documentNumber } = req.params;
+  console.log(documentNumber);
+
+  try {
+    clientConn.connect();
+
+    const query = `
+      SELECT *
+      FROM LIPS
+      WHERE LIPS.VBELN = '${documentNumber}'`;
 
     const result = await clientConn.exec(query);
     // console.log(result);

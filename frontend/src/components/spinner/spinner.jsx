@@ -3,9 +3,9 @@ import "./spinner.css"; // Import CSS for styling
 
 // Spinner component
 const Spinner = ({
-  size = "50px",
+  size = "40px",
   color = "#3498db",
-  message = "Loading...",
+  message = "Processing your request, one moment please...",
 }) => {
   return (
     <div className="spinner-container">
