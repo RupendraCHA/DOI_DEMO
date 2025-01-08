@@ -341,7 +341,7 @@ const SalesTableData = (props) => {
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
-          <h4>{salesTableName.toUpperCase()} - Sales Order Header Table</h4>
+          <h4>{salesTableName.toUpperCase()} - Sales Order Item Table</h4>
           <table style={{ width: "200%", overflow: scroll }}>
             <thead>
               <tr>
@@ -626,7 +626,7 @@ const SalesTableData = (props) => {
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
-          <h4>{salesTableName.toUpperCase()} - Sales Delivery Header Table</h4>
+          <h4>{salesTableName.toUpperCase()} - Sales Delivery Item Table</h4>
           <table style={{ width: "200%", overflow: scroll }}>
             <thead>
               <tr>
