@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Login.css";
 
-// import { BsFillInfoCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
+import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
 
 import aos from "aos";
 import "aos/dist/aos.css";
@@ -174,6 +174,7 @@ const Login = () => {
           </form>
         </div>
       )}
+      <ScrollToTopButton />
     </div>
   );
 };

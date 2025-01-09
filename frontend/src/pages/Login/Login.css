@@ -40,7 +40,8 @@
             border: 1px solid #808080;
             background-color: #f0f8ff8e;
             width: 100%;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 18px;
           }
         }
       }
@@ -132,7 +133,7 @@
       }
 
       input {
-        font-size: 16px;
+        font-size: 180px;
         padding: 10px;
         border-radius: 6px;
         border: 1px solid gray;

@@ -9,9 +9,12 @@ import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopBut
 
 import aos from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const SapDataModules = () => {
-  const { url } = useContext(StoreContext);
+  const { url, token, username } = useContext(StoreContext);
+
+  const navigate = useNavigate();
 
   const [salesTable, setSalesTable] = useState("");
   const [tableData, setTableData] = useState([]);
@@ -20,6 +23,11 @@ const SapDataModules = () => {
 
   useEffect(() => {
     aos.init({ duration: 2000 });
+    if (token) {
+      navigate("/sapDataModules");
+    } else {
+      navigate("/login");
+    }
   });
 
   const getTableData = async (table) => {
@@ -149,7 +157,6 @@ const SapDataModules = () => {
               )}
               {salesTable === "vbak" && (
                 <>
-                  <ScrollToTopButton />
                   <SalesTableData
                     salesTableName={salesTable}
                     salesTableData={tableData}
