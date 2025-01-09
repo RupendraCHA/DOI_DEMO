@@ -55,6 +55,9 @@
   }
 }
 @media (max-width: 768px) {
+  .contact-input-section-1 {
+    flex-direction: column;
+  }
   .contact-input-section-2 {
     input {
       width: 82vw;
