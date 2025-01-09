@@ -133,14 +133,14 @@
       }
 
       input {
-        font-size: 180px;
+        font-size: 18px;
         padding: 10px;
         border-radius: 6px;
         border: 1px solid gray;
         background-color: #f0f8ff8e;
 
         outline: none;
-        font-weight: 500;
+        font-weight: 600;
         /* color: blue; */
       }
     }

@@ -200,7 +200,7 @@ const SignUp = () => {
                 </div>
               </div>
               <div>
-                <label id="confirm">Confirm</label>
+                <label id="confirm">Confirm Password</label>
                 <br />
                 <div className="password-hide-and-show">
                   <input
