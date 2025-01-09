@@ -88,7 +88,12 @@ app.get("/start", (req, res) => {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>DOI Demo server</title>
+      <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
+    />
+        <title>Archiving Data from SAP server</title>
         <style>
           div{
               display: flex;
