@@ -7,6 +7,9 @@ import SalesTableData from "../../components/SalesTableData/SalesTableData";
 import Spinner from "../../components/spinner/spinner";
 import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
 
+import aos from "aos";
+import "aos/dist/aos.css";
+
 const SapDataModules = () => {
   const { url } = useContext(StoreContext);
 
@@ -14,6 +17,10 @@ const SapDataModules = () => {
   const [tableData, setTableData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [homeText, setHomeText] = useState(true);
+
+  useEffect(() => {
+    aos.init({ duration: 1000 });
+  });
 
   const getTableData = async (table) => {
     setHomeText(false);
@@ -54,7 +61,7 @@ const SapDataModules = () => {
 
   return (
     <>
-      <div className="sales-data-modules-container">
+      <div className="sales-data-modules-container" data-aos="zoom-in">
         <div className="sales-data-modules-section">
           <div className="modules-section section-one">
             <ul className="sales-section image1">
@@ -124,7 +131,7 @@ const SapDataModules = () => {
           </div>
           <div className="modules-section section-two">
             {homeText && (
-              <div className="archived-data-container">
+              <div className="archived-data-container" data-aos="zoom-in">
                 <div className="data-heading">
                   <h1>View Archived Data from S4 HANA by selecting the tabs</h1>
                 </div>
@@ -148,6 +155,7 @@ const SapDataModules = () => {
                     salesTableData={tableData}
                     setHomeText={setHomeText}
                     setSalesTable={setSalesTable}
+                    setLoading={setLoading}
                   />
                 </>
               )}
@@ -157,6 +165,7 @@ const SapDataModules = () => {
                   salesTableData={tableData}
                   setHomeText={setHomeText}
                   setSalesTable={setSalesTable}
+                  setLoading={setLoading}
                 />
               )}
               {salesTable === "likp" && (
@@ -165,6 +174,7 @@ const SapDataModules = () => {
                   salesTableData={tableData}
                   setHomeText={setHomeText}
                   setSalesTable={setSalesTable}
+                  setLoading={setLoading}
                 />
               )}
               {salesTable === "lips" && (
@@ -173,6 +183,7 @@ const SapDataModules = () => {
                   salesTableData={tableData}
                   setHomeText={setHomeText}
                   setSalesTable={setSalesTable}
+                  setLoading={setLoading}
                 />
               )}
               {salesTable === "vbrk" && (
@@ -181,6 +192,7 @@ const SapDataModules = () => {
                   salesTableData={tableData}
                   setHomeText={setHomeText}
                   setSalesTable={setSalesTable}
+                  setLoading={setLoading}
                 />
               )}
               {salesTable === "vbrp" && (
@@ -189,13 +201,14 @@ const SapDataModules = () => {
                   salesTableData={tableData}
                   setHomeText={setHomeText}
                   setSalesTable={setSalesTable}
+                  setLoading={setLoading}
                 />
               )}
+              <ScrollToTopButton />
             </div>
           </div>
         </div>
       </div>
-      <ScrollToTopButton />
     </>
   );
 };

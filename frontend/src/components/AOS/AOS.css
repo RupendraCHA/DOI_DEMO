@@ -1,0 +1,11 @@
+.animation {
+  width: 400px;
+  height: 80px;
+  background-color: red;
+  margin: 10px auto;
+}
+
+.zoom {
+  background-color: aquamarine;
+  padding: 20px;
+}

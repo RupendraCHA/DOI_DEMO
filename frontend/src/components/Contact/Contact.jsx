@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Contact.css";
 
+import aos from "aos";
+import "aos/dist/aos.css";
+
 const Contact = () => {
+  useEffect(() => {
+    aos.init({ duration: 2000 });
+  });
   return (
-    <div className="container contact-container" id="contact">
+    <div
+      className="container contact-container"
+      id="contact"
+      data-aos="fade-down"
+    >
       <div>
         <h1 className="contact-heading">CONTACT US</h1>
         <div className="contact-input-section-1">

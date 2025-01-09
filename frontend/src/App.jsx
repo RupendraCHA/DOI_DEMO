@@ -11,6 +11,7 @@ import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import NotFound from "./components/NotFound/NotFound";
 import SapDataModules from "./pages/SapDataModules/SapDataModules";
+import AOS from "./components/AOS/AOS";
 
 const App = () => {
   return (
@@ -61,6 +62,7 @@ const App = () => {
             </>
           }
         ></Route>
+        <Route path="/aos" element={<AOS />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>

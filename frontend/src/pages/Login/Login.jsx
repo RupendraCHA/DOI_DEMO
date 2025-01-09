@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Login.css";
 
 // import { BsFillInfoCircleFill } from "react-icons/bs";
@@ -6,8 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
 
+import aos from "aos";
+import "aos/dist/aos.css";
+
 const Login = () => {
   const { url } = useContext(StoreContext);
+
+  useEffect(() => {
+    aos.init({ duration: 2000 });
+  });
 
   const navigate = useNavigate();
 
@@ -64,7 +71,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container" data-aos="zoom-in">
       {!forgotPassword && (
         <div className="container login-section">
           <form onSubmit={sendLoginDetails} className="login-section-container">
@@ -119,7 +126,7 @@ const Login = () => {
         </div>
       )}
       {forgotPassword && (
-        <div className="change-password-container">
+        <div className="change-password-container" data-aos="zoom-in">
           <h1>Update Your Password</h1>
           <form
             onSubmit={handleUpdatePassword}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./SalesTableData.css";
 import axios from "axios";
@@ -8,8 +8,15 @@ import { IoSearch } from "react-icons/io5";
 
 const SalesTableData = (props) => {
   const { url } = useContext(StoreContext);
-  let { salesTableName, salesTableData, setHomeText, setSalesTable } = props;
-  console.log("Rupendra Retrieved Data:", salesTableData[0]);
+
+  let {
+    salesTableName,
+    salesTableData,
+    setHomeText,
+    setSalesTable,
+    setLoading,
+  } = props;
+  // console.log("Rupendra Retrieved Data:", salesTableData[0]);
   // console.log(salesTableName);
 
   const [documentNum, setDocumentNum] = useState("");
@@ -33,6 +40,7 @@ const SalesTableData = (props) => {
   const removeTableData = () => {
     setHomeText(true);
     setSalesTable("");
+    setLoading(false);
     // setShowItemData(false)
   };
 

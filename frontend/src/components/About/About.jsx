@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./About.css";
 
+import aos from "aos";
+import "aos/dist/aos.css";
+
 const About = () => {
+  useEffect(() => {
+    aos.init({ duration: 2000 });
+  });
   return (
-    <div className="container about-container" id="about">
+    <div className="container about-container" id="about" data-aos="fade-down">
       <div>
         <h1 className="about-section-heading">ABOUT US</h1>
         <p>

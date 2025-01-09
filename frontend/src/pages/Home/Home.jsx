@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./Home.css";
 import About from "../../components/About/About";
@@ -10,11 +10,17 @@ import ExploreOfferings from "../../components/ExploreOfferings/ExploreOfferings
 import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
 // import About from "../../components/About/About";
 
+import aos from "aos";
+import "aos/dist/aos.css";
+
 const Home = () => {
+  useEffect(() => {
+    aos.init({ duration: 2000 });
+  });
   return (
     <>
       <Header />
-      <div className="home-container" id="home">
+      <div className="home-container" id="home" data-aos="fade-down">
         <div className="container main-container">
           <div>
             <h3>

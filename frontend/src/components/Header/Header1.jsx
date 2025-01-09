@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import "./Header.css";
 
+import aos from "aos";
+import "aos/dist/aos.css";
+
 const Header = ({ message = "" }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenActive, setIsOpenActive] = useState(false);
+
+  useEffect(() => {
+    aos.init({ duration: 2000 });
+  });
 
   const navigate = useNavigate();
 
@@ -57,7 +64,7 @@ const Header = ({ message = "" }) => {
   };
 
   return (
-    <div className="header-container">
+    <div className="header-container" data-aos="zoom-in">
       <nav className="container header-section-container">
         <div className="logo-container">
           <div>

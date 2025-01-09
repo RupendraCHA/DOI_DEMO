@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./ExploreOfferings.css";
+import aos from "aos";
+import "aos/dist/aos.css";
 
 const ExploreOfferings = () => {
+  useEffect(() => {
+    aos.init({ duration: 2000 });
+  });
   return (
-    <div className="container explore-container" id="explore-offerings">
+    <div
+      className="container explore-container"
+      id="explore-offerings"
+      data-aos="fade-down"
+    >
       <div>
         <h1 className="explore-section-heading">ARCHIVED DATA</h1>
         <p className="sap-gui-intro">

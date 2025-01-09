@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { FaFacebook } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 
 import "./Footer.css";
+import aos from "aos";
+import "aos/dist/aos.css";
 
 const Footer = () => {
+  useEffect(() => {
+    aos.init({ duration: 1000 });
+  });
   return (
-    <div className="footer-container">
+    <div className="footer-container" data-aos="fade-down">
       <div className="powered-by-container">
         <div className="powered-by-section">
           <p>Powered By</p>

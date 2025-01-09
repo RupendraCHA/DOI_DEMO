@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,6 +6,9 @@ import axios from "axios";
 
 import "./SignUp.css";
 import { StoreContext } from "../../context/StoreContext";
+
+import aos from "aos";
+import "aos/dist/aos.css";
 
 const SignUp = () => {
   const { url } = useContext(StoreContext);
@@ -24,6 +27,10 @@ const SignUp = () => {
   const [codeErrorText, setCodeErrorText] = useState("");
   const [registerError, setRegisterError] = useState("");
   const [registerErrorBool, setRegisterErrorBool] = useState(false);
+
+  useEffect(() => {
+    aos.init({ duration: 2000 });
+  });
 
   const navigate = useNavigate();
 
@@ -95,7 +102,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-container">
+    <div className="signup-container" data-aos="zoom-in">
       {!isClickedRegister && (
         <div className="container signup-section">
           <form onSubmit={submitUserData} className="signup-section-container">
