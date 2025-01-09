@@ -35,6 +35,8 @@ const SapDataModules = () => {
   });
 
   const getTableData = async (table) => {
+    setSalesTable(table);
+
     setHomeText(false);
     setLoading(true);
     let endpoint;
