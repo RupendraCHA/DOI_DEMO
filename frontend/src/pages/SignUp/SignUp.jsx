@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { BiSolidShow } from "react-icons/bi";
+import { BiSolidHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -28,6 +29,8 @@ const SignUp = () => {
   const [codeErrorText, setCodeErrorText] = useState("");
   const [registerError, setRegisterError] = useState("");
   const [registerErrorBool, setRegisterErrorBool] = useState(false);
+  const [showHide1, setShowHide1] = useState(true);
+  const [showHide2, setShowHide2] = useState(true);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
@@ -103,6 +106,13 @@ const SignUp = () => {
     }
   };
 
+  const showHidePassword1 = () => {
+    setShowHide1(!showHide1);
+  };
+  const showHidePassword2 = () => {
+    setShowHide2(!showHide2);
+  };
+
   return (
     <div className="signup-container" data-aos="zoom-in">
       {!isClickedRegister && (
@@ -167,7 +177,7 @@ const SignUp = () => {
                 <br />
                 <div className="password-hide-and-show">
                   <input
-                    type="password"
+                    type={showHide1 === true ? "password" : "text"}
                     htmlFor="password"
                     required
                     placeholder="Password*"
@@ -176,7 +186,17 @@ const SignUp = () => {
                     className="hide-unhide-password"
                     style={{ border: "none" }}
                   />
-                  <BiSolidShow />
+                  {showHide1 === true ? (
+                    <BiSolidShow
+                      className="hide-show-icon"
+                      onClick={showHidePassword1}
+                    />
+                  ) : (
+                    <BiSolidHide
+                      className="hide-show-icon"
+                      onClick={showHidePassword1}
+                    />
+                  )}
                 </div>
               </div>
               <div>
@@ -184,7 +204,7 @@ const SignUp = () => {
                 <br />
                 <div className="password-hide-and-show">
                   <input
-                    type="password"
+                    type={showHide2 === true ? "password" : "text"}
                     htmlFor="confirm"
                     required
                     placeholder="Confirm Password*"
@@ -193,7 +213,17 @@ const SignUp = () => {
                     className="hide-unhide-password"
                     style={{ border: "none" }}
                   />
-                  <BiSolidShow />
+                  {showHide2 === true ? (
+                    <BiSolidShow
+                      className="hide-show-icon"
+                      onClick={showHidePassword2}
+                    />
+                  ) : (
+                    <BiSolidHide
+                      className="hide-show-icon"
+                      onClick={showHidePassword2}
+                    />
+                  )}
                 </div>
               </div>
             </div>
