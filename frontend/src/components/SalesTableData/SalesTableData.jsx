@@ -177,7 +177,7 @@ const SalesTableData = (props) => {
                   <tbody>
                     {itemData.map((record, index) => {
                       return (
-                        <tr key={index}>
+                        <tr key={index + 1}>
                           <td>{index + 1}</td>
                           <td>{record.VBELN}</td>
                           <td>{record.MATNR}</td>
@@ -228,7 +228,7 @@ const SalesTableData = (props) => {
             <tbody>
               {salesTableData.map((record, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index + 2}>
                     <td>{index + 1}</td>
                     <td
                       key={record.VBELN}
@@ -320,7 +320,7 @@ const SalesTableData = (props) => {
                   <tbody>
                     {itemData.map((record, index) => {
                       return (
-                        <tr key={index}>
+                        <tr key={index + 3}>
                           <td>{index + 1}</td>
                           <td>{record.VBELN}</td>
                           <td>{record.MATNR}</td>
@@ -371,7 +371,7 @@ const SalesTableData = (props) => {
             <tbody>
               {salesTableData.map((record, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index + 4}>
                     <td>{index + 1}</td>
                     <td
                       key={record.VBELN}
@@ -462,7 +462,7 @@ const SalesTableData = (props) => {
                   <tbody>
                     {itemData.map((record, index) => {
                       return (
-                        <tr key={index}>
+                        <tr key={index + 5}>
                           <td>{index + 1}</td>
                           <td>{record.VBELN}</td>
                           <td>{record.POSNR}</td>
@@ -513,7 +513,7 @@ const SalesTableData = (props) => {
             <tbody>
               {salesTableData.map((record, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index + 6}>
                     <td>{index + 1}</td>
                     <td
                       key={record.VBELN}
@@ -605,7 +605,7 @@ const SalesTableData = (props) => {
                   <tbody>
                     {itemData.map((record, index) => {
                       return (
-                        <tr key={index}>
+                        <tr key={index + 7}>
                           <td>{index + 1}</td>
                           <td>{record.VBELN}</td>
                           <td>{record.POSNR}</td>
@@ -656,7 +656,7 @@ const SalesTableData = (props) => {
             <tbody>
               {salesTableData.map((record, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index + 8}>
                     <td>{index + 1}</td>
                     <td
                       key={record.VBELN}
@@ -750,7 +750,7 @@ const SalesTableData = (props) => {
                   <tbody>
                     {itemData.map((record, index) => {
                       return (
-                        <tr key={index}>
+                        <tr key={index + 9}>
                           <td>{index + 1}</td>
                           <td>{record.VBELN}</td>
                           <td>{record.FKIMG}</td>
@@ -804,7 +804,7 @@ const SalesTableData = (props) => {
             <tbody>
               {salesTableData.map((record, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index + 10}>
                     <td>{index + 1}</td>
                     <td
                       key={record.VBELN}
@@ -900,7 +900,7 @@ const SalesTableData = (props) => {
                   <tbody>
                     {itemData.map((record, index) => {
                       return (
-                        <tr key={index}>
+                        <tr key={index + 11}>
                           <td>{index + 1}</td>
                           <td>{record.VBELN}</td>
                           <td>{record.FKIMG}</td>
@@ -954,7 +954,7 @@ const SalesTableData = (props) => {
             <tbody>
               {salesTableData.map((record, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index + 12}>
                     <td>{index + 1}</td>
                     <td
                       key={record.VBELN}
