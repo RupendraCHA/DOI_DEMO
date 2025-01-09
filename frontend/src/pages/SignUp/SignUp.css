@@ -96,6 +96,7 @@
 @media (max-width: 768px) {
   .signup-container {
     .signup-section-container {
+      width: 100%;
       .info-section {
         flex-direction: column;
         gap: 0px;

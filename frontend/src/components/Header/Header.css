@@ -67,19 +67,34 @@
   }
 }
 @media (max-width: 768px) {
+  .header-container {
+    .header-section-container {
+      .logo-container {
+        .website-name-section {
+          website-logo {
+            width: 15px;
+            height: 15px;
+          }
+          h3 {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
   .tabs-container {
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #1098ceb9;
+    background-color: #2d7bc4;
     position: absolute;
-    width: 350px;
+    width: 250px;
     height: 30vh;
     top: -950px;
     right: 0;
     z-index: 10;
   }
   .tabs-container.active1 {
-    top: 10%;
+    top: 100%;
     border: 1px solid #000;
   }
   .tabs-bar-section {
