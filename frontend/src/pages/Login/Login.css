@@ -183,6 +183,13 @@
 }
 
 @media (max-width: 768px) {
+  .login-container {
+    .login-section {
+      .login-section-container {
+        width: 100%;
+      }
+    }
+  }
   .change-password-container {
     width: 60%;
   }
