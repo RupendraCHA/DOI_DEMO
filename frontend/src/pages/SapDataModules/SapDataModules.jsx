@@ -19,7 +19,7 @@ const SapDataModules = () => {
   const [homeText, setHomeText] = useState(true);
 
   useEffect(() => {
-    aos.init({ duration: 1000 });
+    aos.init({ duration: 2000 });
   });
 
   const getTableData = async (table) => {
