@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import "./Header.css";
+import { FaUserTie } from "react-icons/fa";
 
 import aos from "aos";
 import "aos/dist/aos.css";
@@ -12,9 +13,17 @@ const Header = ({ message = "" }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenActive, setIsOpenActive] = useState(false);
+  const [username, setUserName] = useState("");
 
   useEffect(() => {
     aos.init({ duration: 2000 });
+
+    const jwtToken = localStorage.getItem("token");
+    const userName = localStorage.getItem("username");
+
+    if (jwtToken) {
+      setUserName(userName);
+    }
   });
 
   const navigate = useNavigate();
@@ -28,7 +37,7 @@ const Header = ({ message = "" }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    navigate("/");
+    navigate("/login");
   };
 
   const getButton = () => {
@@ -44,11 +53,15 @@ const Header = ({ message = "" }) => {
           <button>Sign Up</button>
         </Link>
       );
-    } else if (message === "sales") {
+    } else if (message === "modules") {
       return (
-        // <Link to="/login">
-        // </Link>
-        <button onClick={handleLogout}>Logout</button>
+        <>
+          <div className="user-icon-section">
+            <FaUserTie className="user-icon-symbol" />
+            <p className="user-name">{username}</p>
+          </div>
+          <button onClick={handleLogout}>Logout</button>
+        </>
       );
     }
     return (
@@ -65,7 +78,13 @@ const Header = ({ message = "" }) => {
 
   return (
     <div className="header-container" data-aos="zoom-in">
-      <nav className="container header-section-container">
+      <nav
+        className={
+          message === "modules"
+            ? "header-section-container"
+            : "container header-section-container"
+        }
+      >
         <div className="logo-container">
           <div>
             <Link to="/" className="website-name-section">

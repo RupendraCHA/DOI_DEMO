@@ -41,11 +41,17 @@
             outline: none;
             cursor: pointer;
             /* color: #323f4b; */
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 600;
             border: 1px solid #808080;
             background-color: #f0f8ff8e;
           }
         }
+      }
+      .password-info-section {
+        display: flex;
+        margin: 20px;
+        gap: 24px;
       }
     }
     .signup-button {
@@ -96,12 +102,18 @@
 @media (max-width: 768px) {
   .signup-container {
     .signup-section-container {
-      width: 100%;
+      /* width: 100%; */
+      margin: 0px 10px;
       .info-section {
         flex-direction: column;
         gap: 0px;
         margin: 0px;
       }
+    }
+
+    .password-info-section {
+      flex-direction: column;
+      width: none;
     }
   }
 }
@@ -176,5 +188,25 @@
     font-size: 12px;
     text-align: center;
     border-radius: 6px;
+  }
+}
+.password-hide-and-show {
+  /* border: 1px solid #000; */
+  border: 1px solid #808080;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 80%; */
+  padding: 0px 6px;
+  border-radius: 4px;
+  background-color: #f0f8ff8e;
+
+  .hide-unhide-password {
+    /* border: 1px solid #fff; */
+    outline: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background-color: #f0f8ff8e;
   }
 }

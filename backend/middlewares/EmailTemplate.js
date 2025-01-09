@@ -70,7 +70,7 @@ export const Verification_Email_Template = `
               <p>If you did not create an account, no further action is required. If you have any questions, feel free to contact our support team.</p>
           </div>
           <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} HANElytics AI/ML Solutions. All rights reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} Visionsoft Inc. All rights reserved.</p>
           </div>
       </div>
   </body>

@@ -45,7 +45,7 @@ const App = () => {
           path="/sapDataModules"
           element={
             <>
-              <Header message="sales" />
+              <Header message="modules" />
               <SapDataModules />
               <Footer />
             </>

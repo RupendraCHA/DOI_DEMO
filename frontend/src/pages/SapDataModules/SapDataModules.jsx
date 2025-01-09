@@ -29,6 +29,9 @@ const SapDataModules = () => {
     } else {
       navigate("/login");
     }
+    setTimeout(() => {
+      navigate("/login");
+    }, 86400000);
   });
 
   const getTableData = async (table) => {

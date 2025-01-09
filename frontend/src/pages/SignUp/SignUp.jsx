@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
+import { BiSolidShow } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -46,6 +47,7 @@ const SignUp = () => {
   };
 
   const submitUserData = async (e) => {
+    // setRegisterClick(true);
     setRegisterErrorBool(false);
 
     e.preventDefault();
@@ -59,7 +61,7 @@ const SignUp = () => {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.userName);
       setOtp(response.data.verificationCode);
-      navigate("/login");
+      // navigate("/login");
       // console.log(response.data);
     } else {
       setRegisterErrorBool(true);
@@ -159,30 +161,40 @@ const SignUp = () => {
                 />
               </div>
             </div>
-            <div className="info-section">
+            <div className="password-info-section">
               <div>
                 <label id="password">Password</label>
                 <br />
-                <input
-                  type="password"
-                  htmlFor="password"
-                  required
-                  placeholder="Password*"
-                  name="password"
-                  onChange={handleUserInput}
-                />
+                <div className="password-hide-and-show">
+                  <input
+                    type="password"
+                    htmlFor="password"
+                    required
+                    placeholder="Password*"
+                    name="password"
+                    onChange={handleUserInput}
+                    className="hide-unhide-password"
+                    style={{ border: "none" }}
+                  />
+                  <BiSolidShow />
+                </div>
               </div>
               <div>
                 <label id="confirm">Confirm</label>
                 <br />
-                <input
-                  type="password"
-                  htmlFor="confirm"
-                  required
-                  placeholder="Confirm Password*"
-                  name="confirmPassword"
-                  onChange={handleUserInput}
-                />
+                <div className="password-hide-and-show">
+                  <input
+                    type="password"
+                    htmlFor="confirm"
+                    required
+                    placeholder="Confirm Password*"
+                    name="confirmPassword"
+                    onChange={handleUserInput}
+                    className="hide-unhide-password"
+                    style={{ border: "none" }}
+                  />
+                  <BiSolidShow />
+                </div>
               </div>
             </div>
             <div className="pass-requirement">
