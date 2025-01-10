@@ -17,9 +17,7 @@ const clientConn = hana.createClient(connOptions);
 export const getSalesTableDataFromVBAK = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec(
-      "SELECT VBELN, ERDAT, ERNAM, AUDAT, AUART, NETWR, WAERK, VKORG, VTWEG, SPART, VSBED, KUNNR FROM VBAK"
-    );
+    const result = await clientConn.exec("SELECT * FROM VBAK");
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error(error);
@@ -33,9 +31,7 @@ export const getSalesTableDataFromVBAK = async (req, res) => {
 export const getSalesTableDataFromVBAP = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec(
-      "SELECT VBELN, MATNR, ARKTX, MEINS, ABLFZ, NETWR< WAERK, BRGEW, NTGEW, WERKS, VSTEL, LGORT FROM VBAP"
-    );
+    const result = await clientConn.exec("SELECT * FROM VBAP");
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error(error);
@@ -50,9 +46,7 @@ export const getSalesTableDataFromVBAP = async (req, res) => {
 export const getSalesTableDataFromLIKP = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec(
-      "SELECT VBELN, VSTEL, VKORG, LFART, WADAT, INCO1, INCO2, KUNAG, KUNWE, BTGEW, NTGEW, WAERK FROM LIKP"
-    );
+    const result = await clientConn.exec("SELECT * FROM LIKP");
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log(error);
@@ -67,9 +61,7 @@ export const getSalesTableDataFromLIKP = async (req, res) => {
 export const getSalesTableDataFromLIPS = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec(
-      "SELECT VBELN, POSNR, MATNR, MATWA, MATKL, WERKS, LGORT, NTGEW, BRGEW, LADGR, TRAGR, MTART FROM LIPS"
-    );
+    const result = await clientConn.exec("SELECT * FROM LIPS");
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log(error);
@@ -189,5 +181,23 @@ export const getSalesDocumenBillingtItemData = async (req, res) => {
     res.status(500).send("Error fetching data");
   } finally {
     clientConn.disconnect();
+  }
+};
+
+// Get Attachments
+
+export const getFilesData = async () => {
+  try {
+    clientConn.connect();
+
+    const query = `
+      SELECT * FROM SRGBTBREL
+    `;
+
+    const result = await clientConn.exec(query);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error fetching data");
   }
 };

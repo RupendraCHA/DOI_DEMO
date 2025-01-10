@@ -32,7 +32,7 @@ const Header = ({ message = "" }) => {
     setIsOpen(!isOpen);
     setIsOpenActive(!isOpenActive);
   };
-  console.log(message);
+  // console.log(message);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
