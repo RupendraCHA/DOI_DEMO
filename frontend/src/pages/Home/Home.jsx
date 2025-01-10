@@ -16,6 +16,12 @@ import "aos/dist/aos.css";
 const Home = () => {
   useEffect(() => {
     aos.init({ duration: 2000 });
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    } else {
+      navigate("/login");
+    }
   });
   return (
     <>
