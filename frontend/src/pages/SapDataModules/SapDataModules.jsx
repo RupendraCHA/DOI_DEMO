@@ -155,8 +155,9 @@ const SapDataModules = () => {
               {isLoading && (
                 <div>
                   <Spinner
-                    size="40px"
-                    color="#000"
+                    size="45px"
+                    // color="#000"
+                    color="#00308F"
                     message="Processing your request, one moment please..."
                   />
                 </div>
