@@ -12,8 +12,10 @@ import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopBut
 
 import aos from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     aos.init({ duration: 2000 });
     const token = localStorage.getItem("token");

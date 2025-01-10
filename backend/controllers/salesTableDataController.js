@@ -101,6 +101,59 @@ export const getSalesTableDataFromVBRP = async (req, res) => {
   }
 };
 
+// Fetching EKKO (Purchase Order Header) Table Data
+
+export const getFilesDataFromEKKO = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT 
+        *
+    FROM 
+        EKKO`);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
+// Fetching EKKO (Purchase Order Header) Table Data
+
+export const getFilesDataFromEKPO = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT 
+        *
+    FROM 
+        EKPO`);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
+
+// Fetching EKKO (Purchase Order Header) Table Data
+
+export const getFilesDataFromSRGBTBREL = async (req, res) => {
+  try {
+    clientConn.connect();
+    const result = await clientConn.exec(`SELECT 
+        *
+    FROM 
+        SRGBTBREL`);
+    res.status(200).json({ success: true, data: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error Fetching Data");
+  } finally {
+    clientConn.disconnect();
+  }
+};
 // ITEM DATA QUERY
 
 // Fetching Sales Order Item Data W.R.T (With Respect To) Document Number
@@ -185,19 +238,3 @@ export const getSalesDocumenBillingtItemData = async (req, res) => {
 };
 
 // Get Attachments
-
-export const getFilesData = async () => {
-  try {
-    clientConn.connect();
-
-    const query = `
-      SELECT * FROM SRGBTBREL
-    `;
-
-    const result = await clientConn.exec(query);
-    res.status(200).json({ success: true, data: result });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error fetching data");
-  }
-};

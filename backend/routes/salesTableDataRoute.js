@@ -10,7 +10,9 @@ import {
   getSalesTableDataFromVBRK,
   getSalesDocumenBillingtItemData,
   getSalesTableDataFromVBRP,
-  getFilesData,
+  getFilesDataFromEKKO,
+  getFilesDataFromEKPO,
+  getFilesDataFromSRGBTBREL,
 } from "../controllers/salesTableDataController.js";
 const salesRouter = express.Router();
 
@@ -20,7 +22,9 @@ salesRouter.get("/likp", getSalesTableDataFromLIKP);
 salesRouter.get("/lips", getSalesTableDataFromLIPS);
 salesRouter.get("/vbrk", getSalesTableDataFromVBRK);
 salesRouter.get("/vbrp", getSalesTableDataFromVBRP);
-salesRouter.get("/files", getFilesData);
+salesRouter.get("/ekko", getFilesDataFromEKKO);
+salesRouter.get("/ekpo", getFilesDataFromEKPO);
+salesRouter.get("/srgbtbrel", getFilesDataFromSRGBTBREL);
 salesRouter.get(
   "/:documentNumber/orderItemData",
   getSalesDocumentOrderItemData
