@@ -49,7 +49,7 @@ const Header = ({ message = "" }) => {
       );
     } else if (message === "login") {
       return (
-        <Link to="/signup">
+        <Link to="/">
           <button>Sign Up</button>
         </Link>
       );
@@ -63,10 +63,20 @@ const Header = ({ message = "" }) => {
           <button onClick={handleLogout}>Logout</button>
         </>
       );
+    } else if (message === "") {
+      return (
+        <>
+          <div className="user-icon-section">
+            <FaUserTie className="user-icon-symbol" />
+            <p className="user-name">{username}</p>
+          </div>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      );
     }
     return (
       <>
-        <Link to="/signup">
+        <Link to="/">
           <button>Sign Up</button>
         </Link>
         <Link to="/login">
@@ -87,7 +97,7 @@ const Header = ({ message = "" }) => {
       >
         <div className="logo-container">
           <div>
-            <Link to="/" className="website-name-section">
+            <Link to="/home" className="website-name-section">
               <img
                 src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
                 className="website-logo"

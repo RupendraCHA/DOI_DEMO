@@ -136,12 +136,12 @@ const SapDataModules = () => {
                 </span>
               </li>
             </ul>
-            <ul className="material-section">
+            {/* <ul className="material-section">
               <h3>Material Management</h3>
             </ul>
             <ul className="finance-section">
               <h3>Finance</h3>
-            </ul>
+            </ul> */}
           </div>
           <div className="modules-section section-two">
             {homeText && (

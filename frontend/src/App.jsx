@@ -12,15 +12,16 @@ import Home from "./pages/Home/Home";
 import NotFound from "./components/NotFound/NotFound";
 import SapDataModules from "./pages/SapDataModules/SapDataModules";
 import AOS from "./components/AOS/AOS";
+import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/home" element={<Home />}></Route>
         <Route
           exact
-          path="/signup"
+          path="/"
           element={
             <>
               <Header message="signup" />
@@ -62,7 +63,7 @@ const App = () => {
             </>
           }
         ></Route>
-        <Route path="/aos" element={<AOS />}></Route>
+        <Route path="/purchaseOrder" element={<PurchaseOrder />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>

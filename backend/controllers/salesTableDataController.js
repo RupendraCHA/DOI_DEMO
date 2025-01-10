@@ -17,7 +17,9 @@ const clientConn = hana.createClient(connOptions);
 export const getSalesTableDataFromVBAK = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec("SELECT * FROM VBAK");
+    const result = await clientConn.exec(
+      "SELECT VBELN, ERDAT, ERNAM, AUDAT, AUART, NETWR, WAERK, VKORG, VTWEG, SPART, VSBED, KUNNR FROM VBAK"
+    );
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error(error);
@@ -31,7 +33,9 @@ export const getSalesTableDataFromVBAK = async (req, res) => {
 export const getSalesTableDataFromVBAP = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec("SELECT * FROM VBAP");
+    const result = await clientConn.exec(
+      "SELECT VBELN, MATNR, ARKTX, MEINS, ABLFZ, NETWR< WAERK, BRGEW, NTGEW, WERKS, VSTEL, LGORT FROM VBAP"
+    );
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error(error);
@@ -46,7 +50,9 @@ export const getSalesTableDataFromVBAP = async (req, res) => {
 export const getSalesTableDataFromLIKP = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec("SELECT * FROM LIKP");
+    const result = await clientConn.exec(
+      "SELECT VBELN, VSTEL, VKORG, LFART, WADAT, INCO1, INCO2, KUNAG, KUNWE, BTGEW, NTGEW, WAERK FROM LIKP"
+    );
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log(error);
@@ -61,7 +67,9 @@ export const getSalesTableDataFromLIKP = async (req, res) => {
 export const getSalesTableDataFromLIPS = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec("SELECT * FROM LIPS");
+    const result = await clientConn.exec(
+      "SELECT VBELN, POSNR, MATNR, MATWA, MATKL, WERKS, LGORT, NTGEW, BRGEW, LADGR, TRAGR, MTART FROM LIPS"
+    );
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log(error);

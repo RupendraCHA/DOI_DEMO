@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import "./ExploreOfferings.css";
 import aos from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const ExploreOfferings = () => {
   useEffect(() => {
@@ -26,9 +27,15 @@ const ExploreOfferings = () => {
         <div className="sap-gui-details">
           <div>
             <ul className="data-types">
-              <li className="data-card image1">
-                <p>Sales & Distribution</p>
-              </li>
+              <Link
+                title="click here"
+                to="/sapDataModules"
+                className="data-card image1"
+              >
+                <li>
+                  <p>Sales & Distribution</p>
+                </li>
+              </Link>
               <li className="data-card image2">
                 <p>Material Management</p>
               </li>

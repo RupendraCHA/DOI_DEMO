@@ -42,7 +42,7 @@ const Login = () => {
     if (response.data.success === true) {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.name);
-      navigate("/sapDataModules");
+      navigate("/home");
     } else {
       console.log(response.data);
     }
@@ -117,7 +117,7 @@ const Login = () => {
             <div className="new-here">
               <p>
                 New here ?
-                <Link to="/signup" className="login-link">
+                <Link to="/" className="login-link">
                   <span>Sign Up</span>
                 </Link>
               </p>
