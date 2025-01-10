@@ -23,15 +23,9 @@ const SapDataModules = () => {
 
   useEffect(() => {
     aos.init({ duration: 2000 });
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/sapDataModules");
-    } else {
-      navigate("/login");
-    }
     setTimeout(() => {
       navigate("/login");
-    }, 86400000);
+    }, 8640000);
   });
 
   const getTableData = async (table) => {
