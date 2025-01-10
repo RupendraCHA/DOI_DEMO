@@ -24,7 +24,7 @@ const Home = () => {
     } else {
       navigate("/login");
     }
-  });
+  }, []);
   return (
     <>
       <Header />

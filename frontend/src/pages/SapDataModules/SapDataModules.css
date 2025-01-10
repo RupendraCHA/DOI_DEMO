@@ -4,62 +4,41 @@
 
   .sales-data-modules-section {
     display: flex;
-    /* height: 100vh; */
+    flex-direction: column;
+    height: 80vh;
     gap: 10px;
 
     .modules-section {
-      overflow: auto;
-      border-radius: 5px;
-      border: 1px solid #807f7f44;
-      padding: 20px;
+      /* overflow: auto; */
+      /* border-radius: 5px; */
+      /* border: 1px solid #807f7f44; */
+      /* padding: 20px; */
     }
 
     .section-one {
-      flex: 1;
-      background-color: #b9d7eb27;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      width: 100%;
 
       ul {
         padding: 0;
         list-style-type: none;
         border: 1px solid #000;
         border-radius: 10px;
-        padding: 10px;
+        /* padding: 10px; */
         box-shadow: 2px 2px 5px #62a5d1;
         overflow: auto;
-
-        h3 {
-          text-decoration: underline;
-          text-align: center;
-          margin-bottom: 50px;
-          font-weight: bold;
-        }
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 40px;
 
         li {
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
-          gap: 30px;
           margin: 20px 0px;
-          background-color: #00000054;
+          /* background-color: #00000054; */
           border-radius: 8px;
-          p {
+          button {
             font-size: 24px;
-            color: #fff;
+            color: #000;
             font-weight: 700;
-          }
-
-          span {
-            display: flex;
-            gap: 20px;
-            /* text-align: justify; */
-
-            .delivery {
-              translate: -5px;
-            }
-
             button {
               width: 70px;
               padding: 5px;
@@ -73,6 +52,12 @@
               background-color: #1483c4;
               color: #fff;
             }
+          }
+
+          span {
+            display: flex;
+            gap: 20px;
+            /* text-align: justify; */
 
             .active {
               background-color: #1483c4;
@@ -83,11 +68,28 @@
       }
       .sales-section {
         height: auto;
-        background-image: url("./SAP-SD.jpg");
+        /* background-image: url("./SAP-SD.jpg"); */
         background-size: cover;
         filter: brightness(100%);
         background-position: -80px;
         color: #fff;
+
+        li {
+          button {
+            /* width: 70px; */
+            padding: 5px 10px;
+            border: 2px solid #000;
+            border-radius: 18px;
+            box-shadow: 2px 2px 5px #000;
+            font-weight: 600;
+            background-color: #00000069;
+            color: #fff;
+          }
+          button:hover {
+            background-color: #1483c4;
+            color: #fff;
+          }
+        }
       }
 
       /* justify-content: space-around; */
@@ -97,7 +99,7 @@
       background-color: #e6e9e838;
       overflow: auto;
       padding: 20px;
-      height: 80vh;
+      /* height: 80vh; */
 
       table-section {
         /* width: 100%; */
@@ -137,4 +139,8 @@
       }
     }
   }
+}
+#active-button {
+  color: #fff;
+  background-color: #1483c4;
 }

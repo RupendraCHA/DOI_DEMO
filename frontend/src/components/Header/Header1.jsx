@@ -9,7 +9,12 @@ import { FaUserTie } from "react-icons/fa";
 import aos from "aos";
 import "aos/dist/aos.css";
 
-const Header = ({ message = "" }) => {
+const Header = ({
+  message = "",
+  salesText = "",
+  materialsText = "",
+  financeText = "",
+}) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenActive, setIsOpenActive] = useState(false);
@@ -24,7 +29,7 @@ const Header = ({ message = "" }) => {
     if (jwtToken) {
       setUserName(userName);
     }
-  });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -145,6 +150,51 @@ const Header = ({ message = "" }) => {
                   className={menu === "contact" ? "active" : "tab"}
                 >
                   Contact
+                </a>
+              </li>
+            </ul>
+            <div className="menu-icon-section" onClick={handleTabClick}>
+              {isOpenActive === false ? (
+                <FaBars className="icon" />
+              ) : (
+                <RxCross2 className="icon" />
+              )}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {message === "modules" ? (
+          <div className="tabs-bar-section">
+            <ul
+              className={isOpen ? "tabs-container active1" : "tabs-container"}
+            >
+              <li>
+                <Link
+                  to="/sapDataModules"
+                  href=""
+                  onClick={() => setMenu("sales")}
+                  className={menu === "sales" ? "active" : "tab"}
+                >
+                  SALES & DISTRIBUTION
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onClick={() => setMenu("materials")}
+                  className={menu === "materials" ? "active" : "tab"}
+                >
+                  MATERIALS
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  onClick={() => setMenu("finance")}
+                  className={menu === "finance" ? "active" : "tab"}
+                >
+                  FINANCE
                 </a>
               </li>
             </ul>

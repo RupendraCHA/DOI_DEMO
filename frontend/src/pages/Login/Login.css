@@ -73,11 +73,39 @@
         span {
           color: #2c67b0;
           margin-left: 5px;
+          font-weight: bold;
         }
       }
     }
   }
 }
+.login-info-show-hide-section {
+  margin: 20px;
+  .user-hide-show-login-container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #808080;
+    align-items: center;
+    border-radius: 4px;
+
+    .login-input {
+      padding: 10px;
+      outline: none;
+      cursor: pointer;
+      background-color: #f0f8ff8e;
+      width: 100%;
+      font-weight: 600;
+      font-size: 18px;
+      outline: none;
+      border: none;
+    }
+    .login-show-hide-icon {
+      font-size: 24px;
+      padding-right: 3px;
+    }
+  }
+}
+
 .forgot-password {
   display: flex;
   justify-content: flex-end;
@@ -110,6 +138,10 @@
   border: 1px solid gray;
   padding: 20px;
   border-radius: 12px;
+
+  h1 {
+    text-align: center;
+  }
 
   .change-password-card {
     background-color: #fff;
@@ -187,11 +219,11 @@
   .login-container {
     .login-section {
       .login-section-container {
-        width: 100%;
+        width: 80%;
       }
     }
   }
   .change-password-container {
-    width: 60%;
+    width: 80%;
   }
 }

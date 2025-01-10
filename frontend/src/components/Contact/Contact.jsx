@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 const Contact = () => {
   useEffect(() => {
     aos.init({ duration: 2000 });
-  });
+  }, []);
   return (
     <div
       className="container contact-container"

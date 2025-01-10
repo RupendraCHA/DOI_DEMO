@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const ExploreOfferings = () => {
   useEffect(() => {
     aos.init({ duration: 2000 });
-  });
+  }, []);
   return (
     <div
       className="container explore-container"

@@ -9,12 +9,17 @@ import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopBut
 import aos from "aos";
 import "aos/dist/aos.css";
 
+import { BiSolidShow } from "react-icons/bi";
+import { BiSolidHide } from "react-icons/bi";
+
 const Login = () => {
   const { url } = useContext(StoreContext);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
-  });
+  }, []);
+
+  const [showHide, setShowHide] = useState(true);
 
   const navigate = useNavigate();
 
@@ -70,6 +75,10 @@ const Login = () => {
     // console.log(loginDetails);
   };
 
+  const setShowHidePassword = () => {
+    setShowHide(!showHide);
+  };
+
   return (
     <div className="login-container" data-aos="zoom-in">
       {!forgotPassword && (
@@ -92,19 +101,32 @@ const Login = () => {
                 />
               </div>
             </div>
-            <div className="login-info-section">
+            <div className="login-info-show-hide-section">
               <div>
                 <label id="password">Password</label>
                 <br />
-                <input
-                  type="password"
-                  htmlFor="password"
-                  name="password"
-                  required
-                  placeholder="Password*"
-                  className="input"
-                  onChange={getLoginData}
-                />
+                <div className="user-hide-show-login-container">
+                  <input
+                    type={showHide === true ? "password" : "type"}
+                    htmlFor="password"
+                    name="password"
+                    required
+                    placeholder="Password*"
+                    className="login-input"
+                    onChange={getLoginData}
+                  />
+                  {showHide === true ? (
+                    <BiSolidHide
+                      className="login-show-hide-icon"
+                      onClick={setShowHidePassword}
+                    />
+                  ) : (
+                    <BiSolidShow
+                      className="login-show-hide-icon"
+                      onClick={setShowHidePassword}
+                    />
+                  )}
+                </div>
               </div>
             </div>
 

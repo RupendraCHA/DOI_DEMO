@@ -26,7 +26,7 @@ const SapDataModules = () => {
     setTimeout(() => {
       navigate("/login");
     }, 8640000);
-  });
+  }, []);
 
   const getTableData = async (table) => {
     setSalesTable(table);
@@ -73,10 +73,14 @@ const SapDataModules = () => {
         <div className="sales-data-modules-section">
           <div className="modules-section section-one">
             <ul className="sales-section image1">
-              <h3>Sales & Distibution</h3>
               <li>
-                <p>Orders:</p>
-                <span>
+                <button
+                  id={`${salesTable === "vbak" ? "active-button" : ""}`}
+                  onClick={() => getTableData("vbak")}
+                >
+                  ORDERS
+                </button>
+                {/* <span>
                   <button
                     className={`${salesTable === "vbak" ? "active" : ""}`}
                     onClick={() => getTableData("vbak")}
@@ -89,11 +93,16 @@ const SapDataModules = () => {
                   >
                     VBAP
                   </button>
-                </span>
+                </span> */}
               </li>
               <li>
-                <p>Delivery:</p>
-                <span>
+                <button
+                  id={`${salesTable === "likp" ? "active-button" : ""}`}
+                  onClick={() => getTableData("likp")}
+                >
+                  DELIVERY
+                </button>
+                {/* <span>
                   <button
                     className={`${
                       salesTable === "likp" ? "delivery active" : "delivery"
@@ -110,11 +119,16 @@ const SapDataModules = () => {
                   >
                     LIPS
                   </button>
-                </span>
+                </span> */}
               </li>
               <li>
-                <p>Invoice:</p>
-                <span>
+                <button
+                  id={`${salesTable === "vbrk" ? "active-button" : ""}`}
+                  onClick={() => getTableData("vbrk")}
+                >
+                  BILLINGH
+                </button>
+                {/* <span>
                   <button
                     className={`${salesTable === "vbrk" ? "active" : ""}`}
                     onClick={() => getTableData("vbrk")}
@@ -127,7 +141,7 @@ const SapDataModules = () => {
                   >
                     VBRP
                   </button>
-                </span>
+                </span> */}
               </li>
             </ul>
             {/* <ul className="material-section">

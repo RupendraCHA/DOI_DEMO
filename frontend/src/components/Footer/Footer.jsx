@@ -11,7 +11,7 @@ import "aos/dist/aos.css";
 const Footer = () => {
   useEffect(() => {
     aos.init({ duration: 1000 });
-  });
+  }, []);
   return (
     <div className="footer-container" data-aos="fade-down">
       <div className="powered-by-container">

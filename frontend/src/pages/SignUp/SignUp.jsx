@@ -34,7 +34,7 @@ const SignUp = () => {
 
   useEffect(() => {
     aos.init({ duration: 2000 });
-  });
+  }, []);
 
   const navigate = useNavigate();
 
@@ -187,12 +187,12 @@ const SignUp = () => {
                     style={{ border: "none" }}
                   />
                   {showHide1 === true ? (
-                    <BiSolidShow
+                    <BiSolidHide
                       className="hide-show-icon"
                       onClick={showHidePassword1}
                     />
                   ) : (
-                    <BiSolidHide
+                    <BiSolidShow
                       className="hide-show-icon"
                       onClick={showHidePassword1}
                     />
@@ -214,12 +214,12 @@ const SignUp = () => {
                     style={{ border: "none" }}
                   />
                   {showHide2 === true ? (
-                    <BiSolidShow
+                    <BiSolidHide
                       className="hide-show-icon"
                       onClick={showHidePassword2}
                     />
                   ) : (
-                    <BiSolidHide
+                    <BiSolidShow
                       className="hide-show-icon"
                       onClick={showHidePassword2}
                     />

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   useEffect(() => {
     aos.init({ duration: 2000 });
-  });
+  }, []);
   return (
     <div className="card-container" data-aos="fade-up">
       <div className="card">

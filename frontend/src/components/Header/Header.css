@@ -1,14 +1,6 @@
 .header-container {
-  /* background-color: #7886d37e; */
   background-color: #2c67b0;
-  /* background-color: #ffffff5e; */
-  /* background-image: radial-gradient(
-    circle 950px at 2.5% 8%,
-    #2c67b0 0%,
-    #233888 90%
-  ); */
-  padding: 20px;
-  margin-top: 6px;
+  padding: 6px 20px;
   margin-bottom: 6px;
 }
 .header-section-container {
@@ -35,15 +27,15 @@
   text-decoration: none;
 
   h3 {
-    font-size: 28px;
+    font-size: 22px;
     margin-top: 8px;
     font-weight: bold;
     color: #000;
   }
 }
 .website-logo {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   /* border-radius: 50%; */
 }
 .tabs-bar-section {
@@ -170,7 +162,7 @@
   }
 
   button {
-    padding: 8px 16px;
+    padding: 4px 8px;
     border: 1px solid #000;
     border-radius: 6px;
     font-weight: 600;
