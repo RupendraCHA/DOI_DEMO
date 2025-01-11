@@ -111,11 +111,11 @@ const Header = ({
         <div className="logo-container">
           <div>
             <Link to="/home" className="website-name-section">
-              <img
+              {/* <img
                 src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
                 className="website-logo"
-              />
-              <h3>DOI DEMO</h3>
+              /> */}
+              <h3>Data Archiving & Decommissioning Demo</h3>
             </Link>
           </div>
         </div>
@@ -184,7 +184,7 @@ const Header = ({
                   onClick={showModuleData}
                   className={menu === "sales" ? "active" : "tab"}
                 >
-                  SALES & DISTRIBUTION
+                  ORDER TO CASH
                 </Link>
               </li>
               <li>

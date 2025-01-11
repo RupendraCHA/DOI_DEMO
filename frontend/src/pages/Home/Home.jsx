@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import "./Home.css";
 import About from "../../components/About/About";
-import Contact from "../../components/Contact/Contact";
+// import Contact from "../../components/Contact/Contact";
 
 import Header from "../../components/Header/Header1";
 import Footer from "../../components/Footer/Footer";
@@ -41,7 +41,7 @@ const Home = () => {
         </div>
         <ExploreOfferings />
         <About />
-        <Contact />
+        {/* <Contact /> */}
       </div>
       <Footer />
       <ScrollToTopButton />

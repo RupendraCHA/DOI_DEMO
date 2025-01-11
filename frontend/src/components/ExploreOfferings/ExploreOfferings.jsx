@@ -16,7 +16,7 @@ const ExploreOfferings = () => {
       data-aos="fade-down"
     >
       <div>
-        <h1 className="explore-section-heading">ARCHIVED DATA</h1>
+        <h1 className="explore-section-heading">S4 HANA ARCHIVED DATA</h1>
         <p className="sap-gui-intro">
           Accessing SAP tables via SAP GUI typically involves using transaction
           codes and navigating through the appropriate module.
@@ -33,11 +33,11 @@ const ExploreOfferings = () => {
                 className="data-card image1"
               >
                 <li>
-                  <p>Sales & Distribution</p>
+                  <p>Order To Cash</p>
                 </li>
               </Link>
               <li className="data-card image2">
-                <p>Material Management</p>
+                <p>Procurment</p>
               </li>
               <li className="data-card image3">
                 <p>Finance</p>

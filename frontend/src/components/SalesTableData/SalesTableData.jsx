@@ -117,13 +117,35 @@ const SalesTableData = (props) => {
     setShowItemData(false);
   };
 
+  const getItemDetails = async (documentNumber) => {
+    let endpoint;
+    if (salesTableName === "vbak") {
+      endpoint = salesTableName;
+    } else if (salesTableName == "likp") {
+      endpoint = "likp";
+    } else if (salesTableName === "vbrk") {
+      endpoint = "vbrk";
+    }
+
+    const response = await axios.get(url + `/doi/sales/${endpoint}`);
+    let documentNumberItem;
+
+    if (response.data.success) {
+      response.data.data.map((record) => {
+        if (record.VBELN.endWith(documentNumber)) {
+          console.log(record.VBELN);
+        }
+      });
+    }
+  };
+
   return (
     <>
       {salesTableName === "vbak" && (
         <>
           <div className="search-icon-container">
             <div>
-              <h4>Get Sales Order Item Details - VBAP</h4>
+              <h4>Get Sales Order Item Details</h4>
               <span className="doc-search-container">
                 <input
                   type="search"
@@ -135,6 +157,7 @@ const SalesTableData = (props) => {
                 <IoSearch
                   className="doc-search-icon"
                   onClick={() => getTheSalesOrderItemDetails(documentNum)}
+                  // onClick={() => getItemDetails(documentNum)}
                 />
               </span>
             </div>
@@ -151,11 +174,11 @@ const SalesTableData = (props) => {
             <div className="item-table-container">
               <div className="item-table-section">
                 <h3 className="sales-order-item-heading">
-                  Sales Order Item Data - VBAP
+                  Sales Order Item Data
                 </h3>
                 <p>
                   <div className="item-doc-details">
-                    Order Item Details for document Number -
+                    Order Item Details for document Number
                     <span>{removePreceedingZeros(documentNum)}</span>
                   </div>
                   <div className="item-doc-details">
@@ -213,7 +236,7 @@ const SalesTableData = (props) => {
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
-          <h4>{salesTableName.toUpperCase()} Sales Order Header Table</h4>
+          <h4> Sales Order Header Table</h4>
           <table style={{ width: "200%", overflow: scroll }}>
             <thead>
               <tr>
@@ -409,7 +432,7 @@ const SalesTableData = (props) => {
         <>
           <div className="search-icon-container">
             <div>
-              <h4>Get Sales Delivery Item Details - LIPS</h4>
+              <h4>Get Sales Delivery Item Details</h4>
               <span className="doc-search-container">
                 <input
                   type="search"
@@ -437,7 +460,7 @@ const SalesTableData = (props) => {
             <div className="item-table-container">
               <div className="item-table-section">
                 <h3 className="sales-order-item-heading">
-                  Sales Delivery Item Data - LIPS
+                  Sales Delivery Item Data
                 </h3>
                 <p>
                   <div className="item-doc-details">
@@ -498,7 +521,7 @@ const SalesTableData = (props) => {
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
-          <h4>{salesTableName.toUpperCase()} - Sales Delivery Header Table</h4>
+          <h4>Sales Delivery Header Table</h4>
           <table style={{ width: "200%", overflow: scroll }}>
             <thead>
               <tr>
@@ -696,7 +719,7 @@ const SalesTableData = (props) => {
         <>
           <div className="search-icon-container">
             <div>
-              <h4>Get Sales Billing Item Details - VBRP</h4>
+              <h4>Get Sales Billing Item Details</h4>
               <span className="doc-search-container">
                 <input
                   type="search"
@@ -723,7 +746,7 @@ const SalesTableData = (props) => {
             <div className="item-table-container">
               <div className="item-table-section">
                 <h3 className="sales-order-item-heading">
-                  Sales Billing Item Data - VBRP
+                  Sales Billing Item Data
                 </h3>
                 <p>
                   <div className="item-doc-details">
@@ -787,7 +810,7 @@ const SalesTableData = (props) => {
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
-          <h4>{salesTableName.toUpperCase()} - Sales Billing Header Table</h4>
+          <h4>Sales Billing Header Table</h4>
           <table style={{ width: "200%", overflow: scroll }}>
             <thead>
               <tr>
