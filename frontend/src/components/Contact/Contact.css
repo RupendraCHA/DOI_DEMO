@@ -6,6 +6,16 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+
+  .contact-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }
 .contact-heading {
   font-weight: 500;

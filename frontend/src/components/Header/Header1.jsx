@@ -15,6 +15,7 @@ const Header = ({
   salesText = "",
   materialsText = "",
   financeText = "",
+  tabText = "",
 }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,10 @@ const Header = ({
 
   useEffect(() => {
     aos.init({ duration: 2000 });
+
+    if (tabText === "contact") {
+      setMenu("support");
+    }
 
     const jwtToken = localStorage.getItem("token");
     const userName = localStorage.getItem("username");
@@ -72,6 +77,16 @@ const Header = ({
         </>
       );
     } else if (message === "") {
+      return (
+        <>
+          <div className="user-icon-section">
+            <FaUserTie className="user-icon-symbol" />
+            <p className="user-name">{username}</p>
+          </div>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      );
+    } else if (message === "contact") {
       return (
         <>
           <div className="user-icon-section">
@@ -151,15 +166,17 @@ const Header = ({
                   About
                 </a>
               </li>
-              <li>
-                <a
-                  href="#contact"
-                  onClick={() => setMenu("contact")}
-                  className={menu === "contact" ? "active" : "tab"}
-                >
-                  Contact
-                </a>
-              </li>
+              <Link to="/support">
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => setMenu("support")}
+                    className={menu === "support" ? "active" : "tab"}
+                  >
+                    Support
+                  </a>
+                </li>
+              </Link>
             </ul>
             <div className="menu-icon-section" onClick={handleTabClick}>
               {isOpenActive === false ? (

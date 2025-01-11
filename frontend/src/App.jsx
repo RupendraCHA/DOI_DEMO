@@ -13,12 +13,24 @@ import NotFound from "./components/NotFound/NotFound";
 import SapDataModules from "./pages/SapDataModules/SapDataModules";
 import AOS from "./components/AOS/AOS";
 import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
+import Contact from "./components/Contact/Contact";
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route exact path="/home" element={<Home />}></Route>
+        <Route
+          exact
+          path="/support"
+          element={
+            <>
+              <Header tabText="contact" message="contact" />
+              <Contact />
+              <Footer />
+            </>
+          }
+        ></Route>
         <Route
           exact
           path="/"

@@ -178,8 +178,8 @@ const SalesTableData = (props) => {
                 </h3>
                 <p>
                   <div className="item-doc-details">
-                    Order Item Details for document Number
-                    <span>{removePreceedingZeros(documentNum)}</span>
+                    Order Item Details for document Number -
+                    <span>{documentNum}</span>
                   </div>
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
@@ -208,7 +208,7 @@ const SalesTableData = (props) => {
                       return (
                         <tr key={index + 1}>
                           <td>{index + 1}</td>
-                          <td> {removePreceedingZeros(record.VBELN)}</td>
+                          <td> {record.VBELN}</td>
 
                           <td>{record.MATNR}</td>
                           <td>{record.ARKTX}</td>
@@ -265,7 +265,7 @@ const SalesTableData = (props) => {
                       className="document-number"
                       onClick={() => getTheSalesOrderItemDetails(record.VBELN)}
                     >
-                      {removePreceedingZeros(record.VBELN)}
+                      {record.VBELN}
                     </td>
                     <td>{convertToDate(record.ERDAT)}</td>
                     {/* <td>{record.ERNAM}</td> */}
@@ -465,7 +465,7 @@ const SalesTableData = (props) => {
                 <p>
                   <div className="item-doc-details">
                     Delivery Item Details for delivery Number -
-                    <span>{removePreceedingZeros(documentNum)}</span>
+                    <span>{documentNum}</span>
                   </div>
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
@@ -494,7 +494,7 @@ const SalesTableData = (props) => {
                       return (
                         <tr key={index + 5}>
                           <td>{index + 1}</td>
-                          <td>{removePreceedingZeros(record.VBELN)}</td>
+                          <td>{record.VBELN}</td>
                           <td>{record.POSNR}</td>
                           <td>{record.MATNR}</td>
                           <td>{record.MATWA}</td>
@@ -552,7 +552,7 @@ const SalesTableData = (props) => {
                         getTheSalesDeliveryItemDetails(record.VBELN)
                       }
                     >
-                      {removePreceedingZeros(record.VBELN)}
+                      {record.VBELN}
                     </td>
                     <td>{record.VSTEL}</td>
                     <td>{record.VKORG}</td>
@@ -751,7 +751,7 @@ const SalesTableData = (props) => {
                 <p>
                   <div className="item-doc-details">
                     Billing Item Details for billing Number -
-                    <span>{removePreceedingZeros(documentNum)}</span>
+                    <span>{documentNum}</span>
                   </div>
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
@@ -782,7 +782,7 @@ const SalesTableData = (props) => {
                       return (
                         <tr key={index + 9}>
                           <td>{index + 1}</td>
-                          <td>{removePreceedingZeros(record.VBELN)}</td>
+                          <td>{record.VBELN}</td>
                           <td>{record.FKIMG}</td>
                           <td>{record.MEINS}</td>
                           <td>{record.LMENG}</td>
@@ -843,7 +843,7 @@ const SalesTableData = (props) => {
                         getTheSalesBillingItemDetails(record.VBELN)
                       }
                     >
-                      {removePreceedingZeros(record.VBELN)}
+                      {record.VBELN}
                     </td>
                     <td>{record.FKART}</td>
                     <td>{record.VBTYP}</td>
