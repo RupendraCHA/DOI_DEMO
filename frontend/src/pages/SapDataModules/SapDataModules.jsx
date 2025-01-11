@@ -12,14 +12,16 @@ import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 
 const SapDataModules = () => {
-  const { url, token, username } = useContext(StoreContext);
-
+  const { url, token, username, sapModuleText, setSapModuleText } =
+    useContext(StoreContext);
+  console.log(sapModuleText);
   const navigate = useNavigate();
 
   const [salesTable, setSalesTable] = useState("");
   const [tableData, setTableData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [homeText, setHomeText] = useState(true);
+  const [isTabactive, setIstabActive] = useState(false);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
@@ -71,16 +73,25 @@ const SapDataModules = () => {
     <>
       <div className="sales-data-modules-container" data-aos="zoom-in">
         <div className="sales-data-modules-section">
-          <div className="modules-section section-one">
-            <ul className="sales-section image1">
-              <li>
-                <button
-                  id={`${salesTable === "vbak" ? "active-button" : ""}`}
-                  onClick={() => getTableData("vbak")}
-                >
-                  ORDERS
-                </button>
-                {/* <span>
+          {!sapModuleText && (
+            <div className="module-intro-container" data-aos="zoom-in">
+              <div className="data-header-section">
+                <h1>View Archived Data from S4 HANA by selecting the tabs</h1>
+              </div>
+            </div>
+          )}
+          {sapModuleText && (
+            <>
+              <div className="modules-section section-one" data-aos="fade-down">
+                <ul className="sales-section image1">
+                  <li>
+                    <button
+                      id={`${salesTable === "vbak" ? "active-button" : ""}`}
+                      onClick={() => getTableData("vbak")}
+                    >
+                      ORDERS
+                    </button>
+                    {/* <span>
                   <button
                     className={`${salesTable === "vbak" ? "active" : ""}`}
                     onClick={() => getTableData("vbak")}
@@ -94,15 +105,15 @@ const SapDataModules = () => {
                     VBAP
                   </button>
                 </span> */}
-              </li>
-              <li>
-                <button
-                  id={`${salesTable === "likp" ? "active-button" : ""}`}
-                  onClick={() => getTableData("likp")}
-                >
-                  DELIVERY
-                </button>
-                {/* <span>
+                  </li>
+                  <li>
+                    <button
+                      id={`${salesTable === "likp" ? "active-button" : ""}`}
+                      onClick={() => getTableData("likp")}
+                    >
+                      DELIVERY
+                    </button>
+                    {/* <span>
                   <button
                     className={`${
                       salesTable === "likp" ? "delivery active" : "delivery"
@@ -120,15 +131,15 @@ const SapDataModules = () => {
                     LIPS
                   </button>
                 </span> */}
-              </li>
-              <li>
-                <button
-                  id={`${salesTable === "vbrk" ? "active-button" : ""}`}
-                  onClick={() => getTableData("vbrk")}
-                >
-                  BILLINGH
-                </button>
-                {/* <span>
+                  </li>
+                  <li>
+                    <button
+                      id={`${salesTable === "vbrk" ? "active-button" : ""}`}
+                      onClick={() => getTableData("vbrk")}
+                    >
+                      BILLING
+                    </button>
+                    {/* <span>
                   <button
                     className={`${salesTable === "vbrk" ? "active" : ""}`}
                     onClick={() => getTableData("vbrk")}
@@ -142,93 +153,98 @@ const SapDataModules = () => {
                     VBRP
                   </button>
                 </span> */}
-              </li>
-            </ul>
-            {/* <ul className="material-section">
+                  </li>
+                </ul>
+                {/* <ul className="material-section">
               <h3>Material Management</h3>
             </ul>
             <ul className="finance-section">
               <h3>Finance</h3>
             </ul> */}
-          </div>
-          <div className="modules-section section-two">
-            {homeText && (
-              <div className="archived-data-container" data-aos="zoom-in">
-                <div className="data-heading">
-                  <h1>View Archived Data from S4 HANA by selecting the tabs</h1>
+              </div>
+              <div className="modules-section section-two">
+                {homeText && (
+                  <div className="archived-data-container" data-aos="zoom-in">
+                    <div className="data-heading">
+                      <h1>
+                        View Archived Sales Data from S4 HANA by selecting one
+                        of the tabs above
+                      </h1>
+                    </div>
+                  </div>
+                )}
+                <div className="table-section">
+                  {isLoading && (
+                    <div>
+                      <Spinner
+                        size="45px"
+                        // color="#000"
+                        color="#00308F"
+                        message="Processing your request, one moment please..."
+                      />
+                    </div>
+                  )}
+                  {salesTable === "vbak" && (
+                    <>
+                      <SalesTableData
+                        salesTableName={salesTable}
+                        salesTableData={tableData}
+                        setHomeText={setHomeText}
+                        setSalesTable={setSalesTable}
+                        setLoading={setLoading}
+                      />
+                    </>
+                  )}
+                  {salesTable === "vbap" && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                    />
+                  )}
+                  {salesTable === "likp" && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                    />
+                  )}
+                  {salesTable === "lips" && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                    />
+                  )}
+                  {salesTable === "vbrk" && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                    />
+                  )}
+                  {salesTable === "vbrp" && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                    />
+                  )}
+                  <ScrollToTopButton />
                 </div>
               </div>
-            )}
-            <div className="table-section">
-              {isLoading && (
-                <div>
-                  <Spinner
-                    size="45px"
-                    // color="#000"
-                    color="#00308F"
-                    message="Processing your request, one moment please..."
-                  />
-                </div>
-              )}
-              {salesTable === "vbak" && (
-                <>
-                  <SalesTableData
-                    salesTableName={salesTable}
-                    salesTableData={tableData}
-                    setHomeText={setHomeText}
-                    setSalesTable={setSalesTable}
-                    setLoading={setLoading}
-                  />
-                </>
-              )}
-              {salesTable === "vbap" && (
-                <SalesTableData
-                  salesTableName={salesTable}
-                  salesTableData={tableData}
-                  setHomeText={setHomeText}
-                  setSalesTable={setSalesTable}
-                  setLoading={setLoading}
-                />
-              )}
-              {salesTable === "likp" && (
-                <SalesTableData
-                  salesTableName={salesTable}
-                  salesTableData={tableData}
-                  setHomeText={setHomeText}
-                  setSalesTable={setSalesTable}
-                  setLoading={setLoading}
-                />
-              )}
-              {salesTable === "lips" && (
-                <SalesTableData
-                  salesTableName={salesTable}
-                  salesTableData={tableData}
-                  setHomeText={setHomeText}
-                  setSalesTable={setSalesTable}
-                  setLoading={setLoading}
-                />
-              )}
-              {salesTable === "vbrk" && (
-                <SalesTableData
-                  salesTableName={salesTable}
-                  salesTableData={tableData}
-                  setHomeText={setHomeText}
-                  setSalesTable={setSalesTable}
-                  setLoading={setLoading}
-                />
-              )}
-              {salesTable === "vbrp" && (
-                <SalesTableData
-                  salesTableName={salesTable}
-                  salesTableData={tableData}
-                  setHomeText={setHomeText}
-                  setSalesTable={setSalesTable}
-                  setLoading={setLoading}
-                />
-              )}
-              <ScrollToTopButton />
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </>

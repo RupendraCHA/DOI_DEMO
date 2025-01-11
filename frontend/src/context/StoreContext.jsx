@@ -8,6 +8,7 @@ const StoreContextProvider = (props) => {
 
   const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
+  const [sapModuleText, setSapModuleText] = useState(false);
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
@@ -24,6 +25,8 @@ const StoreContextProvider = (props) => {
     token,
     setToken,
     setUsername,
+    sapModuleText,
+    setSapModuleText,
   };
 
   return (

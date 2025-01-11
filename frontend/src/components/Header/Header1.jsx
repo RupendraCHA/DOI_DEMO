@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
@@ -8,6 +8,7 @@ import { FaUserTie } from "react-icons/fa";
 
 import aos from "aos";
 import "aos/dist/aos.css";
+import { StoreContext } from "../../context/StoreContext";
 
 const Header = ({
   message = "",
@@ -19,6 +20,8 @@ const Header = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenActive, setIsOpenActive] = useState(false);
   const [username, setUserName] = useState("");
+
+  const { sapModuleText, setSapModuleText } = useContext(StoreContext);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
@@ -89,6 +92,11 @@ const Header = ({
         </Link>
       </>
     );
+  };
+
+  const showModuleData = () => {
+    setMenu("sales");
+    setSapModuleText(!sapModuleText);
   };
 
   return (
@@ -173,7 +181,7 @@ const Header = ({
                 <Link
                   to="/sapDataModules"
                   href=""
-                  onClick={() => setMenu("sales")}
+                  onClick={showModuleData}
                   className={menu === "sales" ? "active" : "tab"}
                 >
                   SALES & DISTRIBUTION
