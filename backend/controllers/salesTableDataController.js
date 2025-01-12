@@ -139,21 +139,73 @@ export const getFilesDataFromEKPO = async (req, res) => {
 
 // Fetching EKKO (Purchase Order Header) Table Data
 
+// connection.connect((err) => {
+//   if (err) throw err;
+//   console.log('Connected to the database!');
+
+//   const query = 'SELECT SO_FOLDER_ROOT_ID_GET(?, ?) AS result';
+//   const values = [1, 2]; // Example values for your function
+
+//   connection.query(query, values, (err, results) => {
+//   if (err) throw err;
+
+//   console.log('Result from the database function:', results[0].result);
+
+//   connection.end();
+//   });
+//   });
+
+// /VSDMAG/ZPO_ATTACH_CONTENT
+// IV_PO_NUMBER
+// 4500000000
+// connection.connect((err) => {
+//   if (err) throw err;
+//   console.log("Connected to the database!");
+
+//   const query = "SELECT /VSDMAG/ZPO_ATTACH_CONTENT(?, ?) AS result";
+//   const values = [IV_PO_NUMBER, 4500000000]; // Example values for your function
+
+//   connection.query(query, values, (err, results) => {
+//     if (err) throw err;
+
+//     console.log("Result from the database function:", results[0].result);
+
+//     connection.end();
+//   });
+// });
 export const getFilesDataFromSRGBTBREL = async (req, res) => {
-  try {
-    clientConn.connect();
-    const result = await clientConn.exec(`SELECT 
-        *
-    FROM 
-        SRGBTBREL`);
-    res.status(200).json({ success: true, data: result });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send("Error Fetching Data");
-  } finally {
-    clientConn.disconnect();
-  }
+  connection.connect((err) => {
+    if (err) throw err;
+    console.log("Connected to the database!");
+
+    const query = "SELECT /VSDMAG/ZPO_ATTACH_CONTENT(?, ?) AS result";
+    const values = [IV_PO_NUMBER, 4500000000]; // Example values for your function
+
+    connection.query(query, values, (err, results) => {
+      if (err) throw err;
+
+      console.log("Result from the database function:", results[0].result);
+
+      connection.end();
+    });
+  });
+  // try {
+  //   clientConn.connect();
+  //   const result = await clientConn.exec(`SELECT
+  //       *
+  //   FROM
+  //       SRGBTBREL`);
+  //   // const result = clientConn.connect(query);
+
+  //   res.status(200).json({ success: true, data: result });
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).send("Error Fetching Data");
+  // } finally {
+  //   clientConn.disconnect();
+  // }
 };
+
 // ITEM DATA QUERY
 
 // Fetching Sales Order Item Data W.R.T (With Respect To) Document Number

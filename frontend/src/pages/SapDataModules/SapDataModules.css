@@ -132,6 +132,27 @@
     }
   }
 }
+
+.procurement-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736344887/sapImage_ipblzl.jpg"); */
+  /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736345311/sapImage1_cnoqqt.avif"); */
+  background-image: url("./mm.png");
+  background-size: cover;
+  .procurement-data-heading {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 15px #000;
+  }
+  h1 {
+    color: #000;
+    font-weight: 600;
+  }
+}
 @media (max-width: 768px) {
   .sales-data-modules-container {
     .sales-data-modules-section {
@@ -155,13 +176,11 @@
 .module-intro-container {
   background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736345311/sapImage1_cnoqqt.avif");
   /* background-image: url("./SAP-SD.jpg"); */
-
   background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
   .data-header-section {
     background-color: #fff;
     padding: 10px;

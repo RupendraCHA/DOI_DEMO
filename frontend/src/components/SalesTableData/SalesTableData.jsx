@@ -128,6 +128,8 @@ const SalesTableData = (props) => {
     setShowItemData(false);
   };
 
+  const getProcurementItemTableData = async (purchaseNumber) => {};
+
   const getItemDetails = async (documentNumber) => {
     let endpoint;
     if (salesTableName === "vbak") {
@@ -1149,6 +1151,130 @@ const SalesTableData = (props) => {
                     <td>{record.WERKS}</td>
                     <td>{record.SPART}</td>
                     <td>{record.WAVWR}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </>
+      )}
+      {salesTableName === "ekko" && (
+        <>
+          <div className="search-icon-container">
+            <div>
+              <h4>Get Procurement Item Details</h4>
+              <span className="doc-search-container">
+                <input
+                  type="search"
+                  placeholder="Enter Delivery Number"
+                  className="doc-input"
+                  // value={documentNum}
+                  onChange={(e) => setDocumentNum(e.target.value)}
+                />
+                <IoSearch
+                  className="doc-search-icon"
+                  onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
+                />
+              </span>
+            </div>
+            <div>
+              <button
+                className="back-table-data-button"
+                onClick={removeTableData}
+              >
+                Back
+              </button>
+            </div>
+          </div>
+          {showItemData && (
+            <div className="item-table-container">
+              <div className="item-table-section">
+                <h3 className="sales-order-item-heading">
+                  Procurement Item Data
+                </h3>
+                <p>
+                  <div className="item-doc-details">
+                    Procurement Item Details for purchase Number -
+                    <span>{documentNum}</span>
+                  </div>
+                  <div className="item-doc-details">
+                    Number Of Items -<span>{itemData.length}</span>
+                  </div>
+                </p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Purchase Order Number</th>
+                      <th className="header-cell">Material</th>
+                      <th className="header-cell">Material Description</th>
+                      <th className="header-cell">Quantity</th>
+                      <th className="header-cell">Delivery Date</th>
+                      <th className="header-cell">Net Price</th>
+                      <th className="header-cell">Plant</th>
+                      <th className="header-cell">Account Assignmenty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {itemData.map((record, index) => {
+                      return (
+                        <tr key={index + 5}>
+                          <td>{index + 1}</td>
+                          <td>{record.EBELN}</td>
+                          <td>{record.MATNR}</td>
+                          <td>{record.TXZO1}</td>
+                          <td>{record.MENGE}</td>
+                          <td>{record.EINDT}</td>
+                          <td>{record.NETPR}</td>
+                          <td>{record.WERKS}</td>
+                          <td>{record.KNTTP}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <button
+                  className="close-item-data-button"
+                  onClick={hideItemTable}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+          {/* {salesTableName.toUpperCase()}: */}
+          <h4>Procurement Header Table</h4>
+          <table style={{ width: "100%", overflow: scroll }}>
+            <thead>
+              <tr>
+                <th className="header-cell">S.No</th>
+                <th className="header-cell">Purchase Order Number</th>
+                <th className="header-cell">Vendor</th>
+                <th className="header-cell">Document Date</th>
+                <th className="header-cell">Currency</th>
+                <th className="header-cell">Payment Terms</th>
+                <th className="header-cell">Release Indicator</th>
+              </tr>
+            </thead>
+            <tbody>
+              {salesTableData.map((record, index) => {
+                return (
+                  <tr key={index + 6}>
+                    <td>{index + 1}</td>
+                    <td
+                      key={record.VBELN}
+                      className="document-number"
+                      onClick={() =>
+                        getTheSalesDeliveryItemDetails(record.VBELN)
+                      }
+                    >
+                      {record.EBELN}
+                    </td>
+                    <td>{record.LIFNR}</td>
+                    <td>{convertToDate(record.BEDAT)}</td>
+                    <td>{record.WAERS}</td>
+                    <td>{record.ZTERM}</td>
+                    <td>{record.FRGKE}</td>
                   </tr>
                 );
               })}

@@ -29,8 +29,11 @@ const SapDataModules = () => {
   const [salesTable, setSalesTable] = useState("");
   const [tableData, setTableData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [isLoading1, setLoading1] = useState(false);
   const [homeText, setHomeText] = useState(true);
+  const [homeText1, setHomeText1] = useState(true);
   const [isTabactive, setIstabActive] = useState(false);
+  const [procurementTable, setProcurementTable] = useState(false);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
@@ -40,7 +43,7 @@ const SapDataModules = () => {
   }, []);
 
   const getTableData = async (table) => {
-    setSapMaterialsModuleText(false);
+    // setSapMaterialsModuleText(false);
     setSalesTable(table);
 
     setHomeText(false);
@@ -79,6 +82,33 @@ const SapDataModules = () => {
     console.log(response.data);
   };
 
+  const getProcurementTablesData = async (table) => {
+    // setProcurementTable(table);
+    setSalesTable(table);
+    console.log(table);
+
+    setHomeText1(false);
+    setLoading1(true);
+
+    let endpoint1;
+
+    if (table === "ekko") {
+      endpoint1 = table;
+      setSalesTable(table);
+    } else if (table === "ekpo") {
+      endpoint1 = table;
+      setSalesTable(table);
+    }
+    console.log(endpoint1);
+
+    const response = await axios.get(url + `/doi/procurement/${endpoint1}`);
+
+    if (response.data.success) {
+      setLoading1(false);
+      setTableData(response.data.data);
+      console.log(response.data.data);
+    }
+  };
   return (
     <>
       <div className="sales-data-modules-container" data-aos="zoom-in">
@@ -264,7 +294,71 @@ const SapDataModules = () => {
               </div>
             </>
           )}
-          {sapMaterialsModuleText && <div>I am Working</div>}
+          {sapMaterialsModuleText && (
+            <>
+              <div className="modules-section section-one" data-aos="fade-down">
+                <ul className="sales-section image1">
+                  <li>
+                    <button
+                      id={`${salesTable === "ekko" ? "active-button" : ""}`}
+                      onClick={() => getProcurementTablesData("ekko")}
+                    >
+                      Header Information
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      id={`${salesTable === "ekpo" ? "active-button" : ""}`}
+                      onClick={() => getProcurementTablesData("ekpo")}
+                    >
+                      Item Information
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div className="modules-section section-two">
+                {homeText1 && (
+                  <div
+                    className="procurement-data-container"
+                    data-aos="zoom-in"
+                  >
+                    <div className="procurement-data-heading">
+                      <h1>
+                        View Archived Procurement Data from S4 HANA by selecting
+                        one of the tabs above
+                      </h1>
+                    </div>
+                  </div>
+                )}
+                <div className="table-section">
+                  {isLoading1 && (
+                    <div>
+                      <Spinner
+                        size="45px"
+                        // color="#000"
+                        color="#00308F"
+                        message="Processing your request, one moment please..."
+                      />
+                    </div>
+                  )}
+                  {salesTable === "ekko" && (
+                    <>
+                      <SalesTableData
+                        salesTableName={salesTable}
+                        salesTableData={tableData}
+                        setHomeText={setHomeText}
+                        setSalesTable={setSalesTable}
+                        setLoading={setLoading}
+                        setTableData={setTableData}
+                        getTableData={getTableData}
+                      />
+                    </>
+                  )}
+                  <ScrollToTopButton />
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

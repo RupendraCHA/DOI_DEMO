@@ -20,9 +20,6 @@ const ExploreOfferings = () => {
         <p className="sap-gui-intro">
           Accessing SAP tables via SAP GUI typically involves using transaction
           codes and navigating through the appropriate module.
-          {/* Below are some
-          key steps and common SAP GUI transaction codes for accessing and
-          interacting with tables: */}
         </p>
         <div className="sap-gui-details">
           <div>
@@ -36,9 +33,15 @@ const ExploreOfferings = () => {
                   <p>Order To Cash</p>
                 </li>
               </Link>
-              <li className="data-card image2">
-                <p>Procurment</p>
-              </li>
+              <Link
+                title="click here"
+                to="/sapDataModules"
+                className="data-card image2"
+              >
+                <li>
+                  <p>Procurment</p>
+                </li>
+              </Link>
               <li className="data-card image3">
                 <p>Finance</p>
               </li>

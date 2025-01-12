@@ -205,7 +205,7 @@ const Header = ({
           ""
         )}
         {message === "modules" ? (
-          <div className="tabs-bar-section">
+          <div className="tabs-bar-section" style={{ marginRight: "200px" }}>
             <ul
               className={isOpen ? "tabs-container active1" : "tabs-container"}
             >
@@ -225,7 +225,7 @@ const Header = ({
                   onClick={showMaterialModuleData}
                   className={menu === "materials" ? "active" : "tab"}
                 >
-                  MATERIALS
+                  PROCUREMENT
                 </a>
               </li>
               <li>

@@ -11,6 +11,7 @@ import "dotenv/config.js";
 import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
 import salesRouter from "./routes/salesTableDataRoute.js";
+import procurementRouter from "./routes/procurementTableDataRoute.js";
 
 const app = express();
 
@@ -29,6 +30,7 @@ const client = hana.createClient(connOptions);
 
 app.use("/doi/user", userRouter);
 app.use("/doi/sales", salesRouter);
+app.use("/doi/procurement", procurementRouter);
 
 app.get("/sales", async (req, res) => {
   try {
