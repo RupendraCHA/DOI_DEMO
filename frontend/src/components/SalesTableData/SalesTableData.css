@@ -48,7 +48,7 @@ h4 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 2px;
+  gap: 20px;
 }
 .doc-search-icon {
   width: 30px;
@@ -57,7 +57,7 @@ h4 {
   border-radius: 4px;
 }
 .doc-search-icon:hover {
-  background-color: rgba(128, 128, 128, 0.473);
+  background-color: #80808079;
 }
 .doc-input {
   padding: 2px 4px;
@@ -181,11 +181,11 @@ h4 {
 }
 .process-button {
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
 .doc-date-section {
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
 .date-search-icon {
   margin-top: 38px;
