@@ -22,7 +22,8 @@ const Header = ({
   const [isOpenActive, setIsOpenActive] = useState(false);
   const [username, setUserName] = useState("");
 
-  const { sapModuleText, setSapModuleText } = useContext(StoreContext);
+  const { sapSalesModuleText, setSapSalesModuleText } =
+    useContext(StoreContext);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
@@ -111,7 +112,7 @@ const Header = ({
 
   const showModuleData = () => {
     setMenu("sales");
-    setSapModuleText(!sapModuleText);
+    setSapSalesModuleText(!sapSalesModuleText);
   };
 
   return (

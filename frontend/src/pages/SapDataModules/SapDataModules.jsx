@@ -12,7 +12,7 @@ import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 
 const SapDataModules = () => {
-  const { url, token, username, sapModuleText, setSapModuleText } =
+  const { url, token, username, sapSalesModuleText, setSapSalesModuleText } =
     useContext(StoreContext);
   console.log(sapModuleText);
   const navigate = useNavigate();
@@ -80,7 +80,7 @@ const SapDataModules = () => {
               </div>
             </div>
           )}
-          {sapModuleText && (
+          {sapSalesModuleText && (
             <>
               <div className="modules-section section-one" data-aos="fade-down">
                 <ul className="sales-section image1">
