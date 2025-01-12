@@ -1,4 +1,5 @@
 .search-icon-container {
+  margin-bottom: 20px;
   h4 {
     font-size: 20px;
     text-align: left;
@@ -28,10 +29,15 @@
   color: #000;
   border: 1px solid #000;
 }
+.get-item-details-heading,
 h4 {
   font-weight: 600;
-  text-decoration: underline;
-  text-align: center;
+  /* text-decoration: underline; */
+  text-align: left;
+
+  span {
+    color: #121ec7;
+  }
 }
 .document-number:hover {
   background-color: #000;
@@ -57,7 +63,7 @@ h4 {
   padding: 2px 4px;
   outline: none;
   font-weight: 600;
-  width: 20%;
+  /* width: 20%; */
   border-radius: 4px;
   border: 1px solid #000;
 }
@@ -100,4 +106,92 @@ h4 {
 .item-doc-details {
   background-color: #abbbf048;
   padding: 4px;
+}
+.doc-date-search-container {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  gap: 100px;
+}
+@media (max-width: 768px) {
+  .doc-date-search-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+.date-fields-container {
+  display: flex;
+  gap: 20px;
+  /* max-width: 700px; */
+
+  .from-date-section {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    input {
+      font-weight: 600;
+      padding: 2px;
+    }
+  }
+  .to-date-section {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    input {
+      /* font-size: 20px; */
+      font-weight: 600;
+      padding: 2px;
+    }
+  }
+}
+.radio-button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #000;
+  /* accent-color: #0663f0; */
+  border: 3px solid #000;
+}
+.search-date {
+  background-color: #808080;
+  padding: 4px 18px;
+  margin-top: 12px;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 2px 2px 5px #000;
+  font-size: 18px;
+  /* min-height: 50px; */
+  /* width: 20%; */
+}
+.search-date:hover {
+  background-color: #121ec7;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .date-fields-container {
+    flex-direction: column;
+  }
+  .search-date {
+    width: 65%;
+  }
+}
+.process-button {
+  display: flex;
+  gap: 5px;
+}
+.doc-date-section {
+  display: flex;
+  gap: 5px;
+}
+.date-search-icon {
+  margin-top: 38px;
+}
+@media (max-width: 768px) {
+  .date-search-icon {
+    margin-top: 0px;
+  }
 }

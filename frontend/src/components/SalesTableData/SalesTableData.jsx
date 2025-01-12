@@ -15,13 +15,22 @@ const SalesTableData = (props) => {
     setHomeText,
     setSalesTable,
     setLoading,
+    setTableData,
+    getTableData,
   } = props;
   // console.log("Rupendra Retrieved Data:", salesTableData[0]);
   // console.log(salesTableName);
 
+  const tableRecords = [...salesTableData];
+
   const [documentNum, setDocumentNum] = useState("");
   const [itemData, setItemData] = useState([]);
   const [showItemData, setShowItemData] = useState(false);
+  const [startingDate, setStartingDate] = useState("2023-08-19");
+  // 20230819
+  const [endingDate, setEndingDate] = useState("2025-01-13");
+  // 20250113
+  const [searchType, setSearchType] = useState("Date");
 
   const convertToDate = (rawDate) => {
     if (!rawDate || typeof rawDate !== "string" || rawDate.length < 8) {
@@ -29,11 +38,11 @@ const SalesTableData = (props) => {
       return "Invalid Date"; // Return a fallback value
     }
     return (
-      rawDate.substring(0, 4) +
+      rawDate.substring(6) +
       "-" +
       rawDate.substring(4, 6) +
       "-" +
-      rawDate.substring(6)
+      rawDate.substring(0, 4)
     );
   };
 
@@ -51,24 +60,26 @@ const SalesTableData = (props) => {
   };
 
   const getTheSalesOrderItemDetails = async (docNumber) => {
-    setShowItemData(false);
-    setDocumentNum("");
+    if (searchType === "Document") {
+      setShowItemData(false);
+      setDocumentNum("");
 
-    setShowItemData(false);
-    setDocumentNum(docNumber);
+      setShowItemData(false);
+      setDocumentNum(docNumber);
 
-    const documentNumber = docNumber.slice(0, docNumber.length);
-    const response = await axios.get(
-      url + `/doi/sales/${documentNumber}/orderItemData`
-    );
+      const documentNumber = docNumber.slice(0, docNumber.length);
+      const response = await axios.get(
+        url + `/doi/sales/${documentNumber}/orderItemData`
+      );
 
-    if (response.data.success) {
-      setItemData(response.data.data);
-      setShowItemData(true);
+      if (response.data.success) {
+        setItemData(response.data.data);
+        setShowItemData(true);
+      }
+
+      console.log(response.data);
+      console.log("Document Number", documentNumber);
     }
-
-    console.log(response.data);
-    console.log("Document Number", documentNumber);
   };
 
   const getTheSalesDeliveryItemDetails = async (docNumber) => {
@@ -139,27 +150,146 @@ const SalesTableData = (props) => {
     }
   };
 
+  const getSearchType = (e) => {
+    setSearchType(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const getDateString = (date) => {
+    const year = date.slice(0, 4);
+    const month = date.slice(4, 6);
+    const day = date.slice(6, 8);
+
+    return `${year}-${month}-${day}`;
+  };
+
+  const getDateFormat = (date) => {
+    const year = date.slice(0, 4);
+    const month = date.slice(5, 7);
+    const day = date.slice(8, 10);
+    return `${day}-${month}-${year}`;
+  };
+
+  const getDataBetweenDates = async () => {
+    if (
+      startingDate &&
+      endingDate &&
+      startingDate <= endingDate &&
+      searchType === "Date"
+    ) {
+      // console.log(dates);
+      const response = await axios.get(url + `/doi/sales/vbak`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const filteredData = response.data.data.filter((record) => {
+        const date = getDateString(record.ERDAT);
+        console.log(date);
+        return date >= startingDate && date <= endingDate;
+      });
+      console.log(filteredData);
+      setTableData(filteredData);
+      console.log(response.data.data);
+      console.log(startingDate);
+      console.log(endingDate);
+    }
+  };
+
   return (
     <>
       {salesTableName === "vbak" && (
         <>
           <div className="search-icon-container">
-            <div>
-              <h4>Get Sales Order Item Details</h4>
-              <span className="doc-search-container">
+            <div className="doc-date-search-container">
+              <div className="doc-date-section">
                 <input
-                  type="search"
-                  placeholder="Enter Document Number"
-                  className="doc-input"
-                  // value={documentNum}
-                  onChange={(e) => setDocumentNum(e.target.value)}
+                  type="radio"
+                  id="select1"
+                  className="radio-button"
+                  name="process"
+                  value="Document"
+                  checked={searchType === "Document" ? "checked" : ""}
+                  onClick={getSearchType}
                 />
-                <IoSearch
-                  className="doc-search-icon"
-                  onClick={() => getTheSalesOrderItemDetails(documentNum)}
-                  // onClick={() => getItemDetails(documentNum)}
-                />
-              </span>
+                <div>
+                  <h4 className="get-item-details-heading">
+                    Get Sales Order Item Details
+                  </h4>
+                  <div className="doc-search-container">
+                    <input
+                      type="search"
+                      placeholder="Enter Document Number"
+                      className="doc-input"
+                      // value={documentNum}
+                      onChange={(e) => setDocumentNum(e.target.value)}
+                    />
+                    <IoSearch
+                      className="doc-search-icon"
+                      onClick={() => getTheSalesOrderItemDetails(documentNum)}
+                      // onClick={() => getItemDetails(documentNum)}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="process-button">
+                  <input
+                    type="radio"
+                    id="select1"
+                    name="process"
+                    value="Date"
+                    checked={searchType === "Date" ? "checked" : ""}
+                    className="radio-button"
+                    onClick={getSearchType}
+                  />
+                  <div className="date-fields-container">
+                    <div className="from-date-section">
+                      <label
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                        }}
+                        htmlFor="fromDate"
+                      >
+                        From Date
+                      </label>
+                      <input
+                        type="date"
+                        id="fromDate"
+                        name="fromDate"
+                        pattern="\d{4}-\d{2}-\d{2}"
+                        onChange={(e) => setStartingDate(e.target.value)}
+                        // value={dates.fromDate}
+                      />
+                    </div>
+                    <div className="to-date-section">
+                      <label
+                        style={{
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                        }}
+                        htmlFor="toDate"
+                      >
+                        To Date
+                      </label>
+                      <input
+                        type="date"
+                        id="toDate"
+                        name="toDate"
+                        pattern="\d{4}-\d{2}-\d{2}"
+                        onChange={(e) => setEndingDate(e.target.value)}
+                      />
+                    </div>
+                    <IoSearch
+                      // className="search-date"
+                      className="doc-search-icon date-search-icon"
+                      onClick={getDataBetweenDates}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div>
               <button
@@ -236,7 +366,18 @@ const SalesTableData = (props) => {
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
-          <h4> Sales Order Header Table</h4>
+          {/* convertToDate(endingDate) */}
+          {/* convertToDate(startingDate ) */}
+          <h4>
+            Sales Order Header Table Data
+            <span>
+              {" "}
+              {searchType === "Date"
+                ? ` from ${getDateFormat(startingDate)} To
+            ${getDateFormat(endingDate)} are ${salesTableData.length}`
+                : ""}
+            </span>
+          </h4>
           <table style={{ width: "200%", overflow: scroll }}>
             <thead>
               <tr>

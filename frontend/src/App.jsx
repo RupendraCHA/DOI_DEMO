@@ -14,6 +14,7 @@ import SapDataModules from "./pages/SapDataModules/SapDataModules";
 import AOS from "./components/AOS/AOS";
 import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
 import Contact from "./components/Contact/Contact";
+import DateRangeFilter from "./components/date";
 
 const App = () => {
   return (
@@ -76,6 +77,8 @@ const App = () => {
           }
         ></Route>
         <Route path="/purchaseOrder" element={<PurchaseOrder />}></Route>
+        <Route path="/date" element={<DateRangeFilter />}></Route>
+
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>

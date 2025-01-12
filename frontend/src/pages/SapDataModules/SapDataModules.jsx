@@ -12,8 +12,17 @@ import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 
 const SapDataModules = () => {
-  const { url, token, username, sapSalesModuleText, setSapSalesModuleText } =
-    useContext(StoreContext);
+  const {
+    url,
+    token,
+    username,
+    sapSalesModuleText,
+    setSapSalesModuleText,
+    sapMaterialsModuleText,
+    setSapMaterialsModuleText,
+    sapIntroText,
+    setSapIntroText,
+  } = useContext(StoreContext);
   // console.log(sapSalesModuleText);
   const navigate = useNavigate();
 
@@ -31,6 +40,7 @@ const SapDataModules = () => {
   }, []);
 
   const getTableData = async (table) => {
+    setSapMaterialsModuleText(false);
     setSalesTable(table);
 
     setHomeText(false);
@@ -73,7 +83,7 @@ const SapDataModules = () => {
     <>
       <div className="sales-data-modules-container" data-aos="zoom-in">
         <div className="sales-data-modules-section">
-          {!sapSalesModuleText && (
+          {sapIntroText && (
             <div className="module-intro-container" data-aos="zoom-in">
               <div className="data-header-section">
                 <h1>View Archived Data from S4 HANA by selecting the tabs</h1>
@@ -192,17 +202,10 @@ const SapDataModules = () => {
                         setHomeText={setHomeText}
                         setSalesTable={setSalesTable}
                         setLoading={setLoading}
+                        setTableData={setTableData}
+                        getTableData={getTableData}
                       />
                     </>
-                  )}
-                  {salesTable === "vbap" && (
-                    <SalesTableData
-                      salesTableName={salesTable}
-                      salesTableData={tableData}
-                      setHomeText={setHomeText}
-                      setSalesTable={setSalesTable}
-                      setLoading={setLoading}
-                    />
                   )}
                   {salesTable === "likp" && (
                     <SalesTableData
@@ -211,15 +214,7 @@ const SapDataModules = () => {
                       setHomeText={setHomeText}
                       setSalesTable={setSalesTable}
                       setLoading={setLoading}
-                    />
-                  )}
-                  {salesTable === "lips" && (
-                    <SalesTableData
-                      salesTableName={salesTable}
-                      salesTableData={tableData}
-                      setHomeText={setHomeText}
-                      setSalesTable={setSalesTable}
-                      setLoading={setLoading}
+                      setTableData={setTableData}
                     />
                   )}
                   {salesTable === "vbrk" && (
@@ -229,8 +224,31 @@ const SapDataModules = () => {
                       setHomeText={setHomeText}
                       setSalesTable={setSalesTable}
                       setLoading={setLoading}
+                      setTableData={setTableData}
                     />
                   )}
+                  {/* {salesTable === "vbap" && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                      setTableData={setTableData}
+                    />
+                  )}
+                  
+                  {salesTable === "lips" && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                      setTableData={setTableData}
+                    />
+                  )}
+                  
                   {salesTable === "vbrp" && (
                     <SalesTableData
                       salesTableName={salesTable}
@@ -238,13 +256,15 @@ const SapDataModules = () => {
                       setHomeText={setHomeText}
                       setSalesTable={setSalesTable}
                       setLoading={setLoading}
+                      setTableData={setTableData}
                     />
-                  )}
+                  )} */}
                   <ScrollToTopButton />
                 </div>
               </div>
             </>
           )}
+          {sapMaterialsModuleText && <div>I am Working</div>}
         </div>
       </div>
     </>

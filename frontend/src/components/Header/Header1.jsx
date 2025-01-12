@@ -22,8 +22,14 @@ const Header = ({
   const [isOpenActive, setIsOpenActive] = useState(false);
   const [username, setUserName] = useState("");
 
-  const { sapSalesModuleText, setSapSalesModuleText } =
-    useContext(StoreContext);
+  const {
+    sapSalesModuleText,
+    setSapSalesModuleText,
+    sapMaterialsModuleText,
+    setSapMaterialsModuleText,
+    sapIntroText,
+    setSapIntroText,
+  } = useContext(StoreContext);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
@@ -111,16 +117,24 @@ const Header = ({
   };
 
   const showModuleData = () => {
+    setSapIntroText(false);
     setMenu("sales");
-    setSapSalesModuleText(!sapSalesModuleText);
+    setSapSalesModuleText(true);
+    setSapMaterialsModuleText(false);
   };
 
+  const showMaterialModuleData = () => {
+    setMenu("materials");
+    setSapMaterialsModuleText(true);
+    setSapSalesModuleText(false);
+    setSapIntroText(false);
+  };
   return (
     <div className="header-container" data-aos="zoom-in">
       <nav
         className={
           message === "modules"
-            ? "header-section-container"
+            ? "header-section-container modules-section"
             : "container header-section-container"
         }
       >
@@ -164,7 +178,7 @@ const Header = ({
                   onClick={() => setMenu("about")}
                   className={menu === "about" ? "active" : "tab"}
                 >
-                  About
+                  About Us
                 </a>
               </li>
               <Link to="/support">
@@ -208,7 +222,7 @@ const Header = ({
               <li>
                 <a
                   href="#"
-                  onClick={() => setMenu("materials")}
+                  onClick={showMaterialModuleData}
                   className={menu === "materials" ? "active" : "tab"}
                 >
                   MATERIALS
