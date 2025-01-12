@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const SapDataModules = () => {
   const { url, token, username, sapSalesModuleText, setSapSalesModuleText } =
     useContext(StoreContext);
-  console.log(sapModuleText);
+  // console.log(sapSalesModuleText);
   const navigate = useNavigate();
 
   const [salesTable, setSalesTable] = useState("");
@@ -73,7 +73,7 @@ const SapDataModules = () => {
     <>
       <div className="sales-data-modules-container" data-aos="zoom-in">
         <div className="sales-data-modules-section">
-          {!sapModuleText && (
+          {!sapSalesModuleText && (
             <div className="module-intro-container" data-aos="zoom-in">
               <div className="data-header-section">
                 <h1>View Archived Data from S4 HANA by selecting the tabs</h1>
