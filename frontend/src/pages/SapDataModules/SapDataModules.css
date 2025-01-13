@@ -1,5 +1,5 @@
 .sales-data-modules-container {
-  /* min-height: 70vh; */
+  min-height: 100vh;
   padding: 20px;
 
   .sales-data-modules-section {
@@ -91,7 +91,6 @@
           }
         }
       }
-
       /* justify-content: space-around; */
     }
     .section-two {
@@ -99,7 +98,7 @@
       background-color: #e6e9e838;
       overflow: auto;
       padding: 20px;
-      /* height: 80vh; */
+      /* min-height: 100vh; */
 
       table-section {
         /* width: 100%; */
@@ -151,7 +150,13 @@
   h1 {
     color: #000;
     font-weight: 600;
+    font-size: 32px;
   }
+}
+h1 {
+  color: #000;
+  font-weight: 600;
+  font-size: 32px;
 }
 @media (max-width: 768px) {
   .sales-data-modules-container {
@@ -194,7 +199,6 @@
 }
 .intro-back-button-container {
   text-align: right;
-  /* padding-right: 10px; */
 
   .intro-back-button {
     padding: 4px 16px;

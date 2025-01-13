@@ -30,7 +30,7 @@ const ExploreOfferings = () => {
                 className="data-card image1"
               >
                 <li>
-                  <p>Order To Cash</p>
+                  <p>ORDER TO CASH</p>
                 </li>
               </Link>
               <Link
@@ -39,11 +39,11 @@ const ExploreOfferings = () => {
                 className="data-card image2"
               >
                 <li>
-                  <p>Procurment</p>
+                  <p>PROCUREMENT</p>
                 </li>
               </Link>
               <li className="data-card image3">
-                <p>Finance</p>
+                <p>FINANCE</p>
               </li>
             </ul>
           </div>

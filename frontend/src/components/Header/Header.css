@@ -16,7 +16,7 @@
   .logo-container {
     background-color: #fff;
     border-radius: 8px;
-    padding: 2px 5px;
+    padding: 2px 8px;
   }
   .logo-container:hover {
     background-color: azure;
@@ -30,7 +30,7 @@
   text-decoration: none;
 
   h3 {
-    font-size: 22px;
+    font-size: 18px;
     margin-top: 8px;
     font-weight: bold;
     color: #000;
@@ -60,6 +60,12 @@
     color: #fff;
     cursor: pointer;
     /* display: none; */
+  }
+}
+@media (max-width: 768px) {
+  .tabs-bar-section {
+    margin-left: 70px;
+    margin-right: 0px;
   }
 }
 @media (max-width: 768px) {

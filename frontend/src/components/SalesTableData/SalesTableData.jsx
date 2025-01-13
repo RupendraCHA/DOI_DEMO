@@ -212,7 +212,7 @@ const SalesTableData = (props) => {
   };
 
   const getDataBetweenDates = async () => {
-    setLoadSalesData(true);
+    alert("Check Date Radion Button is selected");
     if (
       startingDate &&
       endingDate &&
@@ -220,6 +220,8 @@ const SalesTableData = (props) => {
       searchType === "Date"
     ) {
       // console.log(dates);
+      setLoadSalesData(true);
+
       const response = await axios.get(url + `/doi/sales/vbak`, {
         headers: {
           "Content-Type": "application/json",
