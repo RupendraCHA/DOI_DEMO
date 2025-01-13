@@ -22,21 +22,34 @@ const SapDataModules = () => {
     setSapMaterialsModuleText,
     sapIntroText,
     setSapIntroText,
+    menu,
+    setMenu,
+    isLoading1,
+    setLoading1,
+    isLoading,
+    setLoading,
+    salesTable,
+    setSalesTable,
+    homeText,
+    setHomeText,
+    setHomeText1,
+    homeText1,
   } = useContext(StoreContext);
   // console.log(sapSalesModuleText);
   const navigate = useNavigate();
 
-  const [salesTable, setSalesTable] = useState("");
+  // const [salesTable, setSalesTable] = useState("");
   const [tableData, setTableData] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-  const [isLoading1, setLoading1] = useState(false);
-  const [homeText, setHomeText] = useState(true);
-  const [homeText1, setHomeText1] = useState(true);
+  // const [isLoading, setLoading] = useState(false);
+  // const [isLoading1, setLoading1] = useState(false);
+  // const [homeText, setHomeText] = useState(true);
+  // const [homeText1, setHomeText1] = useState(true);
   const [isTabactive, setIstabActive] = useState(false);
   const [procurementTable, setProcurementTable] = useState(false);
 
   useEffect(() => {
     aos.init({ duration: 2000 });
+    setSapIntroText(true);
     setTimeout(() => {
       navigate("/login");
     }, 8640000);
@@ -44,7 +57,7 @@ const SapDataModules = () => {
 
   const getTableData = async (table) => {
     // setSapMaterialsModuleText(false);
-    setSalesTable(table);
+    setSalesTable("");
 
     setHomeText(false);
     setLoading(true);
@@ -109,6 +122,18 @@ const SapDataModules = () => {
       console.log(response.data.data);
     }
   };
+
+  const handleIntroSection = () => {
+    setMenu("intro");
+    setSapIntroText(true);
+    setSapSalesModuleText(false);
+    setSapMaterialsModuleText(false);
+    setLoading(false);
+    setLoading1(false);
+    setHomeText(true);
+    setHomeText1(true);
+    setSalesTable("");
+  };
   return (
     <>
       <div className="sales-data-modules-container" data-aos="zoom-in">
@@ -116,7 +141,9 @@ const SapDataModules = () => {
           {sapIntroText && (
             <div className="module-intro-container" data-aos="zoom-in">
               <div className="data-header-section">
-                <h1>View Archived Data from S4 HANA by selecting the tabs</h1>
+                <h1>
+                  View Archived Data from S4 HANA by selecting the options above
+                </h1>
               </div>
             </div>
           )}
@@ -195,6 +222,14 @@ const SapDataModules = () => {
                 </span> */}
                   </li>
                 </ul>
+                <div className="intro-back-button-container">
+                  <button
+                    className="intro-back-button"
+                    onClick={handleIntroSection}
+                  >
+                    Back
+                  </button>
+                </div>
                 {/* <ul className="material-section">
               <h3>Material Management</h3>
             </ul>
@@ -207,8 +242,8 @@ const SapDataModules = () => {
                   <div className="archived-data-container" data-aos="zoom-in">
                     <div className="data-heading">
                       <h1>
-                        View Archived Sales Data from S4 HANA by selecting one
-                        of the tabs above
+                        View Archived ORDER TO CASH Data from S4 HANA by
+                        selecting one of the tabs above
                       </h1>
                     </div>
                   </div>
@@ -230,6 +265,7 @@ const SapDataModules = () => {
                         salesTableName={salesTable}
                         salesTableData={tableData}
                         setHomeText={setHomeText}
+                        setHomeText1={setHomeText1}
                         setSalesTable={setSalesTable}
                         setLoading={setLoading}
                         setTableData={setTableData}
@@ -245,6 +281,7 @@ const SapDataModules = () => {
                       setSalesTable={setSalesTable}
                       setLoading={setLoading}
                       setTableData={setTableData}
+                      setHomeText1={setHomeText1}
                     />
                   )}
                   {salesTable === "vbrk" && (
@@ -255,6 +292,7 @@ const SapDataModules = () => {
                       setSalesTable={setSalesTable}
                       setLoading={setLoading}
                       setTableData={setTableData}
+                      setHomeText1={setHomeText1}
                     />
                   )}
                   {/* {salesTable === "vbap" && (
@@ -315,6 +353,14 @@ const SapDataModules = () => {
                     </button>
                   </li>
                 </ul>
+                <div className="intro-back-button-container">
+                  <button
+                    className="intro-back-button"
+                    onClick={handleIntroSection}
+                  >
+                    Back
+                  </button>
+                </div>
               </div>
               <div className="modules-section section-two">
                 {homeText1 && (
@@ -324,7 +370,7 @@ const SapDataModules = () => {
                   >
                     <div className="procurement-data-heading">
                       <h1>
-                        View Archived Procurement Data from S4 HANA by selecting
+                        View Archived PROCUREMENT Data from S4 HANA by selecting
                         one of the tabs above
                       </h1>
                     </div>
@@ -351,6 +397,21 @@ const SapDataModules = () => {
                         setLoading={setLoading}
                         setTableData={setTableData}
                         getTableData={getTableData}
+                        setHomeText1={setHomeText1}
+                      />
+                    </>
+                  )}
+                  {salesTable === "ekpo" && (
+                    <>
+                      <SalesTableData
+                        salesTableName={salesTable}
+                        salesTableData={tableData}
+                        setHomeText={setHomeText}
+                        setSalesTable={setSalesTable}
+                        setLoading={setLoading}
+                        setTableData={setTableData}
+                        getTableData={getTableData}
+                        setHomeText1={setHomeText1}
                       />
                     </>
                   )}

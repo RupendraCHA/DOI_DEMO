@@ -17,6 +17,8 @@ const SalesTableData = (props) => {
     setLoading,
     setTableData,
     getTableData,
+    setHomeText1,
+    setLoading1,
   } = props;
   // console.log("Rupendra Retrieved Data:", salesTableData[0]);
   // console.log(salesTableName);
@@ -52,13 +54,18 @@ const SalesTableData = (props) => {
     return result;
   };
 
-  const removeTableData = () => {
+  const removeTableDataForSales = () => {
     setHomeText(true);
     setSalesTable("");
     setLoading(false);
     // setShowItemData(false)
   };
 
+  const removeTableDataForProcurement = () => {
+    setHomeText1(true);
+    setSalesTable("");
+    setLoading1(false);
+  };
   const getTheSalesOrderItemDetails = async (docNumber) => {
     if (searchType === "Document") {
       setShowItemData(false);
@@ -128,29 +135,46 @@ const SalesTableData = (props) => {
     setShowItemData(false);
   };
 
-  const getProcurementItemTableData = async (purchaseNumber) => {};
+  const getProcurementItemTableData = async (purchaseNumber) => {
+    setShowItemData(false);
+    setDocumentNum("");
+    setShowItemData(false);
+    setDocumentNum(purchaseNumber);
 
-  const getItemDetails = async (documentNumber) => {
-    let endpoint;
-    if (salesTableName === "vbak") {
-      endpoint = salesTableName;
-    } else if (salesTableName == "likp") {
-      endpoint = "likp";
-    } else if (salesTableName === "vbrk") {
-      endpoint = "vbrk";
-    }
-
-    const response = await axios.get(url + `/doi/sales/${endpoint}`);
-    let documentNumberItem;
+    const response = await axios.get(
+      url + `/doi/procurement/${purchaseNumber}/ekpo`
+    );
 
     if (response.data.success) {
-      response.data.data.map((record) => {
-        if (record.VBELN.endWith(documentNumber)) {
-          console.log(record.VBELN);
-        }
-      });
+      setItemData(response.data.data);
+
+      setShowItemData(true);
     }
+    console.log(response.data);
+    console.log("Purchase Number", purchaseNumber);
   };
+
+  // const getItemDetails = async (documentNumber) => {
+  //   let endpoint;
+  //   if (salesTableName === "vbak") {
+  //     endpoint = salesTableName;
+  //   } else if (salesTableName == "likp") {
+  //     endpoint = "likp";
+  //   } else if (salesTableName === "vbrk") {
+  //     endpoint = "vbrk";
+  //   }
+
+  //   const response = await axios.get(url + `/doi/sales/${endpoint}`);
+  //   let documentNumberItem;
+
+  //   if (response.data.success) {
+  //     response.data.data.map((record) => {
+  //       if (record.VBELN.endWith(documentNumber)) {
+  //         console.log(record.VBELN);
+  //       }
+  //     });
+  //   }
+  // };
 
   const getSearchType = (e) => {
     setSearchType(e.target.value);
@@ -296,7 +320,7 @@ const SalesTableData = (props) => {
             <div>
               <button
                 className="back-table-data-button"
-                onClick={removeTableData}
+                onClick={removeTableDataForSales}
               >
                 Back
               </button>
@@ -451,7 +475,7 @@ const SalesTableData = (props) => {
             <div>
               <button
                 className="back-table-data-button"
-                onClick={removeTableData}
+                onClick={removeTableDataForSales}
               >
                 Back
               </button>
@@ -593,7 +617,7 @@ const SalesTableData = (props) => {
             <div>
               <button
                 className="back-table-data-button"
-                onClick={removeTableData}
+                onClick={removeTableDataForSales}
               >
                 Back
               </button>
@@ -879,7 +903,7 @@ const SalesTableData = (props) => {
             <div>
               <button
                 className="back-table-data-button"
-                onClick={removeTableData}
+                onClick={removeTableDataForSales}
               >
                 Back
               </button>
@@ -1166,21 +1190,21 @@ const SalesTableData = (props) => {
               <span className="doc-search-container">
                 <input
                   type="search"
-                  placeholder="Enter Delivery Number"
+                  placeholder="Enter Purchase Number"
                   className="doc-input"
                   // value={documentNum}
                   onChange={(e) => setDocumentNum(e.target.value)}
                 />
                 <IoSearch
                   className="doc-search-icon"
-                  onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
+                  onClick={() => getProcurementItemTableData(documentNum)}
                 />
               </span>
             </div>
             <div>
               <button
                 className="back-table-data-button"
-                onClick={removeTableData}
+                onClick={removeTableDataForProcurement}
               >
                 Back
               </button>
@@ -1209,10 +1233,10 @@ const SalesTableData = (props) => {
                       <th className="header-cell">Material</th>
                       <th className="header-cell">Material Description</th>
                       <th className="header-cell">Quantity</th>
-                      <th className="header-cell">Delivery Date</th>
+                      {/* <th className="header-cell">Delivery Date</th> */}
                       <th className="header-cell">Net Price</th>
                       <th className="header-cell">Plant</th>
-                      <th className="header-cell">Account Assignmenty</th>
+                      <th className="header-cell">Account Assignment</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1222,9 +1246,9 @@ const SalesTableData = (props) => {
                           <td>{index + 1}</td>
                           <td>{record.EBELN}</td>
                           <td>{record.MATNR}</td>
-                          <td>{record.TXZO1}</td>
+                          <td>{record.TXZ01}</td>
                           <td>{record.MENGE}</td>
-                          <td>{record.EINDT}</td>
+                          {/* <td>{record.EILDT}</td> */}
                           <td>{record.NETPR}</td>
                           <td>{record.WERKS}</td>
                           <td>{record.KNTTP}</td>
@@ -1262,11 +1286,9 @@ const SalesTableData = (props) => {
                   <tr key={index + 6}>
                     <td>{index + 1}</td>
                     <td
-                      key={record.VBELN}
+                      key={record.EBELN}
                       className="document-number"
-                      onClick={() =>
-                        getTheSalesDeliveryItemDetails(record.VBELN)
-                      }
+                      onClick={() => getProcurementItemTableData(record.EBELN)}
                     >
                       {record.EBELN}
                     </td>
@@ -1275,6 +1297,132 @@ const SalesTableData = (props) => {
                     <td>{record.WAERS}</td>
                     <td>{record.ZTERM}</td>
                     <td>{record.FRGKE}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </>
+      )}
+      {salesTableName === "ekpo" && (
+        <>
+          <div className="search-icon-container">
+            <div>
+              <h4>Get Procurement Item Details</h4>
+              <span className="doc-search-container">
+                <input
+                  type="search"
+                  placeholder="Enter Purchase Number"
+                  className="doc-input"
+                  // value={documentNum}
+                  onChange={(e) => setDocumentNum(e.target.value)}
+                />
+                <IoSearch
+                  className="doc-search-icon"
+                  onClick={() => getProcurementItemTableData(documentNum)}
+                />
+              </span>
+            </div>
+            <div>
+              <button
+                className="back-table-data-button"
+                onClick={removeTableDataForProcurement}
+              >
+                Back
+              </button>
+            </div>
+          </div>
+          {showItemData && (
+            <div className="item-table-container">
+              <div className="item-table-section">
+                <h3 className="sales-order-item-heading">
+                  Procurement Item Data
+                </h3>
+                <p>
+                  <div className="item-doc-details">
+                    Procurement Item Details for purchase Number -
+                    <span>{documentNum}</span>
+                  </div>
+                  <div className="item-doc-details">
+                    Number Of Items -<span>{itemData.length}</span>
+                  </div>
+                </p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Purchase Order Number</th>
+                      <th className="header-cell">Material</th>
+                      <th className="header-cell">Material Description</th>
+                      <th className="header-cell">Quantity</th>
+                      {/* <th className="header-cell">Delivery Date</th> */}
+                      <th className="header-cell">Net Price</th>
+                      <th className="header-cell">Plant</th>
+                      <th className="header-cell">Account Assignment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {itemData.map((record, index) => {
+                      return (
+                        <tr key={index + 5}>
+                          <td>{index + 1}</td>
+                          <td>{record.EBELN}</td>
+                          <td>{record.MATNR}</td>
+                          <td>{record.TXZ01}</td>
+                          <td>{record.MENGE}</td>
+                          {/* <td>{convertToDate(record.EINDT)}</td> */}
+                          <td>{record.NETPR}</td>
+                          <td>{record.WERKS}</td>
+                          <td>{record.KNTTP}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+                <button
+                  className="close-item-data-button"
+                  onClick={hideItemTable}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+          {/* {salesTableName.toUpperCase()}: */}
+          <h4>Procurement Header Table</h4>
+          <table style={{ width: "100%", overflow: scroll }}>
+            <thead>
+              <tr>
+                <th className="header-cell">S.No</th>
+                <th className="header-cell">Purchase Order Number</th>
+                <th className="header-cell">Material</th>
+                <th className="header-cell">Material Description</th>
+                <th className="header-cell">Quantity</th>
+                {/* <th className="header-cell">Delivery Date</th> */}
+                <th className="header-cell">Net Price</th>
+                <th className="header-cell">Plant</th>
+                <th className="header-cell">Account Assignment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {salesTableData.map((record, index) => {
+                return (
+                  <tr key={index + 6}>
+                    <td>{index + 1}</td>
+                    <td
+                      key={record.EBELN}
+                      className="document-number"
+                      onClick={() => getProcurementItemTableData(record.EBELN)}
+                    >
+                      {record.EBELN}
+                    </td>
+                    <td>{record.MATNR}</td>
+                    <td>{record.TXZ01}</td>
+                    <td>{record.MENGE}</td>
+                    {/* <td>{convertToDate(record.EILDT)}</td> */}
+                    <td>{record.NETPR}</td>
+                    <td>{record.WERKS}</td>
+                    <td>{record.KNTTP}</td>
                   </tr>
                 );
               })}

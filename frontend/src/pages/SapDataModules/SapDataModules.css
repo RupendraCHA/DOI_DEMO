@@ -192,3 +192,17 @@
     }
   }
 }
+.intro-back-button-container {
+  text-align: right;
+  /* padding-right: 10px; */
+
+  .intro-back-button {
+    padding: 4px 16px;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 2px 2px 5px #000;
+  }
+}

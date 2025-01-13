@@ -11,6 +11,12 @@ const StoreContextProvider = (props) => {
   const [sapSalesModuleText, setSapSalesModuleText] = useState(false);
   const [sapMaterialsModuleText, setSapMaterialsModuleText] = useState(false);
   const [sapIntroText, setSapIntroText] = useState(true);
+  const [menu, setMenu] = useState("home");
+  const [isLoading1, setLoading1] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [salesTable, setSalesTable] = useState("");
+  const [homeText, setHomeText] = useState(true);
+  const [homeText1, setHomeText1] = useState(true);
 
   const fromDate = "2023-08-19";
   const lastDate = "2025-01-13";
@@ -38,6 +44,18 @@ const StoreContextProvider = (props) => {
     setSapMaterialsModuleText,
     sapIntroText,
     setSapIntroText,
+    menu,
+    setMenu,
+    isLoading1,
+    setLoading1,
+    isLoading,
+    setLoading,
+    salesTable,
+    setSalesTable,
+    homeText,
+    setHomeText,
+    homeText1,
+    setHomeText1,
   };
 
   return (

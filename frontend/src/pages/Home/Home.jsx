@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import "./Home.css";
 import About from "../../components/About/About";
@@ -13,11 +13,15 @@ import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopBut
 import aos from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 
 const Home = () => {
+  const { setMenu } = useContext(StoreContext);
   const navigate = useNavigate();
+
   useEffect(() => {
     aos.init({ duration: 2000 });
+    setMenu("home");
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/home");

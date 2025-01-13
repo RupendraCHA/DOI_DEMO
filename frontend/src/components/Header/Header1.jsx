@@ -17,7 +17,7 @@ const Header = ({
   financeText = "",
   tabText = "",
 }) => {
-  const [menu, setMenu] = useState("home");
+  // const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenActive, setIsOpenActive] = useState(false);
   const [username, setUserName] = useState("");
@@ -29,6 +29,15 @@ const Header = ({
     setSapMaterialsModuleText,
     sapIntroText,
     setSapIntroText,
+    menu,
+    setMenu,
+    isLoading1,
+    setLoading1,
+    isLoading,
+    setLoading,
+    setHomeText,
+    setHomeText1,
+    setSalesTable,
   } = useContext(StoreContext);
 
   useEffect(() => {
@@ -121,6 +130,8 @@ const Header = ({
     setMenu("sales");
     setSapSalesModuleText(true);
     setSapMaterialsModuleText(false);
+    setLoading1(false);
+    setHomeText1(true);
   };
 
   const showMaterialModuleData = () => {
@@ -128,6 +139,9 @@ const Header = ({
     setSapMaterialsModuleText(true);
     setSapSalesModuleText(false);
     setSapIntroText(false);
+    setLoading(false);
+    setHomeText(true);
+    setSalesTable("");
   };
   return (
     <div className="header-container" data-aos="zoom-in">

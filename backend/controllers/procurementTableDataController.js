@@ -37,7 +37,7 @@ export const getProcurementTableDataFromEKPO = async (req, res) => {
 
 export const getProcurementItemData = async (req, res) => {
   const { purchaseOrderNumber } = req.params;
-  console.log(documentNumber);
+  console.log(purchaseOrderNumber);
 
   try {
     clientConn.connect();
