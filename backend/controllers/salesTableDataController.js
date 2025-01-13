@@ -17,7 +17,13 @@ const clientConn = hana.createClient(connOptions);
 export const getSalesTableDataFromVBAK = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec("SELECT * FROM VBAK");
+    const query = `SELECT VBAK.*, VBAP.*, VBKD.* 
+      FROM VBAK
+      JOIN VBAP ON VBAK.VBELN = VBAP.VBELN
+      JOIN VBKD ON VBAP.VBELN = VBKD.VBELN
+    `;
+    const result = await clientConn.exec(query);
+    // const result = await clientConn.exec("SELECT * FROM VBAK");
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error(error);
@@ -106,10 +112,16 @@ export const getSalesTableDataFromVBRP = async (req, res) => {
 export const getFilesDataFromEKKO = async (req, res) => {
   try {
     clientConn.connect();
-    const result = await clientConn.exec(`SELECT 
+    const result = await clientConn.exec(`SELECT
         *
-    FROM 
+    FROM
         EKKO`);
+    // const query = `SELECT VBAK.*, VBAP.*, VBKD.*
+    //   FROM VBAK
+    //   JOIN VBAP ON VBAK.VBELN = VBAP.VBELN
+    //   JOIN VBKD ON VBAP.VBELN = VBKD.VBELN
+    // `;
+    // const result = await clientConn.exec(query);
     res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.log(error);

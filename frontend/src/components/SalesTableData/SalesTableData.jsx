@@ -212,7 +212,7 @@ const SalesTableData = (props) => {
   };
 
   const getDataBetweenDates = async () => {
-    setLoading(true);
+    setLoadSalesData(true);
     if (
       startingDate &&
       endingDate &&
@@ -232,7 +232,7 @@ const SalesTableData = (props) => {
         return date >= startingDate && date <= endingDate;
       });
       console.log(filteredData);
-      setLoading(false);
+      setLoadSalesData(false);
       setTableData(filteredData);
       console.log(response.data.data);
       console.log(startingDate);
@@ -482,7 +482,7 @@ const SalesTableData = (props) => {
                         </td>
                         <td>{convertToDate(record.ERDAT)}</td>
                         <td>{record.KUNNR}</td>
-                        <td>{record.KUNWE}</td>
+                        <td>{record.KUNWE_ANA}</td>
                         <td>{convertToDate(record.AUDAT)}</td>
                         <td>{convertToDate(record.VDATU)}</td>
                         <td>{record.VKORG}</td>
@@ -1048,6 +1048,7 @@ const SalesTableData = (props) => {
                         <tr key={index + 9}>
                           <td>{index + 1}</td>
                           <td>{record.VBELN}</td>
+                          <td>{record.POSNR}</td>
                           <td>{record.FKIMG}</td>
                           <td>{record.MEINS}</td>
                           <td>{record.LMENG}</td>
