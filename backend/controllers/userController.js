@@ -93,6 +93,7 @@ export const verifyEmail = async (req, res) => {
       verificationCode: userCode,
     });
 
+    console.log(user);
     if (!user) {
       return res.jso({ success: false, message: "Invalid or Code Expired" });
     }

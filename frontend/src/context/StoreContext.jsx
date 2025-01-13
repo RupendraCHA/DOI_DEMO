@@ -17,6 +17,8 @@ const StoreContextProvider = (props) => {
   const [salesTable, setSalesTable] = useState("");
   const [homeText, setHomeText] = useState(true);
   const [homeText1, setHomeText1] = useState(true);
+  const [loadProcurementData, setLoadProcurementData] = useState(false);
+  const [loadSalesData, setLoadSalesData] = useState(false);
 
   const fromDate = "2023-08-19";
   const lastDate = "2025-01-13";
@@ -56,6 +58,10 @@ const StoreContextProvider = (props) => {
     setHomeText,
     homeText1,
     setHomeText1,
+    loadProcurementData,
+    setLoadProcurementData,
+    loadSalesData,
+    setLoadSalesData,
   };
 
   return (

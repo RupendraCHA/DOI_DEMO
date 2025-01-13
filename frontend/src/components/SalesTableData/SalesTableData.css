@@ -75,7 +75,7 @@ h4 {
   padding: 20px;
   overflow: auto;
   border: 1px solid #000;
-  /* width: 140%; */
+  width: 140%;
 
   p {
     font-size: 18px;

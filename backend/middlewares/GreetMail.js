@@ -33,7 +33,7 @@ export const WelcomeEmail = async (email, firstname, lastname) => {
     const response = await transporter.sendEmail({
       from: '"Visionsoft Inc." <chandaluri210@gmail.com>',
       to: email,
-      subject: `Hi ${firstname}, Explore our Intutive reports from SAP HANA`,
+      subject: `Hi ${fullname}, Explore our Archived Solution With SAP HANA`,
       text: "Welcome to Visionsoft Inc.",
       html: Welcome_Email_Template.replace("{name}", fullname),
     });
