@@ -77,7 +77,7 @@ app.get("/file/:id", async (req, res) => {
       return res.status(404).json({ success: false, error: "File Not Found" });
     }
 
-    // const newFile = await File.findOne({ _id: req.params.id });
+    const newFile = await File.findOne({ _id: req.params.id });
 
     res.setHeader("Content-Type", file.contentType);
     // res.setHeader(
