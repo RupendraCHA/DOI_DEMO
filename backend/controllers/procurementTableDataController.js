@@ -32,10 +32,10 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
 
     const updatedArray = result.map((object, index) => {
       if ((index + 1) % 2 !== 0) {
-        const secondArrayIndex = ((index + 2 - 1) / 2) % allDocuments.length;
+        const secondArrayIndex = ((index + 1 - 1) / 2) % allDocuments.length;
         return {
           ...object,
-          fileName: allDocuments[secondArrayIndex].fileName,
+          fileName: allDocuments[secondArrayIndex].name,
           UUID: allDocuments[secondArrayIndex]._id,
         };
       }

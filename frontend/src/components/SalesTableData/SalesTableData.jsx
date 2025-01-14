@@ -279,7 +279,7 @@ const SalesTableData = (props) => {
           <div>
             <FaFileAlt
               className="attachment-icon"
-              onClick={handleDownload(fileId)}
+              onClick={() => handleDownload(fileId)}
             />
             <a href={fileUrl} download>
               Download
