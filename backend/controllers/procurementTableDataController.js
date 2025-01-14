@@ -28,21 +28,21 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
     //   console.log(record.fileName);
     // });
 
-    let secondArrayIndex = 0;
+    // let secondArrayIndex = 0;
 
-    const updatedArray = result.map((object, index) => {
-      if ((index + 1) % 2 !== 0) {
-        const secondArrayIndex = ((index + 1 - 1) / 2) % allDocuments.length;
-        return {
-          ...object,
-          fileName: allDocuments[secondArrayIndex].name,
-          UUID: allDocuments[secondArrayIndex]._id,
-        };
-      }
-      return object;
-    });
+    // const updatedArray = result.map((object, index) => {
+    //   if ((index + 1) % 2 !== 0) {
+    //     const secondArrayIndex = ((index + 1 - 1) / 2) % allDocuments.length;
+    //     return {
+    //       ...object,
+    //       fileName: allDocuments[secondArrayIndex].name,
+    //       UUID: allDocuments[secondArrayIndex]._id,
+    //     };
+    //   }
+    //   return object;
+    // });
 
-    res.status(200).json({ success: true, data: updatedArray });
+    res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching data");
