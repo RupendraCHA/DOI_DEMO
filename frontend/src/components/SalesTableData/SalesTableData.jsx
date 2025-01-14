@@ -245,7 +245,7 @@ const SalesTableData = (props) => {
 
   const [fileUrl, setFileUrl] = useState("");
 
-  const handleDownload = async (fileId) => {
+  const handleDownload = async (fileName, fileId) => {
     if (!fileId) {
       alert("Please enter a file ID");
       return;
@@ -255,16 +255,22 @@ const SalesTableData = (props) => {
       const response = await axios.get(`http://localhost:5000/file/${fileId}`, {
         responseType: "blob",
       });
-      const url = URL.createObjectURL(response.data);
-      // const a = document.createElement("a");
-      // a.href = url;
-      // a.download = response.headers["content-disposition"]
-      //   .split("filename=")[1]
-      //   .replace(/"/g, "");
-      // document.body.appendChild(a);
-      // a.click();
-      // document.body.removeChild(a);
-      setFileUrl(url);
+      // console.log(response);
+      // const data = await response.data;
+      // console.log(data);
+
+      const url = window.URL.createObjectURL(response.data);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName; // Use the extracted or fallback file name
+      link.click();
+
+      // Clean up the URL
+      window.URL.revokeObjectURL(url);
+
+      // const url = URL.createObjectURL(response.data);
+      // setFileUrl(url);
     } catch (error) {
       console.error("Error downloading file:", error);
     }
@@ -275,18 +281,14 @@ const SalesTableData = (props) => {
       return (
         <div className="attachment-container">
           <p className="attachment-name">{fileName}</p>
-
-          <div>
-            <FaFileAlt
-              className="attachment-icon"
-              onClick={() => handleDownload(fileId)}
-            />
-            <a href={fileUrl} download>
-              Download
-            </a>
-          </div>
+          <FaFileAlt
+            className="attachment-icon"
+            onClick={() => handleDownload(fileName, fileId)}
+          />
         </div>
       );
+    } else {
+      return "No Attachment";
     }
   };
 
@@ -510,7 +512,7 @@ const SalesTableData = (props) => {
                     <th className="header-cell">Currency</th>
                     <th className="header-cell">Payment Terms</th>
                     <th className="header-cell">Status</th>
-                    <th className="header-cell">Order Reason</th>
+                    {/* <th className="header-cell">Order Reason</th> */}
                     {/* <th className="header-cell">Document Category</th>
                 <th className="header-cell">Sales Document Type</th>
                 <th className="header-cell">Shipping Condition</th> */}
@@ -542,7 +544,7 @@ const SalesTableData = (props) => {
                         <td>{record.WAERK}</td>
                         <td>{record.ZTERM}</td>
                         <td>{record.GBSTK}</td>
-                        <td>{record.AUGRU}</td>
+                        {/* <td>{record.AUGRU}</td> */}
                         {/* <td>{record.VBTYP}</td>
                     <td>{record.AUART}</td>
                     <td>{record.VSBED}</td> */}
@@ -1414,6 +1416,15 @@ const SalesTableData = (props) => {
                       <th className="header-cell">Net Price</th>
                       <th className="header-cell">Plant</th>
                       <th className="header-cell">Unit Of Measure</th>
+                      <th className="header-cell">
+                        <p className="attachment-name">
+                          Attachments
+                          <FaFileAlt
+                            style={{ marginLeft: "5px" }}
+                            className="attachment-icon"
+                          />
+                        </p>
+                      </th>
                       {/* <th className="header-cell">Account Assignment</th> */}
                       {/* <th className="header-cell">Attachment</th> */}
                     </tr>
@@ -1431,6 +1442,8 @@ const SalesTableData = (props) => {
                           <td>{record.NETPR}</td>
                           <td>{record.WERKS}</td>
                           <td>{record.MEINS}</td>
+                          <td>{getAttachment(record.fileName, record.UUID)}</td>
+
                           {/* <td>{record.KNTTP}</td> */}
                           {/* <td>{getAttachment(record.fileName)}</td> */}
                         </tr>
@@ -1466,21 +1479,22 @@ const SalesTableData = (props) => {
                   <tr>
                     <th className="header-cell">S.No</th>
                     <th className="header-cell">Purchase Order Number</th>
-                    <th className="header-cell">Vendor</th>
+                    <th className="header-cell">Vendor Number</th>
                     <th className="header-cell">Document Date</th>
                     <th className="header-cell">Currency</th>
                     <th className="header-cell">Document Category</th>
                     {/* <th className="header-cell">Payment Terms</th> */}
                     {/* <th className="header-cell">Release Indicator</th> */}
                     <th className="header-cell">Purchasing Organization</th>
+                    <th className="header-cell">Last Item Number</th>
                     <th className="header-cell">
-                      <div className="attachment-container">
-                        <p className="attachment-name">Attachment</p>
+                      <p className="attachment-name">
+                        Attachments
                         <FaFileAlt
+                          style={{ marginLeft: "5px" }}
                           className="attachment-icon"
-                          // onClick={handleDownload(fileId)}
                         />
-                      </div>
+                      </p>
                     </th>
                   </tr>
                 </thead>
@@ -1505,6 +1519,7 @@ const SalesTableData = (props) => {
                         {/* <td>{record.ZTERM}</td> */}
                         {/* <td>{record.FRGKE}</td> */}
                         <td>{record.EKORG}</td>
+                        <td>{record.LPONR}</td>
                         <td>{getAttachment(record.fileName, record.UUID)}</td>
                         {/* <td>{`${record.fileName} ${record.UUID}`}</td> */}
                       </tr>
