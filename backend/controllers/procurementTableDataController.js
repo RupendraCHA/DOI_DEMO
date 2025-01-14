@@ -55,6 +55,7 @@ export const getProcurementTableDataFromEKPO = async (req, res) => {
   try {
     clientConn.connect();
     const result = await clientConn.exec("SELECT * FROM EKPO");
+    res.status(200).json({ success: true, data: result });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching data");
