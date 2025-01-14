@@ -255,7 +255,15 @@ const SalesTableData = (props) => {
       const response = await axios.get(`http://localhost:5000/file/${fileId}`, {
         responseType: "blob",
       });
-      const url = URL.createObjectURL(new Blob([response.data]));
+      const url = URL.createObjectURL(response.data);
+      // const a = document.createElement("a");
+      // a.href = url;
+      // a.download = response.headers["content-disposition"]
+      //   .split("filename=")[1]
+      //   .replace(/"/g, "");
+      // document.body.appendChild(a);
+      // a.click();
+      // document.body.removeChild(a);
       setFileUrl(url);
     } catch (error) {
       console.error("Error downloading file:", error);
@@ -267,17 +275,16 @@ const SalesTableData = (props) => {
       return (
         <div className="attachment-container">
           <p className="attachment-name">{fileName}</p>
-          <FaFileAlt
-            className="attachment-icon"
-            onClick={handleDownload(fileId)}
-          />
-          {/* {!fileId && (
-            <div>
-              <a href={fileUrl} download>
-                Click here to download
-              </a>
-            </div>
-          )} */}
+
+          <div>
+            <FaFileAlt
+              className="attachment-icon"
+              onClick={handleDownload(fileId)}
+            />
+            <a href={fileUrl} download>
+              Download
+            </a>
+          </div>
         </div>
       );
     }
@@ -1466,7 +1473,15 @@ const SalesTableData = (props) => {
                     {/* <th className="header-cell">Payment Terms</th> */}
                     {/* <th className="header-cell">Release Indicator</th> */}
                     <th className="header-cell">Purchasing Organization</th>
-                    <th className="header-cell">Attachment</th>
+                    <th className="header-cell">
+                      <div className="attachment-container">
+                        <p className="attachment-name">Attachment</p>
+                        <FaFileAlt
+                          className="attachment-icon"
+                          // onClick={handleDownload(fileId)}
+                        />
+                      </div>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>

@@ -15,7 +15,13 @@ const FileDownload = () => {
       const response = await axios.get(`http://localhost:5000/file/${fileId}`, {
         responseType: "blob",
       });
-      const url = URL.createObjectURL(new Blob([response.data]));
+      console.log(response);
+      const data = await response.data;
+      console.log(data);
+
+      const url = URL.createObjectURL(response.data);
+
+      // const url = URL.createObjectURL(response.data);
       setFileUrl(url);
     } catch (error) {
       console.error("Error downloading file:", error);
