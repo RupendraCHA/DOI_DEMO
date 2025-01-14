@@ -1,0 +1,37 @@
+.file-upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  .file-upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    input {
+      padding: 6px;
+      font-size: 18px;
+      border-radius: 6px;
+      outline: none;
+      border: 1px solid #808080;
+      font-weight: 600;
+      background-color: #f0f8ff8e;
+    }
+    .file-input {
+      border: 1px solid #808080;
+    }
+
+    button {
+      border: 1px solid #808080;
+      font-size: 18px;
+      border-radius: 8px;
+      padding: 10px 0px;
+      font-weight: 600;
+    }
+    button:hover {
+      background-color: #2c67b0;
+      color: #fff;
+    }
+  }
+}

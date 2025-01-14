@@ -15,6 +15,8 @@ import AOS from "./components/AOS/AOS";
 import PurchaseOrder from "./components/PurchaseOrder/PurchaseOrder";
 import Contact from "./components/Contact/Contact";
 import DateRangeFilter from "./components/date";
+import FileUpload from "./components/FileUpload/fileUpload";
+import FileDownload from "./components/fileDownload";
 
 const App = () => {
   return (
@@ -76,6 +78,18 @@ const App = () => {
             </>
           }
         ></Route>
+        <Route
+          exact
+          path="/fileUpload"
+          element={
+            <>
+              <Header message="contact" />
+              <FileUpload />
+              <Footer />
+            </>
+          }
+        ></Route>
+        <Route exact path="/fileDownload" element={<FileDownload />}></Route>
         <Route path="/purchaseOrder" element={<PurchaseOrder />}></Route>
         <Route path="/date" element={<DateRangeFilter />}></Route>
 

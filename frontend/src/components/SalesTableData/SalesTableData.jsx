@@ -6,6 +6,7 @@ import { StoreContext } from "../../context/StoreContext";
 
 import { IoSearch } from "react-icons/io5";
 import Spinner from "../spinner/spinner";
+import { FaFileAlt } from "react-icons/fa";
 
 const SalesTableData = (props) => {
   const {
@@ -239,6 +240,46 @@ const SalesTableData = (props) => {
       console.log(response.data.data);
       console.log(startingDate);
       console.log(endingDate);
+    }
+  };
+
+  const [fileUrl, setFileUrl] = useState("");
+
+  const handleDownload = async (fileId) => {
+    if (!fileId) {
+      alert("Please enter a file ID");
+      return;
+    }
+
+    try {
+      const response = await axios.get(`http://localhost:5000/file/${fileId}`, {
+        responseType: "blob",
+      });
+      const url = URL.createObjectURL(new Blob([response.data]));
+      setFileUrl(url);
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    }
+  };
+
+  const getAttachment = (fileName, fileId) => {
+    if (fileName) {
+      return (
+        <div className="attachment-container">
+          <p className="attachment-name">{fileName}</p>
+          <FaFileAlt
+            className="attachment-icon"
+            onClick={handleDownload(fileId)}
+          />
+          {/* {!fileId && (
+            <div>
+              <a href={fileUrl} download>
+                Click here to download
+              </a>
+            </div>
+          )} */}
+        </div>
+      );
     }
   };
 
@@ -1365,7 +1406,9 @@ const SalesTableData = (props) => {
                       {/* <th className="header-cell">Delivery Date</th> */}
                       <th className="header-cell">Net Price</th>
                       <th className="header-cell">Plant</th>
-                      <th className="header-cell">Account Assignment</th>
+                      <th className="header-cell">Unit Of Measure</th>
+                      {/* <th className="header-cell">Account Assignment</th> */}
+                      {/* <th className="header-cell">Attachment</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -1380,7 +1423,9 @@ const SalesTableData = (props) => {
                           {/* <td>{record.EILDT}</td> */}
                           <td>{record.NETPR}</td>
                           <td>{record.WERKS}</td>
-                          <td>{record.KNTTP}</td>
+                          <td>{record.MEINS}</td>
+                          {/* <td>{record.KNTTP}</td> */}
+                          {/* <td>{getAttachment(record.fileName)}</td> */}
                         </tr>
                       );
                     })}
@@ -1417,8 +1462,11 @@ const SalesTableData = (props) => {
                     <th className="header-cell">Vendor</th>
                     <th className="header-cell">Document Date</th>
                     <th className="header-cell">Currency</th>
-                    <th className="header-cell">Payment Terms</th>
-                    <th className="header-cell">Release Indicator</th>
+                    <th className="header-cell">Document Category</th>
+                    {/* <th className="header-cell">Payment Terms</th> */}
+                    {/* <th className="header-cell">Release Indicator</th> */}
+                    <th className="header-cell">Purchasing Organization</th>
+                    <th className="header-cell">Attachment</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1438,8 +1486,12 @@ const SalesTableData = (props) => {
                         <td>{record.LIFNR}</td>
                         <td>{convertToDate(record.BEDAT)}</td>
                         <td>{record.WAERS}</td>
-                        <td>{record.ZTERM}</td>
-                        <td>{record.FRGKE}</td>
+                        <td>{record.BSTYP}</td>
+                        {/* <td>{record.ZTERM}</td> */}
+                        {/* <td>{record.FRGKE}</td> */}
+                        <td>{record.EKORG}</td>
+                        <td>{getAttachment(record.fileName, record.UUID)}</td>
+                        {/* <td>{`${record.fileName} ${record.UUID}`}</td> */}
                       </tr>
                     );
                   })}

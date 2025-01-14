@@ -195,3 +195,19 @@ h4 {
     margin-top: 0px;
   }
 }
+.attachment-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 40px;
+  gap: 10px;
+
+  .attachment-name {
+    font-size: 16px;
+  }
+  .attachment-icon {
+    width: 26px;
+    height: 26px;
+  }
+  /* align-items: center; */
+  /* text-align: center; */
+}
