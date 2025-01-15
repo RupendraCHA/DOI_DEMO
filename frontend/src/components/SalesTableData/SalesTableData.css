@@ -223,3 +223,7 @@ h4 {
   /* align-items: center; */
   /* text-align: center; */
 }
+.procurement-header-item-search-section {
+  display: flex;
+  gap: 100px;
+}
