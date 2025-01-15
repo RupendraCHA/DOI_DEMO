@@ -42,6 +42,7 @@ const SalesTableData = (props) => {
   const [endingDate, setEndingDate] = useState("2025-01-13");
   // 20250113
   const [searchType, setSearchType] = useState("Date");
+  const [downloadScroll, setDownloadScroll] = useState(false);
 
   const convertToDate = (rawDate) => {
     if (!rawDate || typeof rawDate !== "string" || rawDate.length < 8) {
@@ -158,7 +159,7 @@ const SalesTableData = (props) => {
     setDocumentNum(purchaseNumber);
 
     const response = await axios.get(
-      url + `/doi/procurement/${purchaseNumber}/ekpo`
+      url + `/doi/procurement/${purchaseNumber}/ekko`
     );
 
     if (response.data.success) {
@@ -246,18 +247,20 @@ const SalesTableData = (props) => {
   const [fileUrl, setFileUrl] = useState("");
 
   const handleDownload = async (fileName, fileId) => {
+    setDownloadScroll(true);
     if (!fileId) {
       alert("Please enter a file ID");
       return;
     }
 
     try {
-      const response = await axios.get(`http://localhost:5000/file/${fileId}`, {
+      const response = await axios.get(url + `/${fileId}`, {
         responseType: "blob",
       });
       // console.log(response);
       // const data = await response.data;
       // console.log(data);
+      setDownloadScroll(false);
 
       const url = window.URL.createObjectURL(response.data);
 
@@ -287,12 +290,19 @@ const SalesTableData = (props) => {
             className="download-section"
           >
             <FaFileAlt className="attachment-icon" />
-            <span>Download</span>
+            {downloadScroll && (
+              <div>
+                <Spinner
+                  size="10px"
+                  // color="#000"
+                  color="#00308F"
+                  message="downloading"
+                />
+              </div>
+            )}
           </div>
         </div>
       );
-    } else {
-      return "No Attachment";
     }
   };
 

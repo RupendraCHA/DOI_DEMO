@@ -210,8 +210,8 @@ export const getProcurementItemData = async (req, res) => {
 
     const query = `
       SELECT *
-      FROM EKPO
-      WHERE EKPO.EBELN = '${purchaseOrderNumber}'`;
+      FROM EKKO
+      WHERE EKKO.EBELN = '${purchaseOrderNumber}'`;
 
     const result = await clientConn.exec(query);
 

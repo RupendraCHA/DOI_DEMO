@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import "./fileUpload.css";
+import { StoreContext } from "../../context/StoreContext";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
 
   // const uploadFile = (e) => {};
+
+  const { url } = useContext(StoreContext);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -29,13 +32,9 @@ const FileUpload = () => {
 
     console.log(formData);
     try {
-      const response = await axios.post(
-        "http://localhost:5000/upload",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const response = await axios.post(url, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       console.log(response.data);
       alert("File uploaded successfully");
     } catch (error) {
