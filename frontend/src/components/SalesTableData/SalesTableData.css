@@ -205,6 +205,15 @@ h4 {
   .attachment-icon {
     width: 26px;
     height: 26px;
+    /* box-shadow: 0px 0px 2px #000; */
+    /* padding: 0px; */
+  }
+  .download-section {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  .download-section:hover {
+    color: #121ec7;
   }
   a {
     margin: 0;

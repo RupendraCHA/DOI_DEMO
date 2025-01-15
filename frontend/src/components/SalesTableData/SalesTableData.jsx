@@ -281,10 +281,14 @@ const SalesTableData = (props) => {
       return (
         <div className="attachment-container">
           <p className="attachment-name">{fileName}</p>
-          <FaFileAlt
-            className="attachment-icon"
+
+          <div
             onClick={() => handleDownload(fileName, fileId)}
-          />
+            className="download-section"
+          >
+            <FaFileAlt className="attachment-icon" />
+            <span>Download</span>
+          </div>
         </div>
       );
     } else {
@@ -1585,7 +1589,16 @@ const SalesTableData = (props) => {
                       {/* <th className="header-cell">Delivery Date</th> */}
                       <th className="header-cell">Net Price</th>
                       <th className="header-cell">Plant</th>
-                      <th className="header-cell">Account Assignment</th>
+                      {/* <th className="header-cell">Account Assignment</th> */}
+                      <th className="header-cell">
+                        <p className="attachment-name">
+                          Attachments
+                          <FaFileAlt
+                            style={{ marginLeft: "5px" }}
+                            className="attachment-icon"
+                          />
+                        </p>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1600,7 +1613,8 @@ const SalesTableData = (props) => {
                           {/* <td>{convertToDate(record.EINDT)}</td> */}
                           <td>{record.NETPR}</td>
                           <td>{record.WERKS}</td>
-                          <td>{record.KNTTP}</td>
+                          {/* <td>{record.KNTTP}</td> */}
+                          <td>{getAttachment(record.fileName, record.UUID)}</td>
                         </tr>
                       );
                     })}
@@ -1640,7 +1654,16 @@ const SalesTableData = (props) => {
                     {/* <th className="header-cell">Delivery Date</th> */}
                     <th className="header-cell">Net Price</th>
                     <th className="header-cell">Plant</th>
-                    <th className="header-cell">Account Assignment</th>
+                    {/* <th className="header-cell">Account Assignment</th> */}
+                    <th className="header-cell">
+                      <p className="attachment-name">
+                        Attachments
+                        <FaFileAlt
+                          style={{ marginLeft: "5px" }}
+                          className="attachment-icon"
+                        />
+                      </p>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1663,7 +1686,8 @@ const SalesTableData = (props) => {
                         {/* <td>{convertToDate(record.EILDT)}</td> */}
                         <td>{record.NETPR}</td>
                         <td>{record.WERKS}</td>
-                        <td>{record.KNTTP}</td>
+                        {/* <td>{record.KNTTP}</td> */}
+                        <td>{getAttachment(record.fileName, record.UUID)}</td>
                       </tr>
                     );
                   })}
