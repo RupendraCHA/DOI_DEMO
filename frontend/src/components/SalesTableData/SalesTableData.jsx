@@ -42,7 +42,6 @@ const SalesTableData = (props) => {
   const [endingDate, setEndingDate] = useState("2025-01-13");
   // 20250113
   const [searchType, setSearchType] = useState("Date");
-  const [downloadScroll, setDownloadScroll] = useState(false);
 
   const convertToDate = (rawDate) => {
     if (!rawDate || typeof rawDate !== "string" || rawDate.length < 8) {
@@ -167,7 +166,27 @@ const SalesTableData = (props) => {
       setItemData(response.data.data);
       setShowItemData(true);
     }
-    console.log(response.data);
+    console.log("EKKO ITEM:", response.data);
+    console.log("Purchase Number", purchaseNumber);
+  };
+
+  const getProcurementItemTableEKPOData = async (purchaseNumber) => {
+    setLoadProcurementData(true);
+    setShowItemData(false);
+    setDocumentNum("");
+    setShowItemData(false);
+    setDocumentNum(purchaseNumber);
+
+    const response = await axios.get(
+      url + `/doi/procurement/${purchaseNumber}/ekpo`
+    );
+
+    if (response.data.success) {
+      setLoadProcurementData(false);
+      setItemData(response.data.data);
+      setShowItemData(true);
+    }
+    console.log("EKKO ITEM:", response.data);
     console.log("Purchase Number", purchaseNumber);
   };
 
@@ -245,32 +264,33 @@ const SalesTableData = (props) => {
   };
 
   const [fileUrl, setFileUrl] = useState("");
+  const [downloadScroll, setDownloadScroll] = useState("");
 
   const handleDownload = async (fileName, fileId) => {
-    setDownloadScroll(true);
+    setDownloadScroll(fileId);
     if (!fileId) {
       alert("Please enter a file ID");
       return;
     }
 
     try {
-      const response = await axios.get(url + `/${fileId}`, {
+      const response = await axios.get(url + `/file/${fileId}`, {
         responseType: "blob",
       });
       // console.log(response);
       // const data = await response.data;
       // console.log(data);
-      setDownloadScroll(false);
+      setDownloadScroll("");
 
-      const url = window.URL.createObjectURL(response.data);
+      const url1 = window.URL.createObjectURL(response.data);
 
       const link = document.createElement("a");
-      link.href = url;
+      link.href = url1;
       link.download = fileName; // Use the extracted or fallback file name
       link.click();
 
       // Clean up the URL
-      window.URL.revokeObjectURL(url);
+      window.URL.revokeObjectURL(url1);
 
       // const url = URL.createObjectURL(response.data);
       // setFileUrl(url);
@@ -290,13 +310,13 @@ const SalesTableData = (props) => {
             className="download-section"
           >
             <FaFileAlt className="attachment-icon" />
-            {downloadScroll && (
+            {downloadScroll === fileId && (
               <div>
                 <Spinner
                   size="10px"
                   // color="#000"
                   color="#00308F"
-                  message="downloading"
+                  message="Downloading"
                 />
               </div>
             )}
@@ -1407,29 +1427,30 @@ const SalesTableData = (props) => {
             <div className="item-table-container">
               <div className="item-table-section">
                 <h3 className="sales-order-item-heading">
-                  Procurement Item Data
+                  Procurement Header Data
                 </h3>
                 <p>
                   <div className="item-doc-details">
-                    Procurement Item Details for purchase Number -
+                    Procurement Header Details for PO Number -
                     <span>{documentNum}</span>
                   </div>
-                  <div className="item-doc-details">
+                  {/* <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
-                  </div>
+                  </div> */}
                 </p>
                 <table>
                   <thead>
                     <tr>
                       <th className="header-cell">S.No</th>
                       <th className="header-cell">Purchase Order Number</th>
-                      <th className="header-cell">Material</th>
-                      <th className="header-cell">Material Description</th>
-                      <th className="header-cell">Quantity</th>
-                      {/* <th className="header-cell">Delivery Date</th> */}
-                      <th className="header-cell">Net Price</th>
-                      <th className="header-cell">Plant</th>
-                      <th className="header-cell">Unit Of Measure</th>
+                      <th className="header-cell">Vendor Number</th>
+                      <th className="header-cell">Document Date</th>
+                      <th className="header-cell">Currency</th>
+                      <th className="header-cell">Document Category</th>
+                      {/* <th className="header-cell">Payment Terms</th> */}
+                      {/* <th className="header-cell">Release Indicator</th> */}
+                      <th className="header-cell">Purchasing Organization</th>
+                      <th className="header-cell">Last Item Number</th>
                       <th className="header-cell">
                         <p className="attachment-name">
                           Attachments
@@ -1439,6 +1460,7 @@ const SalesTableData = (props) => {
                           />
                         </p>
                       </th>
+
                       {/* <th className="header-cell">Account Assignment</th> */}
                       {/* <th className="header-cell">Attachment</th> */}
                     </tr>
@@ -1446,31 +1468,40 @@ const SalesTableData = (props) => {
                   <tbody>
                     {itemData.map((record, index) => {
                       return (
-                        <tr key={index + 5}>
+                        <tr key={index + 6}>
                           <td>{index + 1}</td>
-                          <td>{record.EBELN}</td>
-                          <td>{record.MATNR}</td>
-                          <td>{record.TXZ01}</td>
-                          <td>{record.MENGE}</td>
-                          {/* <td>{record.EILDT}</td> */}
-                          <td>{record.NETPR}</td>
-                          <td>{record.WERKS}</td>
-                          <td>{record.MEINS}</td>
+                          <td
+                            key={record.EBELN}
+                            className="document-number"
+                            onClick={() =>
+                              getProcurementItemTableData(record.EBELN)
+                            }
+                          >
+                            {record.EBELN}
+                          </td>
+                          <td>{record.LIFNR}</td>
+                          <td>{convertToDate(record.BEDAT)}</td>
+                          <td>{record.WAERS}</td>
+                          <td>{record.BSTYP}</td>
+                          {/* <td>{record.ZTERM}</td> */}
+                          {/* <td>{record.FRGKE}</td> */}
+                          <td>{record.EKORG}</td>
+                          <td>{record.LPONR}</td>
                           <td>{getAttachment(record.fileName, record.UUID)}</td>
-
-                          {/* <td>{record.KNTTP}</td> */}
-                          {/* <td>{getAttachment(record.fileName)}</td> */}
+                          {/* <td>{`${record.fileName} ${record.UUID}`}</td> */}
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -1488,7 +1519,10 @@ const SalesTableData = (props) => {
           {!loadProcurementData && (
             <>
               <h4>Procurement Header Table</h4>
-              <table style={{ width: "100%", overflow: scroll }}>
+              <table
+                style={{ width: "100%", overflow: scroll }}
+                className={showItemData ? "header-table" : ""}
+              >
                 <thead>
                   <tr>
                     <th className="header-cell">S.No</th>
@@ -1560,7 +1594,7 @@ const SalesTableData = (props) => {
                 />
                 <IoSearch
                   className="doc-search-icon"
-                  onClick={() => getProcurementItemTableData(documentNum)}
+                  onClick={() => getProcurementItemTableEKPOData(documentNum)}
                 />
               </span>
             </div>
@@ -1685,7 +1719,7 @@ const SalesTableData = (props) => {
                           key={record.EBELN}
                           className="document-number"
                           onClick={() =>
-                            getProcurementItemTableData(record.EBELN)
+                            getProcurementItemTableEKPOData(record.EBELN)
                           }
                         >
                           {record.EBELN}

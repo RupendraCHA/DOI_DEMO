@@ -32,7 +32,7 @@ const FileUpload = () => {
 
     console.log(formData);
     try {
-      const response = await axios.post(url, formData, {
+      const response = await axios.post(url + "/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log(response.data);
