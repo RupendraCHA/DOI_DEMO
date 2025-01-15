@@ -41,7 +41,7 @@ const SalesTableData = (props) => {
   // 20230819
   const [endingDate, setEndingDate] = useState("2025-01-13");
   // 20250113
-  const [searchType, setSearchType] = useState("Date");
+  const [searchType, setSearchType] = useState("Document");
 
   const convertToDate = (rawDate) => {
     if (!rawDate || typeof rawDate !== "string" || rawDate.length < 8) {
@@ -313,7 +313,7 @@ const SalesTableData = (props) => {
             {downloadScroll === fileId && (
               <div>
                 <Spinner
-                  size="10px"
+                  size="15px"
                   // color="#000"
                   color="#00308F"
                   message="Downloading"
@@ -1451,6 +1451,9 @@ const SalesTableData = (props) => {
                       {/* <th className="header-cell">Release Indicator</th> */}
                       <th className="header-cell">Purchasing Organization</th>
                       <th className="header-cell">Last Item Number</th>
+                      <th className="header-cell">Procedure (Pricing,..)</th>
+                      <th className="header-cell">Document Type</th>
+                      <th className="header-cell">Country/Region</th>
                       <th className="header-cell">
                         <p className="attachment-name">
                           Attachments
@@ -1487,6 +1490,9 @@ const SalesTableData = (props) => {
                           {/* <td>{record.FRGKE}</td> */}
                           <td>{record.EKORG}</td>
                           <td>{record.LPONR}</td>
+                          <td>{record.KALSM}</td>
+                          <td>{record.BSART}</td>
+                          <td>{record.LANDS}</td>
                           <td>{getAttachment(record.fileName, record.UUID)}</td>
                           {/* <td>{`${record.fileName} ${record.UUID}`}</td> */}
                         </tr>

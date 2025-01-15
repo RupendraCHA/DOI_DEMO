@@ -77,11 +77,12 @@ h4 {
   border: 3px solid #0000ff;
   border-radius: 10px;
   /* width: 140%; */
+  overflow: auto;
   z-index: 1;
   position: absolute;
   /* top: 50px; */
   bottom: 25%;
-  left: 6%;
+  left: 3%;
   background-color: #87a6c5;
   padding: 15px 20px;
 
