@@ -213,7 +213,8 @@ h4 {
     cursor: pointer;
   }
   .download-section:hover {
-    color: #121ec7;
+    color: #008000;
+    transition: all ease-in-out 0.3s;
   }
   a {
     margin: 0;
