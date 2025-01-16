@@ -76,6 +76,7 @@ const SalesTableData = (props) => {
     setLoading1(false);
   };
   const getTheSalesOrderItemDetails = async (docNumber) => {
+    alert("Check Document Radio button is Selected");
     if (searchType === "Document") {
       setLoadSalesData(true);
       setShowItemData(false);
