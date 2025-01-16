@@ -44,13 +44,13 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
     // console.log(allDocuments);
 
     const updatedArray1 = result.map((object, index) => {
-      if (object.EBELN === "4400002276") {
+      if (object.EBELN === "4400002345") {
         return {
           ...object,
           fileName: allDocuments[0].name,
           UUID: allDocuments[0]._id,
         };
-      } else if (object.EBELN === "4400002277") {
+      } else if (object.EBELN === "4400002349") {
         return {
           ...object,
           fileName: allDocuments[1].name,
@@ -534,13 +534,13 @@ export const getProcurementItemData = async (req, res) => {
     const result = await clientConn.exec(query);
 
     const updatedArray1 = result.map((object, index) => {
-      if (object.EBELN === "4400002276") {
+      if (object.EBELN === "4400002345") {
         return {
           ...object,
           fileName: allDocuments[0].name,
           UUID: allDocuments[0]._id,
         };
-      } else if (object.EBELN === "4400002277") {
+      } else if (object.EBELN === "4400002349") {
         return {
           ...object,
           fileName: allDocuments[1].name,
