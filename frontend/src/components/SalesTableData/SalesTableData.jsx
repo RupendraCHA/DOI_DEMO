@@ -76,7 +76,7 @@ const SalesTableData = (props) => {
     setLoading1(false);
   };
   const getTheSalesOrderItemDetails = async (docNumber) => {
-    alert("Check Document Radio button is Selected");
+    // alert("Check Document Radio button is Selected");
     if (searchType === "Document") {
       setLoadSalesData(true);
       setShowItemData(false);
@@ -234,7 +234,7 @@ const SalesTableData = (props) => {
   };
 
   const getDataBetweenDates = async () => {
-    alert("Check Date Radion Button is selected");
+    // alert("Check Date Radion Button is selected");
     if (
       startingDate &&
       endingDate &&
