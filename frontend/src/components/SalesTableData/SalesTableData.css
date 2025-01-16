@@ -80,8 +80,8 @@ h4 {
   overflow: auto;
   z-index: 1;
   position: absolute;
-  /* top: 50px; */
-  bottom: 25%;
+  /* top: 80px; */
+  bottom: 20%;
   left: 3%;
   background-color: #87a6c5;
   padding: 15px 20px;

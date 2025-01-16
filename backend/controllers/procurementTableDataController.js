@@ -98,6 +98,60 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
           fileName: allDocuments[8].name,
           UUID: allDocuments[8]._id,
         };
+      } else if (object.EBELN === "4400002286") {
+        return {
+          ...object,
+          fileName: allDocuments[9].name,
+          UUID: allDocuments[9]._id,
+        };
+      } else if (object.EBELN === "4400002287") {
+        return {
+          ...object,
+          fileName: allDocuments[10].name,
+          UUID: allDocuments[10]._id,
+        };
+      } else if (object.EBELN === "4400002288") {
+        return {
+          ...object,
+          fileName: allDocuments[11].name,
+          UUID: allDocuments[11]._id,
+        };
+      } else if (object.EBELN === "4400002289") {
+        return {
+          ...object,
+          fileName: allDocuments[12].name,
+          UUID: allDocuments[12]._id,
+        };
+      } else if (object.EBELN === "4400002290") {
+        return {
+          ...object,
+          fileName: allDocuments[13].name,
+          UUID: allDocuments[13]._id,
+        };
+      } else if (object.EBELN === "4400002291") {
+        return {
+          ...object,
+          fileName: allDocuments[14].name,
+          UUID: allDocuments[14]._id,
+        };
+      } else if (object.EBELN === "4400002292") {
+        return {
+          ...object,
+          fileName: allDocuments[15].name,
+          UUID: allDocuments[15]._id,
+        };
+      } else if (object.EBELN === "4400002293") {
+        return {
+          ...object,
+          fileName: allDocuments[16].name,
+          UUID: allDocuments[16]._id,
+        };
+      } else if (object.EBELN === "4400002294") {
+        return {
+          ...object,
+          fileName: allDocuments[17].name,
+          UUID: allDocuments[17]._id,
+        };
       }
       return object;
     });
@@ -180,6 +234,60 @@ export const getProcurementTableDataFromEKPO = async (req, res) => {
           ...object,
           fileName: allDocuments[8].name,
           UUID: allDocuments[8]._id,
+        };
+      } else if (object.EBELN === "4400002286") {
+        return {
+          ...object,
+          fileName: allDocuments[9].name,
+          UUID: allDocuments[9]._id,
+        };
+      } else if (object.EBELN === "4400002287") {
+        return {
+          ...object,
+          fileName: allDocuments[10].name,
+          UUID: allDocuments[10]._id,
+        };
+      } else if (object.EBELN === "4400002288") {
+        return {
+          ...object,
+          fileName: allDocuments[11].name,
+          UUID: allDocuments[11]._id,
+        };
+      } else if (object.EBELN === "4400002289") {
+        return {
+          ...object,
+          fileName: allDocuments[12].name,
+          UUID: allDocuments[12]._id,
+        };
+      } else if (object.EBELN === "4400002290") {
+        return {
+          ...object,
+          fileName: allDocuments[13].name,
+          UUID: allDocuments[13]._id,
+        };
+      } else if (object.EBELN === "4400002291") {
+        return {
+          ...object,
+          fileName: allDocuments[14].name,
+          UUID: allDocuments[14]._id,
+        };
+      } else if (object.EBELN === "4400002292") {
+        return {
+          ...object,
+          fileName: allDocuments[15].name,
+          UUID: allDocuments[15]._id,
+        };
+      } else if (object.EBELN === "4400002293") {
+        return {
+          ...object,
+          fileName: allDocuments[16].name,
+          UUID: allDocuments[16]._id,
+        };
+      } else if (object.EBELN === "4400002294") {
+        return {
+          ...object,
+          fileName: allDocuments[17].name,
+          UUID: allDocuments[17]._id,
         };
       }
       return object;
@@ -269,6 +377,60 @@ export const getProcurementItemData = async (req, res) => {
           ...object,
           fileName: allDocuments[8].name,
           UUID: allDocuments[8]._id,
+        };
+      } else if (object.EBELN === "4400002286") {
+        return {
+          ...object,
+          fileName: allDocuments[9].name,
+          UUID: allDocuments[9]._id,
+        };
+      } else if (object.EBELN === "4400002287") {
+        return {
+          ...object,
+          fileName: allDocuments[10].name,
+          UUID: allDocuments[10]._id,
+        };
+      } else if (object.EBELN === "4400002288") {
+        return {
+          ...object,
+          fileName: allDocuments[11].name,
+          UUID: allDocuments[11]._id,
+        };
+      } else if (object.EBELN === "4400002289") {
+        return {
+          ...object,
+          fileName: allDocuments[12].name,
+          UUID: allDocuments[12]._id,
+        };
+      } else if (object.EBELN === "4400002290") {
+        return {
+          ...object,
+          fileName: allDocuments[13].name,
+          UUID: allDocuments[13]._id,
+        };
+      } else if (object.EBELN === "4400002291") {
+        return {
+          ...object,
+          fileName: allDocuments[14].name,
+          UUID: allDocuments[14]._id,
+        };
+      } else if (object.EBELN === "4400002292") {
+        return {
+          ...object,
+          fileName: allDocuments[15].name,
+          UUID: allDocuments[15]._id,
+        };
+      } else if (object.EBELN === "4400002293") {
+        return {
+          ...object,
+          fileName: allDocuments[16].name,
+          UUID: allDocuments[16]._id,
+        };
+      } else if (object.EBELN === "4400002294") {
+        return {
+          ...object,
+          fileName: allDocuments[17].name,
+          UUID: allDocuments[17]._id,
         };
       }
       return object;
@@ -361,6 +523,60 @@ export const getProcurementItemEKPOData = async (req, res) => {
           ...object,
           fileName: allDocuments[8].name,
           UUID: allDocuments[8]._id,
+        };
+      } else if (object.EBELN === "4400002286") {
+        return {
+          ...object,
+          fileName: allDocuments[9].name,
+          UUID: allDocuments[9]._id,
+        };
+      } else if (object.EBELN === "4400002287") {
+        return {
+          ...object,
+          fileName: allDocuments[10].name,
+          UUID: allDocuments[10]._id,
+        };
+      } else if (object.EBELN === "4400002288") {
+        return {
+          ...object,
+          fileName: allDocuments[11].name,
+          UUID: allDocuments[11]._id,
+        };
+      } else if (object.EBELN === "4400002289") {
+        return {
+          ...object,
+          fileName: allDocuments[12].name,
+          UUID: allDocuments[12]._id,
+        };
+      } else if (object.EBELN === "4400002290") {
+        return {
+          ...object,
+          fileName: allDocuments[13].name,
+          UUID: allDocuments[13]._id,
+        };
+      } else if (object.EBELN === "4400002291") {
+        return {
+          ...object,
+          fileName: allDocuments[14].name,
+          UUID: allDocuments[14]._id,
+        };
+      } else if (object.EBELN === "4400002292") {
+        return {
+          ...object,
+          fileName: allDocuments[15].name,
+          UUID: allDocuments[15]._id,
+        };
+      } else if (object.EBELN === "4400002293") {
+        return {
+          ...object,
+          fileName: allDocuments[16].name,
+          UUID: allDocuments[16]._id,
+        };
+      } else if (object.EBELN === "4400002294") {
+        return {
+          ...object,
+          fileName: allDocuments[17].name,
+          UUID: allDocuments[17]._id,
         };
       }
       return object;

@@ -495,12 +495,14 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -674,12 +676,14 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -832,12 +836,14 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -989,12 +995,14 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -1152,12 +1160,14 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -1316,12 +1326,14 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -1670,12 +1682,14 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
-                <button
-                  className="close-item-data-button"
-                  onClick={hideItemTable}
-                >
-                  Close
-                </button>
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="close-item-data-button"
+                    onClick={hideItemTable}
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             </div>
           )}
