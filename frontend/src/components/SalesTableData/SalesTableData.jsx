@@ -39,7 +39,7 @@ const SalesTableData = (props) => {
   const [showItemData, setShowItemData] = useState(false);
   const [startingDate, setStartingDate] = useState("2023-08-19");
   // 20230819
-  const [endingDate, setEndingDate] = useState("2025-01-13");
+  const [endingDate, setEndingDate] = useState("2025-01-16");
   // 20250113
   const [searchType, setSearchType] = useState("Document");
 
@@ -524,6 +524,11 @@ const SalesTableData = (props) => {
             <>
               <h4>
                 Sales Order Header Table Data
+                {searchType === "Document" && searchType !== "Date"
+                  ? salesTableData.length > 0
+                    ? " - " + salesTableData.length + " records"
+                    : salesTableData.length
+                  : ""}
                 <span>
                   {" "}
                   {searchType === "Date"
@@ -861,7 +866,12 @@ const SalesTableData = (props) => {
           )}
           {!loadSalesData && (
             <>
-              <h4>Sales Delivery Header Table</h4>
+              <h4>
+                Sales Delivery Header Table
+                {salesTableData.length > 0
+                  ? " - " + salesTableData.length + " records"
+                  : salesTableData.length}
+              </h4>
               <table style={{ width: "200%", overflow: scroll }}>
                 <thead>
                   <tr>
@@ -1185,7 +1195,12 @@ const SalesTableData = (props) => {
           )}
           {!loadSalesData && (
             <>
-              <h4>Sales Billing Header Table</h4>
+              <h4>
+                Sales Billing Header Table
+                {salesTableData.length > 0
+                  ? " - " + salesTableData.length + " records"
+                  : salesTableData.length}
+              </h4>
               <table style={{ width: "200%", overflow: scroll }}>
                 <thead>
                   <tr>
@@ -1537,7 +1552,12 @@ const SalesTableData = (props) => {
           )}
           {!loadProcurementData && (
             <>
-              <h4>Procurement Header Table</h4>
+              <h4>
+                Procurement Header Table{" "}
+                {salesTableData.length > 0
+                  ? " - " + salesTableData.length + " records"
+                  : salesTableData.length}
+              </h4>
               <table
                 style={{ width: "100%", overflow: scroll }}
                 className={showItemData ? "header-table" : ""}
@@ -1653,7 +1673,7 @@ const SalesTableData = (props) => {
                       <th className="header-cell">Net Price</th>
                       <th className="header-cell">Plant</th>
                       {/* <th className="header-cell">Account Assignment</th> */}
-                      <th className="header-cell">
+                      {/* <th className="header-cell">
                         <p className="attachment-name">
                           Attachments
                           <FaFileAlt
@@ -1661,7 +1681,7 @@ const SalesTableData = (props) => {
                             className="attachment-icon"
                           />
                         </p>
-                      </th>
+                      </th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -1677,7 +1697,7 @@ const SalesTableData = (props) => {
                           <td>{record.NETPR}</td>
                           <td>{record.WERKS}</td>
                           {/* <td>{record.KNTTP}</td> */}
-                          <td>{getAttachment(record.fileName, record.UUID)}</td>
+                          {/* <td>{getAttachment(record.fileName, record.UUID)}</td> */}
                         </tr>
                       );
                     })}
@@ -1707,7 +1727,12 @@ const SalesTableData = (props) => {
           )}
           {!loadProcurementData && (
             <>
-              <h4>Procurement Header Table</h4>
+              <h4>
+                Procurement Header Table
+                {salesTableData.length > 0
+                  ? " - " + salesTableData.length + " records"
+                  : salesTableData.length}
+              </h4>
               <table style={{ width: "100%", overflow: scroll }}>
                 <thead>
                   <tr>
@@ -1720,7 +1745,7 @@ const SalesTableData = (props) => {
                     <th className="header-cell">Net Price</th>
                     <th className="header-cell">Plant</th>
                     {/* <th className="header-cell">Account Assignment</th> */}
-                    <th className="header-cell">
+                    {/* <th className="header-cell">
                       <p className="attachment-name">
                         Attachments
                         <FaFileAlt
@@ -1728,7 +1753,7 @@ const SalesTableData = (props) => {
                           className="attachment-icon"
                         />
                       </p>
-                    </th>
+                    </th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -1752,7 +1777,7 @@ const SalesTableData = (props) => {
                         <td>{record.NETPR}</td>
                         <td>{record.WERKS}</td>
                         {/* <td>{record.KNTTP}</td> */}
-                        <td>{getAttachment(record.fileName, record.UUID)}</td>
+                        {/* <td>{getAttachment(record.fileName, record.UUID)}</td> */}
                       </tr>
                     );
                   })}
