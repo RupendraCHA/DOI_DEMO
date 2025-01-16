@@ -206,6 +206,17 @@ const Header = ({
                   </a>
                 </li>
               </Link>
+              <Link to="/reports">
+                <li>
+                  <a
+                    href="#"
+                    onClick={() => setMenu("reports")}
+                    className={menu === "reports" ? "active" : "tab"}
+                  >
+                    Reports
+                  </a>
+                </li>
+              </Link>
             </ul>
             <div className="menu-icon-section" onClick={handleTabClick}>
               {isOpenActive === false ? (

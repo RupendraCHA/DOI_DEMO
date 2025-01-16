@@ -17,6 +17,7 @@ import Contact from "./components/Contact/Contact";
 import DateRangeFilter from "./components/date";
 import FileUpload from "./components/FileUpload/fileUpload";
 import FileDownload from "./components/fileDownload";
+import Reports from "./components/Reports/Reports";
 
 const App = () => {
   return (
@@ -74,6 +75,17 @@ const App = () => {
             <>
               <Header message="sales" />
               <SalesOrderData />
+              <Footer />
+            </>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/reports"
+          element={
+            <>
+              <Header message="" />
+              <Reports />
               <Footer />
             </>
           }
