@@ -145,9 +145,9 @@ const Login = () => {
               </p>
             </div>
           </form>
-          <a href="https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fdoi-demo-52o9.onrender.com%2Fhome">
+          {/* <a href="https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fdoi-demo-52o9.onrender.com%2Fhome">
             Sign In Using Cognito
-          </a>
+          </a> */}
         </div>
       )}
       {forgotPassword && (

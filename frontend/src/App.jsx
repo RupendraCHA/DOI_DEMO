@@ -18,7 +18,7 @@ import DateRangeFilter from "./components/date";
 import FileUpload from "./components/FileUpload/fileUpload";
 import FileDownload from "./components/fileDownload";
 import Reports from "./components/Reports/Reports";
-import SignIn from "./pages/SignIn/SignIn";
+// import SignIn from "./pages/SignIn/SignIn";
 
 const App = () => {
   return (
@@ -41,9 +41,9 @@ const App = () => {
           path="/"
           element={
             <>
-              {/* <Header message="signup" /> */}
-              <SignIn />
-              {/* <Footer /> */}
+              <Header message="signup" />
+              <SignUp />
+              <Footer />
             </>
           }
         ></Route>
