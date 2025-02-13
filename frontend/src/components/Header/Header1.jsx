@@ -57,6 +57,7 @@ const Header = ({
 
   const navigate = useNavigate();
 
+
   const handleTabClick = () => {
     setIsOpen(!isOpen);
     setIsOpenActive(!isOpenActive);
@@ -148,6 +149,16 @@ const Header = ({
     setHomeText(true);
     setSalesTable("");
   };
+
+  const getRoute = () => {
+    const token = localStorage.getItem("token")
+
+    if (token) {
+      return "/home"
+    } else {
+      return "/login"
+    }
+  }
   return (
     <div className="header-container" data-aos="zoom-in">
       <nav
@@ -159,7 +170,7 @@ const Header = ({
       >
         <div className="logo-container">
           <div>
-            <Link to="/home" className="website-name-section">
+            <Link to={getRoute()} className="website-name-section">
               {/* <img
                 src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
                 className="website-logo"
