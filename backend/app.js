@@ -1,7 +1,3 @@
-// const express = require('express');
-// const cors = require('cors');
-// const hana = require('@sap/hana-client');
-
 import express from "express";
 import cors from "cors";
 import hana from "@sap/hana-client";
@@ -71,7 +67,6 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 app.get("/file/:id", async (req, res) => {
   try {
     const file = await File.findById(req.params.id);
-    // console.log(file);
 
     if (!file) {
       return res.status(404).json({ success: false, error: "File Not Found" });
@@ -80,37 +75,12 @@ app.get("/file/:id", async (req, res) => {
     const newFile = await File.findOne({ _id: req.params.id });
 
     res.setHeader("Content-Type", file.contentType);
-    // res.setHeader(
-    //   "Content-Disposition",
-    //   `attachment; filename="${newFile.fileName}"`
-    // );
-    // res.setHeader(
-    //   "Content-Type",
-    //   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    // );
-    // res.send(file.data);
     res.send(file.file);
   } catch (error) {
     res.status(500).json({ error: "Error in file uploading" });
   }
 });
 
-// app.get("/file/:id", async (req, res) => {
-//   try {
-//     const file = await File.findById(req.params.id);
-
-//     if (!file) {
-//       return res.status(404).json({ success: false, error: "File Not Found" });
-//     }
-
-//     const newFile = await File.findOne({ _id: req.params.id });
-
-//     res.set("Content-Type", newFile.contentType);
-//     res.send(file.file);
-//   } catch (error) {
-//     res.status(500).json({ error: "Error in file uploading" });
-//   }
-// });
 
 app.get("/", (req, res) => {
   res.send(`
@@ -129,7 +99,7 @@ app.get("/", (req, res) => {
               justify-content: center;
               align-items: center;
               height: 100vh;
-              background-color: black;
+              background-color:#4661e7;
           }
           h1{
               color: white;
