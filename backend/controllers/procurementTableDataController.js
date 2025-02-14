@@ -267,6 +267,13 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
           UUID: allDocuments[36]._id,
         };
       }
+      else if (object.EBELN === "4400002467") {
+        return {
+          ...object,
+          fileName: allDocuments[37].name,
+          UUID: allDocuments[37]._id,
+        };
+      }
       return object;
     });
 
@@ -755,6 +762,13 @@ export const getProcurementItemData = async (req, res) => {
           ...object,
           fileName: allDocuments[36].name,
           UUID: allDocuments[36]._id,
+        };
+      }
+      else if (object.EBELN === "4400002467") {
+        return {
+          ...object,
+          fileName: allDocuments[37].name,
+          UUID: allDocuments[37]._id,
         };
       }
       return object;
