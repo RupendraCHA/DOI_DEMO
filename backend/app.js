@@ -112,7 +112,7 @@ app.get("/file/:id", async (req, res) => {
 //   }
 // });
 
-app.get("/start", (req, res) => {
+app.get("/", (req, res) => {
   res.send(`
       <!DOCTYPE html>
       <html>
