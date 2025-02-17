@@ -1,14 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import "./ExploreOfferings.css";
 import aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 
 const ExploreOfferings = () => {
+
+  const {sapSalesModuleText,
+    setSapSalesModuleText,
+    sapMaterialsModuleText,
+    setSapMaterialsModuleText,
+    sapIntroText,
+    setSapIntroText,
+    menu,
+    setMenu,
+    isLoading1,
+    setLoading1,
+    isLoading,
+    setLoading,
+    setHomeText,
+    setHomeText1,
+    setSalesTable,} = useContext(StoreContext);
+  
   useEffect(() => {
     aos.init({ duration: 2000 });
   }, []);
+
+  const handleOrderToCash = () => {
+    setSapIntroText(false);
+    setMenu("sales");
+    setSapSalesModuleText(true);
+    setSapMaterialsModuleText(false);
+    setLoading1(false);
+    setHomeText1(true);
+  };
+
+  const showMaterialModuleData = () => {
+    setMenu("materials");
+    setSapMaterialsModuleText(true);
+    setSapSalesModuleText(false);
+    setSapIntroText(false);
+    setLoading(false);
+    setHomeText(true);
+    setSalesTable("");
+  };
+
   return (
     <div
       className="container explore-container"
@@ -28,6 +66,7 @@ const ExploreOfferings = () => {
                 title="click here"
                 to="/sapDataModules"
                 className="data-card image1"
+                onClick={handleOrderToCash}
               >
                 <li>
                   <p>ORDER TO CASH</p>
@@ -37,6 +76,8 @@ const ExploreOfferings = () => {
                 title="click here"
                 to="/sapDataModules"
                 className="data-card image2"
+                onClick={showMaterialModuleData}
+
               >
                 <li>
                   <p>PROCUREMENT</p>

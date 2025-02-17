@@ -56,6 +56,12 @@ const SapDataModules = () => {
     setSapIntroText(true);
     // setSapSalesModuleText(false);
     // setSapMaterialsModuleText(false);
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/sapDataModules");
+    } else {
+      navigate("/login");
+    }
     setTimeout(() => {
       navigate("/login");
     }, 8640000);
@@ -150,7 +156,7 @@ const SapDataModules = () => {
     <>
       <div className="sales-data-modules-container" data-aos="zoom-in">
         <div className="sales-data-modules-section">
-          {sapIntroText && (
+          {/* {sapIntroText && (
             <div className="module-intro-container" data-aos="zoom-in">
               <div className="data-header-section">
                 <h1>
@@ -158,7 +164,7 @@ const SapDataModules = () => {
                 </h1>
               </div>
             </div>
-          )}
+          )} */}
           {sapSalesModuleText && (
             <>
               <div className="modules-section section-one" data-aos="fade-down">
@@ -170,20 +176,6 @@ const SapDataModules = () => {
                     >
                       ORDERS
                     </button>
-                    {/* <span>
-                  <button
-                    className={`${salesTable === "vbak" ? "active" : ""}`}
-                    onClick={() => getTableData("vbak")}
-                  >
-                    VBAK
-                  </button>
-                  <button
-                    className={`${salesTable === "vbap" ? "active" : ""}`}
-                    onClick={() => getTableData("vbap")}
-                  >
-                    VBAP
-                  </button>
-                </span> */}
                   </li>
                   <li>
                     <button
@@ -192,24 +184,6 @@ const SapDataModules = () => {
                     >
                       DELIVERY
                     </button>
-                    {/* <span>
-                  <button
-                    className={`${
-                      salesTable === "likp" ? "delivery active" : "delivery"
-                    }`}
-                    onClick={() => getTableData("likp")}
-                  >
-                    LIKP
-                  </button>
-                  <button
-                    className={`${
-                      salesTable === "lips" ? "delivery active" : "delivery"
-                    }`}
-                    onClick={() => getTableData("lips")}
-                  >
-                    LIPS
-                  </button>
-                </span> */}
                   </li>
                   <li>
                     <button
@@ -218,20 +192,6 @@ const SapDataModules = () => {
                     >
                       BILLING
                     </button>
-                    {/* <span>
-                  <button
-                    className={`${salesTable === "vbrk" ? "active" : ""}`}
-                    onClick={() => getTableData("vbrk")}
-                  >
-                    VBRK
-                  </button>
-                  <button
-                    className={`${salesTable === "vbrp" ? "active" : ""}`}
-                    onClick={() => getTableData("vbrp")}
-                  >
-                    VBRP
-                  </button>
-                </span> */}
                   </li>
                 </ul>
                 <div className="intro-back-button-container">
@@ -242,12 +202,6 @@ const SapDataModules = () => {
                     Back
                   </button>
                 </div>
-                {/* <ul className="material-section">
-              <h3>Material Management</h3>
-            </ul>
-            <ul className="finance-section">
-              <h3>Finance</h3>
-            </ul> */}
               </div>
               <div className="modules-section section-two">
                 {homeText && (

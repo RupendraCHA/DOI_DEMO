@@ -165,17 +165,21 @@ const Header = ({
         className={
           message === "modules"
             ? "header-section-container modules-section"
-            : "container header-section-container"
+            : "header-section"
         }
       >
         <div className="logo-container">
           <div>
-            <Link to={getRoute()} className="website-name-section">
+            <Link to={getRoute()} className="website-logo">
+              <img
+                src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952055/logo-removebg-preview_prabm4.png"
+                className="website-logo"
+              />
               {/* <img
                 src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
                 className="website-logo"
               /> */}
-              <h3>Data Archiving & Decommissioning Demo</h3>
+              {/* <h3>Data Archiving & Decommissioning Demo</h3> */}
             </Link>
           </div>
         </div>
@@ -186,7 +190,7 @@ const Header = ({
             >
               <li>
                 <a
-                  href="#home"
+                  href="/home"
                   onClick={() => setMenu("home")}
                   className={menu === "home" ? "active" : "tab"}
                 >

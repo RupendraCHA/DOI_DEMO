@@ -22,12 +22,12 @@ const Home = () => {
   useEffect(() => {
     aos.init({ duration: 2000 });
     setMenu("home");
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    //   navigate("/home");
-    // } else {
-    //   navigate("/login");
-    // }
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    } else {
+      navigate("/login");
+    }
   }, []);
   return (
     <>
