@@ -18,6 +18,7 @@ import DateRangeFilter from "./components/date";
 import FileUpload from "./components/FileUpload/fileUpload";
 import FileDownload from "./components/fileDownload";
 import Reports from "./components/Reports/Reports";
+import HighChartDashboard from "./components/HighChart/HighChart";
 // import SignIn from "./pages/SignIn/SignIn";
 
 const App = () => {
@@ -98,6 +99,17 @@ const App = () => {
             <>
               <Header message="contact" />
               <FileUpload />
+              <Footer />
+            </>
+          }
+        ></Route>
+        <Route
+          exact
+          path="/highCharts"
+          element={
+            <>
+              <Header message="" />
+              <HighChartDashboard />
               <Footer />
             </>
           }

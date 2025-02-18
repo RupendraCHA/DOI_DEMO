@@ -1,0 +1,23 @@
+button {
+    margin-right: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .pagination .active {
+    font-weight: bold;
+    color: #007bff;
+  }
+  /* ECharts styles */
+  
