@@ -111,7 +111,7 @@ const App = () => {
             <>
               <Header message="" />
               {/* <HighChartDashboard /> */}
-              <BarChart/>
+              <BarChart />
               <Footer />
             </>
           }
