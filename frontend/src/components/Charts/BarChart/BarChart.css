@@ -1,0 +1,32 @@
+.barChart{
+    height: 100vh;
+    display: flex;
+    /* margin-top: 10px; */
+
+    .barChart-section{
+        flex: 4;
+        .charts-navbar{
+            border: 1px solid rgba(226, 226, 226, 0.575);
+            padding: 10px;
+        }
+        .charts{
+            border: 1px solid rgba(226, 226, 226, 0.575);
+            padding: 10px;
+            margin-bottom: 10px;
+            
+
+        }
+    }
+
+    .sidebar-section{
+        flex: 1;
+        /* height: 100vh; */
+        .charts-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 100vh;
+            /* gap: 50px; */
+        }
+    }
+}

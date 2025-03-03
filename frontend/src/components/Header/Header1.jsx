@@ -226,7 +226,7 @@ const Header = ({
                   </a>
                 </li>
               </Link>
-              <Link to="/highCharts">
+              <Link to="/charts">
                 <li>
                   <a
                     href="#"

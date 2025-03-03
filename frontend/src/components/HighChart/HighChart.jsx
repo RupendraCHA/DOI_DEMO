@@ -1,11 +1,14 @@
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import ReactPaginate from 'react-paginate';
 
 import "./HighChart.css";
+import { StoreContext } from '../../context/StoreContext';
+
+import axios from "axios"
 
 // ✅ Function to Generate Mock SAP Plant Maintenance Data
 const generateMockSAPPMData = () => {
@@ -36,6 +39,9 @@ const HighChartDashboard = () => {
   const [showPieChart, setShowPieChart] = useState(true);
   const [showBarChart, setShowBarChart] = useState(true);
   const [showLineChart, setShowLineChart] = useState(true);
+
+      const {url} = useContext(StoreContext)
+  
 
   useEffect(() => {
     setData(generateMockSAPPMData()); 
@@ -96,8 +102,8 @@ series: [
             },
             {
                 name: 'Fat',
-                sliced: true,
-                selected: true,
+                // sliced: true,
+                // selected: true,
                 y: 26.71
             },
             {
@@ -113,6 +119,7 @@ series: [
                 y: 1.68
             }
         ]
+        
     }
 ]
 }
@@ -179,11 +186,11 @@ series: [
       </div>
 
       {/* Display charts based on visibility */}
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {showPieChart && <div style={{ width: '30%' }}><HighchartsReact highcharts={Highcharts} options={pieChartOptions} /></div>}
-        {showBarChart && <div style={{ width: '30%' }}><HighchartsReact highcharts={Highcharts} options={barChartOptions} /></div>}
-        {showLineChart && <div style={{ width: '30%' }}><HighchartsReact highcharts={Highcharts} options={lineChartOptions} /></div>}
-        <div style={{ width: '30%' }}><HighchartsReact highcharts={Highcharts} options={options} /></div>
+      <div style={{ display: 'flex', flexDirection: "column" }}>
+        {showPieChart && <div style={{ width: '100%' }}><HighchartsReact highcharts={Highcharts} options={pieChartOptions} /></div>}
+        {showBarChart && <div style={{ width: '100%' }}><HighchartsReact highcharts={Highcharts} options={barChartOptions} /></div>}
+        {showLineChart && <div style={{ width: '100%' }}><HighchartsReact highcharts={Highcharts} options={lineChartOptions} /></div>}
+        <div><HighchartsReact highcharts={Highcharts} options={options} /></div>
         {/* <NewChart/> */}
       </div>
 

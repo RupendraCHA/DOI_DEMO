@@ -1,0 +1,19 @@
+.pages-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .prev-button, .next-button{
+    padding: 2px 8px;
+    width: 60px;
+    border: 2px solid #4fa1ee;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.page-number{
+    font-weight: bold;
+}
+}
+

@@ -12,6 +12,8 @@ const clientConn = hana.createClient(connOptions);
 
 export const getProcurementTableDataFromEKKO = async (req, res) => {
   try {
+    await clientConn.disconnect();
+
     clientConn.connect();
     const result = await clientConn.exec("SELECT * FROM EKKO");
 
@@ -23,25 +25,6 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
     const collection = database.collection("procurementfiles");
 
     const allDocuments = await collection.find().toArray();
-    // console.log(allDocuments.length);
-    // allDocuments.map((record) => {
-    //   console.log(record.fileName);
-    // });
-
-    // let secondArrayIndex = 0;
-
-    // const updatedArray = result.map((object, index) => {
-    //   if ((index + 1) % 2 !== 0) {
-    //     const secondArrayIndex = ((index + 1 - 1) / 2) % allDocuments.length;
-    //     return {
-    //       ...object,
-    //       fileName: allDocuments[secondArrayIndex].fileName,
-    //       UUID: allDocuments[secondArrayIndex]._id,
-    //     };
-    //   }
-    //   return object;
-    // });
-    // console.log(allDocuments);
 
     const updatedArray1 = result.map((object, index) => {
       if (object.EBELN === "4400002345") {
@@ -276,7 +259,8 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
       }
       return object;
     });
-
+    await clientConn.disconnect();
+     
     res.status(200).json({ success: true, data: updatedArray1 });
   } catch (error) {
     console.error(error);

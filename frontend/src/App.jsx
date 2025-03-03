@@ -19,6 +19,7 @@ import FileUpload from "./components/FileUpload/fileUpload";
 import FileDownload from "./components/fileDownload";
 import Reports from "./components/Reports/Reports";
 import HighChartDashboard from "./components/HighChart/HighChart";
+import BarChart from "./components/Charts/BarChart/BarChart";
 // import SignIn from "./pages/SignIn/SignIn";
 
 const App = () => {
@@ -105,11 +106,12 @@ const App = () => {
         ></Route>
         <Route
           exact
-          path="/highCharts"
+          path="/charts"
           element={
             <>
               <Header message="" />
-              <HighChartDashboard />
+              {/* <HighChartDashboard /> */}
+              <BarChart/>
               <Footer />
             </>
           }
