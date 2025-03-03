@@ -20,6 +20,7 @@ import FileDownload from "./components/fileDownload";
 import Reports from "./components/Reports/Reports";
 import HighChartDashboard from "./components/HighChart/HighChart";
 import BarChart from "./components/Charts/BarChart/BarChart";
+import PowerBIDashboard from "./components/PowerBIDashboards/PowerBIDashboard";
 // import SignIn from "./pages/SignIn/SignIn";
 
 const App = () => {
@@ -119,6 +120,7 @@ const App = () => {
         <Route exact path="/fileDownload" element={<FileDownload />}></Route>
         <Route path="/purchaseOrder" element={<PurchaseOrder />}></Route>
         <Route path="/date" element={<DateRangeFilter />}></Route>
+        <Route path="/powerBIDashboards" element={<PowerBIDashboard />}></Route>
 
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
