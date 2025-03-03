@@ -2,11 +2,13 @@
   background-color: #2c67b0;
   /* padding: 20px 20px; */
   /* margin-bottom: 6px; */
-  height: 10vh;
+  height: 15vh;
 }
+
 .modules-section {
   /* margin-right: 180px; */
 }
+
 .header-section-container {
   display: flex;
   justify-content: space-evenly;
@@ -20,13 +22,15 @@
     /* padding: 2px 8px; */
   }
 }
-.header-section{
+
+.header-section {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   /* padding: 10px; */
   background-color: transparent;
 }
+
 .website-name-section {
   display: flex;
   justify-content: center;
@@ -41,11 +45,13 @@
     color: #000;
   }
 }
+
 .website-logo {
   width: 200px;
   /* height: 50px; */
   /* border-radius: 50%; */
 }
+
 .tabs-bar-section {
   display: flex;
   justify-content: center;
@@ -56,9 +62,11 @@
   .menu-icon-section {
     display: none;
   }
+
   .tab {
     color: #000;
   }
+
   .icon {
     width: 30px;
     height: 30px;
@@ -67,12 +75,14 @@
     /* display: none; */
   }
 }
+
 @media (max-width: 768px) {
   .tabs-bar-section {
     margin-left: 70px;
     margin-right: 0px;
   }
 }
+
 @media (max-width: 768px) {
   .header-container {
     .header-section-container {
@@ -82,6 +92,7 @@
             width: 15px;
             height: 15px;
           }
+
           h3 {
             font-size: 14px;
           }
@@ -89,6 +100,7 @@
       }
     }
   }
+
   .tabs-container {
     flex-direction: column;
     justify-content: space-evenly;
@@ -100,10 +112,12 @@
     right: 0;
     z-index: 10;
   }
+
   .tabs-container.active1 {
     top: 100%;
     border: 1px solid #000;
   }
+
   .tabs-bar-section {
     .menu-icon-section {
       display: block;
@@ -132,6 +146,7 @@
     color: #fff;
   }
 }
+
 @media (max-width: 768px) {
   .tabs-container {
     li:hover {
@@ -147,6 +162,7 @@
   border-bottom: 2px solid #fff;
   color: #fff;
 }
+
 .user-icon-container {
   display: flex;
   justify-content: center;
@@ -185,6 +201,7 @@
     background-color: azure;
   }
 }
+
 @media (max-width: 768px) {
   .user-icon-container {
     gap: 5px;
