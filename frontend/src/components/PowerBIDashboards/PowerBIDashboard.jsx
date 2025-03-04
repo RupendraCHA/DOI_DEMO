@@ -54,9 +54,9 @@ const PowerBIDashboard = () => {
                         {doiDashboards.map((type) => {
                             return (
                                 <div key={type.dataText} className="bg-white p-5 h-[60vh] w-[20vw] flex items-center flex-col justify-center gap-2 rounded-2xl shadow-lg shadow-blue-500">
-                                    <h1 className="font-bold text-2xl text-center">{type.headerText}</h1>
-                                    <button onClick={() => login(`${type.dataText}`, `${type.url}`)} className="p-2 bg-[#716fdeb4] rounded-xl text-[#0a0943] font-bold text-xl">
-                                        <a href={type.url}>Click to View</a>
+                                    <h1 style={{ fontSize: "24px" }} className="font-bold  text-center">{type.headerText}</h1>
+                                    <button style={{ borderRadius: "12px" }} onClick={() => login(`${type.dataText}`, `${type.url}`)} className="p-2 bg-[#2c67b0] text-[#fff] font-bold text-xl shadow-lg">
+                                        <a style={{ textDecoration: "none", color: "#fff", borderRadius: "12px" }} href={type.url} target='_blank'>Click to View</a>
                                     </button>
                                 </div>
                             )

@@ -112,7 +112,8 @@ const App = () => {
             <>
               <Header message="" />
               {/* <HighChartDashboard /> */}
-              <BarChart />
+              {/* <BarChart /> */}
+              <PowerBIDashboard />
               <Footer />
             </>
           }
@@ -120,7 +121,11 @@ const App = () => {
         <Route exact path="/fileDownload" element={<FileDownload />}></Route>
         <Route path="/purchaseOrder" element={<PurchaseOrder />}></Route>
         <Route path="/date" element={<DateRangeFilter />}></Route>
-        <Route path="/powerBIDashboards" element={<PowerBIDashboard />}></Route>
+        <Route path="/powerBIDashboards" element={<>
+          <Header message="" />
+          <PowerBIDashboard />
+          <Footer />
+        </>}></Route>
 
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
