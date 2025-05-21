@@ -260,21 +260,21 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
       else if (object.EBELN === "4400002370") {
         return {
           ...object,
-          fileName: allDocuments[36].name,
-          UUID: allDocuments[36]._id,
+          fileName: allDocuments[39].name,
+          UUID: allDocuments[39]._id,
         };
       }else if (object.EBELN === "4400002371") {
         return {
           ...object,
-          fileName: allDocuments[34].name,
-          UUID: allDocuments[34]._id,
+          fileName: allDocuments[40].name,
+          UUID: allDocuments[40]._id,
         };
       }
       else if (object.EBELN === "4400002372") {
         return {
           ...object,
-          fileName: allDocuments[35].name,
-          UUID: allDocuments[35]._id,
+          fileName: allDocuments[41].name,
+          UUID: allDocuments[41]._id,
         };
       }
       return object;
@@ -777,21 +777,21 @@ export const getProcurementItemData = async (req, res) => {
       }else if (object.EBELN === "4400002370") {
         return {
           ...object,
-          fileName: allDocuments[36].name,
-          UUID: allDocuments[36]._id,
+          fileName: allDocuments[39].name,
+          UUID: allDocuments[39]._id,
         };
       }else if (object.EBELN === "4400002371") {
         return {
           ...object,
-          fileName: allDocuments[34].name,
-          UUID: allDocuments[34]._id,
+          fileName: allDocuments[40].name,
+          UUID: allDocuments[40]._id,
         };
       }
       else if (object.EBELN === "4400002372") {
         return {
           ...object,
-          fileName: allDocuments[35].name,
-          UUID: allDocuments[35]._id,
+          fileName: allDocuments[41].name,
+          UUID: allDocuments[41]._id,
         };
       }
       return object;
