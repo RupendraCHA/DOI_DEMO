@@ -9,6 +9,7 @@ import { FaUserTie } from "react-icons/fa";
 import aos from "aos";
 import "aos/dist/aos.css";
 import { StoreContext } from "../../context/StoreContext";
+import axios from "axios";
 
 const Header = ({
   message = "",
@@ -38,9 +39,16 @@ const Header = ({
     setHomeText,
     setHomeText1,
     setSalesTable,
+    url
   } = useContext(StoreContext);
 
+  const startTheServer = async () => {
+    const response = await axios.get(url);
+    console.log(response.data.message);
+  };
+
   useEffect(() => {
+    startTheServer()
     aos.init({ duration: 2000 });
 
     if (tabText === "contact") {

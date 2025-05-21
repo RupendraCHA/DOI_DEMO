@@ -378,8 +378,8 @@ const SalesTableData = (props) => {
                     <div className="from-date-section">
                       <label
                         style={{
-                          fontWeight: "bold",
-                          fontSize: "18px",
+                          fontWeight: "600",
+                          fontSize: "16px",
                         }}
                         htmlFor="fromDate"
                       >
@@ -397,8 +397,8 @@ const SalesTableData = (props) => {
                     <div className="to-date-section">
                       <label
                         style={{
-                          fontWeight: "bold",
-                          fontSize: "18px",
+                          fontWeight: "600",
+                          fontSize: "16px",
                         }}
                         htmlFor="toDate"
                       >
@@ -421,18 +421,19 @@ const SalesTableData = (props) => {
                 </div>
               </div>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableDataForSales}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
-              <div className="item-table-section">
+              <div>
+                  <div className="item-table-section">
                 <h3 className="sales-order-item-heading">
                   Sales Order Item Data
                 </h3>
@@ -505,6 +506,8 @@ const SalesTableData = (props) => {
                   </button>
                 </div>
               </div>
+              </div>
+              
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
@@ -537,7 +540,7 @@ const SalesTableData = (props) => {
                     : ""}
                 </span>
               </h4>
-              <table style={{ width: "200%", overflow: scroll }}>
+              <table style={{ width: "200%", overflow: scroll, }}>
                 <thead>
                   <tr>
                     <th className="header-cell">S.No</th>
@@ -618,14 +621,14 @@ const SalesTableData = (props) => {
                 />
               </span>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableDataForSales}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -778,14 +781,14 @@ const SalesTableData = (props) => {
                 />
               </span>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableDataForSales}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -942,14 +945,14 @@ const SalesTableData = (props) => {
                 />
               </span>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableData}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -1103,14 +1106,14 @@ const SalesTableData = (props) => {
                 />
               </span>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableDataForSales}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -1275,14 +1278,14 @@ const SalesTableData = (props) => {
                 />
               </span>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableData}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -1442,14 +1445,14 @@ const SalesTableData = (props) => {
                 />
               </span>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableDataForProcurement}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -1637,14 +1640,14 @@ const SalesTableData = (props) => {
                 />
               </span>
             </div>
-            <div>
+            {/* <div>
               <button
                 className="back-table-data-button"
                 onClick={removeTableDataForProcurement}
               >
                 Back
               </button>
-            </div>
+            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">

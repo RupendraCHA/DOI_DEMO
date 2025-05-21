@@ -1,7 +1,7 @@
 .search-icon-container {
   margin-bottom: 20px;
   h4 {
-    font-size: 20px;
+    font-size: 16px;
     text-align: left;
   }
 
@@ -28,6 +28,7 @@
   /* width: 200px; */
   color: #000;
   border: 1px solid #000;
+  font-size: 16px;
 }
 .get-item-details-heading,
 h4 {
@@ -68,7 +69,7 @@ h4 {
   border: 1px solid #000;
 }
 .item-table-container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0px;
@@ -76,19 +77,36 @@ h4 {
   overflow: auto;
   border: 3px solid #0000ff;
   border-radius: 10px;
-  /* width: 140%; */
   overflow: auto;
   z-index: 1;
   position: absolute;
-  /* top: 80px; */
   bottom: 20%;
   left: 3%;
   background-color: #87a6c5;
-  padding: 15px 20px;
+  padding: 15px 20px; */
+
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background-color: #38393a90;
+    padding: 15px 20px;
+
+    div{
+      border: 2px solid #ffffff54;
+      background-color: #a5bdda89;
+    }
 
   .item-table-section {
     .sales-order-item-heading {
       color: #fff;
+      padding: 10px;
     }
   }
 
@@ -149,6 +167,7 @@ h4 {
     input {
       font-weight: 600;
       padding: 2px;
+      font-size: 14px;
     }
   }
   .to-date-section {
@@ -160,6 +179,7 @@ h4 {
       /* font-size: 20px; */
       font-weight: 600;
       padding: 2px;
+      font-size: 14px;
     }
   }
 }
@@ -243,4 +263,13 @@ h4 {
 .procurement-header-item-search-section {
   display: flex;
   gap: 100px;
+}
+tbody{
+  td{
+    font-size: 13px;
+  }
+}
+
+h4{
+  font-size: 16px;
 }

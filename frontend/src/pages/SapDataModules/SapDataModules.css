@@ -84,6 +84,7 @@
             font-weight: 600;
             background-color: #00000069;
             color: #fff;
+            font-size: 16px;
           }
           button:hover {
             background-color: #1483c4;
@@ -98,7 +99,7 @@
       background-color: #e6e9e838;
       overflow: auto;
       padding: 20px;
-      /* min-height: 80vh; */
+      min-height: 80vh;
 
       table-section {
         /* width: 100%; */

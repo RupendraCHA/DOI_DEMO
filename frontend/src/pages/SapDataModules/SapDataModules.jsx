@@ -194,14 +194,14 @@ const SapDataModules = () => {
                     </button>
                   </li>
                 </ul>
-                <div className="intro-back-button-container">
+                {/* <div className="intro-back-button-container">
                   <button
                     className="intro-back-button"
                     onClick={handleIntroSection}
                   >
                     Back
                   </button>
-                </div>
+                </div> */}
               </div>
               <div className="modules-section section-two">
                 {homeText && (
@@ -331,14 +331,14 @@ const SapDataModules = () => {
                     </button>
                   </li>
                 </ul>
-                <div className="intro-back-button-container">
+                {/* <div className="intro-back-button-container">
                   <button
                     className="intro-back-button"
                     onClick={handleIntroSection}
                   >
                     Back
                   </button>
-                </div>
+                </div> */}
               </div>
               <div className="modules-section section-two">
                 {homeText1 && (

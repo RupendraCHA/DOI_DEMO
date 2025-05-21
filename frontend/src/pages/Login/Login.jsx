@@ -103,7 +103,10 @@ const Login = () => {
             </div>
             <div className="login-info-show-hide-section">
               <div>
-                <label id="password">Password</label>
+                <label id="password"
+                    style={{fontWeight: "600"}}
+                
+                >Password</label>
                 <br />
                 <div className="user-hide-show-login-container">
                   <input
