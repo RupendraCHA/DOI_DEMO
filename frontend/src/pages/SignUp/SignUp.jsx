@@ -121,7 +121,7 @@ const SignUp = () => {
             {/* <a href="https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fdoi-demo-52o9.onrender.com%2Fhome">
               Sign In Using Cognito
             </a> */}
-            <h1>Sign Up</h1>
+            <h1>Register</h1>
             <div className="info-section">
               <div>
                 <label id="firstname">Firstname</label>
@@ -241,13 +241,13 @@ const SignUp = () => {
             ) : (
               ""
             )}
-            <div className="signup-button">
-              <button type="submit">Sign Up</button>
+            <div className="Register-button">
+              <button type="submit">Register</button>
             </div>
             <div className="have-account">
               <p>
                 Already have an account ?
-                <Link to="/login" className="login-link">
+                <Link to="/" className="login-link">
                   <span>Login</span>
                 </Link>
               </p>

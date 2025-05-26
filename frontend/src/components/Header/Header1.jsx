@@ -75,7 +75,7 @@ const Header = ({
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    navigate("/login");
+    navigate("/");
     // const signInLinkUrl =
     //   "https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&redirect_uri=https%3A%2F%2Fdoi-demo-52o9.onrender.com%2Fhome&response_type=code&scope=email+openid+phone";
 
@@ -84,16 +84,16 @@ const Header = ({
   };
 
   const getButton = () => {
-    if (message === "signup") {
+    if (message === "Register" || message === "signup") {
       return (
-        <Link to="/login">
+        <Link to="/">
           <button>Login</button>
         </Link>
       );
     } else if (message === "login") {
       return (
-        <Link to="/">
-          <button>Sign Up</button>
+        <Link to="/signup">
+          <button>Register</button>
         </Link>
       );
     } else if (message === "modules") {
@@ -106,7 +106,7 @@ const Header = ({
           <button onClick={handleLogout}>Logout</button>
         </>
       );
-    } else if (message === "") {
+    } else if (message === "" || message === "contact") {
       return (
         <>
           <div className="user-icon-section">
@@ -130,7 +130,7 @@ const Header = ({
     return (
       <>
         <Link to="/">
-          <button>Sign Up</button>
+          <button>Register</button>
         </Link>
         <Link to="/login">
           <button>Login</button>
@@ -164,7 +164,7 @@ const Header = ({
     if (token) {
       return "/home"
     } else {
-      return "/login"
+      return "/"
     }
   }
   return (

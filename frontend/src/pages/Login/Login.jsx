@@ -69,7 +69,7 @@ const Login = () => {
     if (response.data.success) {
       setForgotPassword(!forgotPassword);
 
-      navigate("/login");
+      navigate("/");
     }
     console.log(response.data);
     // console.log(loginDetails);
@@ -133,7 +133,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="signup-button">
+            <div className="Register-button">
               <button type="submit">Login</button>
             </div>
             <div className="forgot-password">
@@ -142,8 +142,8 @@ const Login = () => {
             <div className="new-here">
               <p>
                 New here ?
-                <Link to="/" className="login-link">
-                  <span>Sign Up</span>
+                <Link to="/signup" className="login-link">
+                  <span>Register</span>
                 </Link>
               </p>
             </div>

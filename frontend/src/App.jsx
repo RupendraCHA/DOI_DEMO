@@ -44,19 +44,19 @@ const App = () => {
           path="/"
           element={
             <>
-              <Header message="signup" />
-              <SignUp />
+              <Header message="login" />
+              <Login />
               <Footer />
             </>
           }
         ></Route>
         <Route
           exact
-          path="/login"
+          path="/signup"
           element={
             <>
-              <Header message="login" />
-              <Login />
+              <Header message="signup" />
+              <SignUp />
               <Footer />
             </>
           }

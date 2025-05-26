@@ -1,5 +1,5 @@
 .login-container {
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +46,7 @@
         }
       }
     }
-    .signup-button {
+    .Register-button {
       margin-left: 20px;
 
       button {

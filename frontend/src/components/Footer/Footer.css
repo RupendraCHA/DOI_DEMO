@@ -60,6 +60,8 @@
     border-radius: 8px;
     font-size: 12px;
     width: 50%;
+    color: #222;
+    background-color: #fff;
   }
 
   .subscribe-button {
