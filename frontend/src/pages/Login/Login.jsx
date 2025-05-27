@@ -88,14 +88,14 @@ const Login = () => {
 
             <div className="login-info-section">
               <div>
-                <label id="email">Email</label>
+                <label id="email">Email<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <input
                   type="text"
                   htmlFor="email"
                   name="email"
                   required
-                  placeholder="Email*"
+                  placeholder="Enter Email address"
                   onChange={getLoginData}
                   className="input"
                 />
@@ -106,7 +106,7 @@ const Login = () => {
                 <label id="password"
                     style={{fontWeight: "600"}}
                 
-                >Password</label>
+                >Password<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <div className="user-hide-show-login-container">
                   <input
@@ -114,7 +114,7 @@ const Login = () => {
                     htmlFor="password"
                     name="password"
                     required
-                    placeholder="Password*"
+                    placeholder="Enter Password"
                     className="login-input"
                     onChange={getLoginData}
                   />

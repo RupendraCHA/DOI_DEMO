@@ -73,10 +73,14 @@
         outline: none;
         border: 1px solid #000;
         width: 96%;
+        margin-top: 20px;
+        background-color: #2c67b0;   
+        color: #fff;                 
+        transition: background 0.2s, color 0.2s;
       }
-
+    
       button:hover {
-        background-color: #2c67b0;
+        background-color: #17406a;
         color: #fff;
       }
     }

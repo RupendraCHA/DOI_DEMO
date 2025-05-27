@@ -124,25 +124,25 @@ const SignUp = () => {
             <h1>Register</h1>
             <div className="info-section">
               <div>
-                <label id="firstname">Firstname</label>
+                <label id="firstname">Firstname<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <input
                   type="text"
-                  htmlFor="firstname"
+                  htmlFor="Enter firstname"
                   required
-                  placeholder="Firstname*"
+                  placeholder="Firstname"
                   name="firstname"
                   onChange={handleUserInput}
                 />
               </div>
               <div>
-                <label id="lastname">Lastname</label>
+                <label id="lastname">Lastname<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <input
                   type="text"
                   htmlFor="lastname"
                   required
-                  placeholder="Lastname*"
+                  placeholder="Enter Lastname"
                   name="lastname"
                   onChange={handleUserInput}
                 />
@@ -150,25 +150,25 @@ const SignUp = () => {
             </div>
             <div className="info-section">
               <div>
-                <label id="mobile">Mobile Number</label>
+                <label id="mobile">Mobile Number<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <input
                   type="text"
                   htmlFor="mobile"
                   required
-                  placeholder="Mobile Number*"
+                  placeholder="Enter Mobile Number"
                   name="mobileNumber"
                   onChange={handleUserInput}
                 />
               </div>
               <div>
-                <label id="email">Email</label>
+                <label id="email">Email<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <input
                   type="text"
                   htmlFor="email"
                   required
-                  placeholder="Email*"
+                  placeholder="Enter Email address"
                   name="email"
                   onChange={handleUserInput}
                 />
@@ -176,14 +176,14 @@ const SignUp = () => {
             </div>
             <div className="password-info-section">
               <div>
-                <label id="password">Password</label>
+                <label id="password">Password<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <div className="password-hide-and-show">
                   <input
                     type={showHide1 === true ? "password" : "text"}
                     htmlFor="password"
                     required
-                    placeholder="Password*"
+                    placeholder="Enter Password"
                     name="password"
                     onChange={handleUserInput}
                     className="hide-unhide-password"
@@ -203,14 +203,14 @@ const SignUp = () => {
                 </div>
               </div>
               <div>
-                <label id="confirm">Confirm Password</label>
+                <label id="confirm">Confirm Password<span style={{ color: "red" }}>*</span></label>
                 <br />
                 <div className="password-hide-and-show">
                   <input
                     type={showHide2 === true ? "password" : "text"}
                     htmlFor="confirm"
                     required
-                    placeholder="Confirm Password*"
+                    placeholder="Confirm Password"
                     name="confirmPassword"
                     onChange={handleUserInput}
                     className="hide-unhide-password"
