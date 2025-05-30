@@ -331,6 +331,7 @@ const SalesTableData = (props) => {
     <>
       {salesTableName === "vbak" && (
         <>
+        <div className="search-box-container">
           <div className="search-icon-container">
             <div className="doc-date-search-container">
               <div className="doc-date-section">
@@ -430,14 +431,14 @@ const SalesTableData = (props) => {
               </button>
             </div> */}
           </div>
+        </div>
           {showItemData && (
             <div className="item-table-container">
-              <div>
-                  <div className="item-table-section">
+              <div className="item-table-section">
                 <h3 className="sales-order-item-heading">
                   Sales Order Item Data
                 </h3>
-                <p>
+                <div>
                   <div className="item-doc-details">
                     Order Item Details for document Number -
                     <span>{documentNum}</span>
@@ -445,7 +446,8 @@ const SalesTableData = (props) => {
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
                   </div>
-                </p>
+                </div>
+                <div className="table-scroll-container">
                 <table>
                   <thead>
                     <tr>
@@ -497,6 +499,7 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <div style={{ textAlign: "center" }}>
                   <button
                     className="close-item-data-button"
@@ -506,8 +509,6 @@ const SalesTableData = (props) => {
                   </button>
                 </div>
               </div>
-              </div>
-              
             </div>
           )}
           {/* {salesTableName.toUpperCase()}: */}
@@ -533,38 +534,34 @@ const SalesTableData = (props) => {
                     : salesTableData.length
                   : ""}
                 <span>
-                  {" "}
                   {searchType === "Date"
                     ? ` from ${getDateFormat(startingDate)} To
             ${getDateFormat(endingDate)} are ${salesTableData.length}`
                     : ""}
                 </span>
               </h4>
-              <table style={{ width: "200%", overflow: scroll, }}>
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Sales Document No</th>
-                    <th className="header-cell">Creation Date</th>
-                    <th className="header-cell">Sold to Party</th>
-                    <th className="header-cell">Ship to Party</th>
-                    <th className="header-cell">Document Date</th>
-                    <th className="header-cell">Requested Delivery Date</th>
-                    <th className="header-cell">Sales Organization</th>
-                    <th className="header-cell">Distribution Channel</th>
-                    <th className="header-cell">Division</th>
-                    <th className="header-cell">Net Value</th>
-                    <th className="header-cell">Currency</th>
-                    <th className="header-cell">Payment Terms</th>
-                    <th className="header-cell">Status</th>
-                    {/* <th className="header-cell">Order Reason</th> */}
-                    {/* <th className="header-cell">Document Category</th>
-                <th className="header-cell">Sales Document Type</th>
-                <th className="header-cell">Shipping Condition</th> */}
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
+              <div className="table-scroll-container">
+                <table style={{ width: "200%" }}>
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Sales Document No</th>
+                      <th className="header-cell">Creation Date</th>
+                      <th className="header-cell">Sold to Party</th>
+                      <th className="header-cell">Ship to Party</th>
+                      <th className="header-cell">Document Date</th>
+                      <th className="header-cell">Requested Delivery Date</th>
+                      <th className="header-cell">Sales Organization</th>
+                      <th className="header-cell">Distribution Channel</th>
+                      <th className="header-cell">Division</th>
+                      <th className="header-cell">Net Value</th>
+                      <th className="header-cell">Currency</th>
+                      <th className="header-cell">Payment Terms</th>
+                      <th className="header-cell">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {salesTableData.map((record, index) => {
                     return (
                       <tr key={index + 2}>
                         <td>{index + 1}</td>
@@ -596,8 +593,9 @@ const SalesTableData = (props) => {
                       </tr>
                     );
                   })}
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </>
@@ -636,7 +634,7 @@ const SalesTableData = (props) => {
                 <h3 className="sales-order-item-heading">
                   Sales Order Item Data - VBAP
                 </h3>
-                <p>
+                <div>
                   <div className="item-doc-details">
                     Order Item Details for document Number -
                     <span>{documentNum}</span>
@@ -644,7 +642,8 @@ const SalesTableData = (props) => {
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
                   </div>
-                </p>
+                </div>
+                <div className="table-scroll-container">
                 <table>
                   <thead>
                     <tr>
@@ -685,6 +684,7 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <div style={{ textAlign: "center" }}>
                   <button
                     className="close-item-data-button"
@@ -710,85 +710,80 @@ const SalesTableData = (props) => {
           {!loadSalesData && (
             <>
               <h4>{salesTableName.toUpperCase()} - Sales Order Item Table</h4>
-              <table style={{ width: "200%", overflow: scroll }}>
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Sales Document Number</th>
-                    <th className="header-cell">Material</th>
-                    <th className="header-cell">Item Description</th>
-                    <th className="header-cell">Unit Of Measure</th>
-                    <th className="header-cell">Quantity</th>
-                    <th className="header-cell">Net Value</th>
-                    <th className="header-cell">Currency</th>
-                    <th className="header-cell">Gross Weight</th>
-                    <th className="header-cell">Net Weight</th>
-                    <th className="header-cell">Plant</th>
-                    <th className="header-cell">Shipping Point</th>
-                    <th className="header-cell">Storage Location</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 4}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.VBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getTheSalesOrderItemDetails(record.VBELN)
-                          }
-                        >
-                          {record.VBELN}
-                        </td>
-                        <td>{record.MATNR}</td>
-                        <td>{record.ARKTX}</td>
-                        <td>{record.MEINS}</td>
-                        <td>{record.ABLFZ}</td>
-                        <td>{record.NETWR}</td>
-                        <td>{record.WAERK}</td>
-                        <td>{record.BRGEW}</td>
-                        <td>{record.NTGEW}</td>
-                        <td>{record.WERKS}</td>
-                        <td>{record.VSTEL}</td>
-                        <td>{record.LGORT}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div className="table-scroll-container">
+                <table style={{ width: "200%" }}>
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Sales Document Number</th>
+                      <th className="header-cell">Material</th>
+                      <th className="header-cell">Item Description</th>
+                      <th className="header-cell">Unit Of Measure</th>
+                      <th className="header-cell">Quantity</th>
+                      <th className="header-cell">Net Value</th>
+                      <th className="header-cell">Currency</th>
+                      <th className="header-cell">Gross Weight</th>
+                      <th className="header-cell">Net Weight</th>
+                      <th className="header-cell">Plant</th>
+                      <th className="header-cell">Shipping Point</th>
+                      <th className="header-cell">Storage Location</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {salesTableData.map((record, index) => {
+                      return (
+                        <tr key={index + 4}>
+                          <td>{index + 1}</td>
+                          <td
+                            key={record.VBELN}
+                            className="document-number"
+                            onClick={() =>
+                              getTheSalesOrderItemDetails(record.VBELN)
+                            }
+                          >
+                            {record.VBELN}
+                          </td>
+                          <td>{record.MATNR}</td>
+                          <td>{record.ARKTX}</td>
+                          <td>{record.MEINS}</td>
+                          <td>{record.ABLFZ}</td>
+                          <td>{record.NETWR}</td>
+                          <td>{record.WAERK}</td>
+                          <td>{record.BRGEW}</td>
+                          <td>{record.NTGEW}</td>
+                          <td>{record.WERKS}</td>
+                          <td>{record.VSTEL}</td>
+                          <td>{record.LGORT}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </>
       )}
       {salesTableName === "likp" && (
         <>
-          <div className="search-icon-container">
-            <div>
-              <h4>Get Sales Delivery Item Details</h4>
-              <span className="doc-search-container">
-                <input
-                  type="search"
-                  placeholder="Enter Delivery Number"
-                  className="doc-input"
-                  // value={documentNum}
-                  onChange={(e) => setDocumentNum(e.target.value)}
-                />
-                <IoSearch
-                  className="doc-search-icon"
-                  onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
-                />
-              </span>
+          <div className="search-box-container">
+            <div className="search-icon-container">
+              <div>
+                <h4>Get Sales Delivery Item Details</h4>
+                <span className="doc-search-container">
+                  <input
+                    type="search"
+                    placeholder="Enter Delivery Number"
+                    className="doc-input"
+                    onChange={(e) => setDocumentNum(e.target.value)}
+                  />
+                  <IoSearch
+                    className="doc-search-icon"
+                    onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
+                  />
+                </span>
+              </div>
             </div>
-            {/* <div>
-              <button
-                className="back-table-data-button"
-                onClick={removeTableDataForSales}
-              >
-                Back
-              </button>
-            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -796,7 +791,7 @@ const SalesTableData = (props) => {
                 <h3 className="sales-order-item-heading">
                   Sales Delivery Item Data
                 </h3>
-                <p>
+                <div>
                   <div className="item-doc-details">
                     Delivery Item Details for delivery Number -
                     <span>{documentNum}</span>
@@ -804,7 +799,8 @@ const SalesTableData = (props) => {
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
                   </div>
-                </p>
+                </div>
+                <div className="table-scroll-container">
                 <table>
                   <thead>
                     <tr>
@@ -845,6 +841,7 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <div style={{ textAlign: "center" }}>
                   <button
                     className="close-item-data-button"
@@ -875,245 +872,80 @@ const SalesTableData = (props) => {
                   ? " - " + salesTableData.length + " records"
                   : salesTableData.length}
               </h4>
-              <table style={{ width: "200%", overflow: scroll }}>
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Delivery Number</th>
-                    <th className="header-cell">Shipping Point</th>
-                    <th className="header-cell">Sales Organization</th>
-                    <th className="header-cell">Delivery Type</th>
-                    <th className="header-cell">Goods Issued Dater</th>
-                    <th className="header-cell">Inco Terms1</th>
-                    <th className="header-cell">Inco Terms2</th>
-                    <th className="header-cell">Sold To Party</th>
-                    <th className="header-cell">Ship To Party</th>
-                    <th className="header-cell">Total Weight</th>
-                    <th className="header-cell">Net Weight</th>
-                    <th className="header-cell">Currency</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 6}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.VBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getTheSalesDeliveryItemDetails(record.VBELN)
-                          }
-                        >
-                          {record.VBELN}
-                        </td>
-                        <td>{record.VSTEL}</td>
-                        <td>{record.VKORG}</td>
-                        <td>{record.LFART}</td>
-                        <td>{convertToDate(record.WADAT)}</td>
-                        <td>{record.INCO1}</td>
-                        <td>{record.INCO2}</td>
-                        <td>{record.KUNAG}</td>
-                        <td>{record.KUNNR}</td>
-                        <td>{record.BTGEW}</td>
-                        <td>{record.NTGEW}</td>
-                        <td>{record.WAERK}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </>
-          )}
-        </>
-      )}
-      {salesTableName === "lips" && (
-        <>
-          <div className="search-icon-container">
-            <div>
-              <h4>Get Sales Delivery Item Details - LIPS</h4>
-              <span className="doc-search-container">
-                <input
-                  type="search"
-                  placeholder="Enter Delivery Number"
-                  className="doc-input"
-                  onChange={(e) => setDocumentNum(e.target.value)}
-                />
-                <IoSearch
-                  className="doc-search-icon"
-                  onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
-                />
-              </span>
-            </div>
-            {/* <div>
-              <button
-                className="back-table-data-button"
-                onClick={removeTableData}
-              >
-                Back
-              </button>
-            </div> */}
-          </div>
-          {showItemData && (
-            <div className="item-table-container">
-              <div className="item-table-section">
-                <h3 className="sales-order-item-heading">
-                  Sales Delivery Item Data - LIPS
-                </h3>
-                <p>
-                  <div className="item-doc-details">
-                    Delivery Item Details for delivery Number -
-                    <span>{documentNum}</span>
-                  </div>
-                  <div className="item-doc-details">
-                    Number Of Items -<span>{itemData.length}</span>
-                  </div>
-                </p>
-                <table>
+              <div className="table-scroll-container">
+                <table style={{ width: "200%" }}>
                   <thead>
                     <tr>
                       <th className="header-cell">S.No</th>
                       <th className="header-cell">Delivery Number</th>
-                      <th className="header-cell">Delivery Item</th>
-                      <th className="header-cell">Material</th>
-                      <th className="header-cell">Material Description</th>
-                      <th className="header-cell">Material Group</th>
-                      <th className="header-cell">Plant</th>
-                      <th className="header-cell">Storage Location</th>
+                      <th className="header-cell">Shipping Point</th>
+                      <th className="header-cell">Sales Organization</th>
+                      <th className="header-cell">Delivery Type</th>
+                      <th className="header-cell">Goods Issued Dater</th>
+                      <th className="header-cell">Inco Terms1</th>
+                      <th className="header-cell">Inco Terms2</th>
+                      <th className="header-cell">Sold To Party</th>
+                      <th className="header-cell">Ship To Party</th>
+                      <th className="header-cell">Total Weight</th>
                       <th className="header-cell">Net Weight</th>
-                      <th className="header-cell">Gross Weight</th>
-                      <th className="header-cell">Loading Group</th>
-                      <th className="header-cell">Transportation</th>
-                      <th className="header-cell">Material Type</th>
+                      <th className="header-cell">Currency</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {itemData.map((record, index) => {
+                    {salesTableData.map((record, index) => {
                       return (
-                        <tr key={index + 7}>
+                        <tr key={index + 6}>
                           <td>{index + 1}</td>
-                          <td>{record.VBELN}</td>
-                          <td>{record.POSNR}</td>
-                          <td>{record.MATNR}</td>
-                          <td>{record.MATWA}</td>
-                          <td>{record.MATKL}</td>
-                          <td>{record.WERKS}</td>
-                          <td>{record.LGORT}</td>
+                          <td
+                            key={record.VBELN}
+                            className="document-number"
+                            onClick={() =>
+                              getTheSalesDeliveryItemDetails(record.VBELN)
+                            }
+                          >
+                            {record.VBELN}
+                          </td>
+                          <td>{record.VSTEL}</td>
+                          <td>{record.VKORG}</td>
+                          <td>{record.LFART}</td>
+                          <td>{convertToDate(record.WADAT)}</td>
+                          <td>{record.INCO1}</td>
+                          <td>{record.INCO2}</td>
+                          <td>{record.KUNAG}</td>
+                          <td>{record.KUNNR}</td>
+                          <td>{record.BTGEW}</td>
                           <td>{record.NTGEW}</td>
-                          <td>{record.BRGEW}</td>
-                          <td>{record.LADGR}</td>
-                          <td>{record.TRAGR}</td>
-                          <td>{record.MTART}</td>
+                          <td>{record.WAERK}</td>
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
-                <div style={{ textAlign: "center" }}>
-                  <button
-                    className="close-item-data-button"
-                    onClick={hideItemTable}
-                  >
-                    Close
-                  </button>
-                </div>
               </div>
-            </div>
-          )}
-          {/* {salesTableName.toUpperCase()}: */}
-          {loadSalesData && (
-            <div>
-              <Spinner
-                size="45px"
-                // color="#000"
-                color="#00308F"
-                message="Processing your request, one moment please..."
-              />
-            </div>
-          )}
-          {!loadSalesData && (
-            <>
-              <h4>
-                {salesTableName.toUpperCase()} - Sales Delivery Item Table
-              </h4>
-              <table style={{ width: "200%", overflow: scroll }}>
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Delivery Number</th>
-                    <th className="header-cell">Delivery Item</th>
-                    <th className="header-cell">Material</th>
-                    <th className="header-cell">Material Description</th>
-                    <th className="header-cell">Material Group</th>
-                    <th className="header-cell">Plant</th>
-                    <th className="header-cell">Storage Location</th>
-                    <th className="header-cell">Net Weight</th>
-                    <th className="header-cell">Gross Weight</th>
-                    <th className="header-cell">Loading Group</th>
-                    <th className="header-cell">Transportation</th>
-                    <th className="header-cell">Material Type</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 8}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.VBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getTheSalesDeliveryItemDetails(record.VBELN)
-                          }
-                        >
-                          {record.VBELN}
-                        </td>
-                        <td>{record.POSNR}</td>
-                        <td>{record.MATNR}</td>
-                        <td>{record.MATWA}</td>
-                        <td>{record.MATKL}</td>
-                        <td>{record.WERKS}</td>
-                        <td>{record.LGORT}</td>
-                        <td>{record.NTGEW}</td>
-                        <td>{record.BRGEW}</td>
-                        <td>{record.LADGR}</td>
-                        <td>{record.TRAGR}</td>
-                        <td>{record.MTART}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
             </>
           )}
         </>
       )}
       {salesTableName === "vbrk" && (
         <>
-          <div className="search-icon-container">
-            <div>
-              <h4>Get Sales Billing Item Details</h4>
-              <span className="doc-search-container">
-                <input
-                  type="search"
-                  placeholder="Enter Delivery Number"
-                  className="doc-input"
-                  onChange={(e) => setDocumentNum(e.target.value)}
-                />
-                <IoSearch
-                  className="doc-search-icon"
-                  onClick={() => getTheSalesBillingItemDetails(documentNum)}
-                />
-              </span>
+          <div className="search-box-container">
+            <div className="search-icon-container">
+              <div>
+                <h4>Get Sales Billing Item Details</h4>
+                <span className="doc-search-container">
+                  <input
+                    type="search"
+                    placeholder="Enter Delivery Number"
+                    className="doc-input"
+                    onChange={(e) => setDocumentNum(e.target.value)}
+                  />
+                  <IoSearch
+                    className="doc-search-icon"
+                    onClick={() => getTheSalesBillingItemDetails(documentNum)}
+                  />
+                </span>
+              </div>
             </div>
-            {/* <div>
-              <button
-                className="back-table-data-button"
-                onClick={removeTableDataForSales}
-              >
-                Back
-              </button>
-            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -1121,7 +953,7 @@ const SalesTableData = (props) => {
                 <h3 className="sales-order-item-heading">
                   Sales Billing Item Data
                 </h3>
-                <p>
+                <div>
                   <div className="item-doc-details">
                     Billing Item Details for billing Number -
                     <span>{documentNum}</span>
@@ -1129,7 +961,8 @@ const SalesTableData = (props) => {
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
                   </div>
-                </p>
+                </div>
+                <div className="table-scroll-container">
                 <table>
                   <thead>
                     <tr>
@@ -1174,6 +1007,7 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <div style={{ textAlign: "center" }}>
                   <button
                     className="close-item-data-button"
@@ -1204,58 +1038,60 @@ const SalesTableData = (props) => {
                   ? " - " + salesTableData.length + " records"
                   : salesTableData.length}
               </h4>
-              <table style={{ width: "200%", overflow: scroll }}>
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Billing Document Number</th>
-                    <th className="header-cell">Billing Type</th>
-                    <th className="header-cell">SD Document Category</th>
-                    <th className="header-cell">Currency</th>
-                    <th className="header-cell">Sales Organization</th>
-                    <th className="header-cell">Distribution Channel</th>
-                    <th className="header-cell">Customer Price Group</th>
-                    <th className="header-cell">Inco Terms (part-1)</th>
-                    <th className="header-cell">Inco Terms (part-2)</th>
-                    <th className="header-cell">Terms Of Payment</th>
-                    <th className="header-cell">Company Code</th>
-                    <th className="header-cell">Net Value</th>
-                    <th className="header-cell">Payer</th>
-                    <th className="header-cell">Sold To Party</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 10}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.VBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getTheSalesBillingItemDetails(record.VBELN)
-                          }
-                        >
-                          {record.VBELN}
-                        </td>
-                        <td>{record.FKART}</td>
-                        <td>{record.VBTYP}</td>
-                        <td>{record.WAERK}</td>
-                        <td>{record.VKORG}</td>
-                        <td>{record.VTWEG}</td>
-                        <td>{record.KONDA}</td>
-                        <td>{record.INCO1}</td>
-                        <td>{record.INCO2}</td>
-                        <td>{record.ZTERM}</td>
-                        <td>{record.BUKRS}</td>
-                        <td>{record.NETWR}</td>
-                        <td>{record.KUNRG}</td>
-                        <td>{record.KUNAG}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div className="table-scroll-container">
+                <table style={{ width: "200%" }}>
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Billing Document Number</th>
+                      <th className="header-cell">Billing Type</th>
+                      <th className="header-cell">SD Document Category</th>
+                      <th className="header-cell">Currency</th>
+                      <th className="header-cell">Sales Organization</th>
+                      <th className="header-cell">Distribution Channel</th>
+                      <th className="header-cell">Customer Price Group</th>
+                      <th className="header-cell">Inco Terms (part-1)</th>
+                      <th className="header-cell">Inco Terms (part-2)</th>
+                      <th className="header-cell">Terms Of Payment</th>
+                      <th className="header-cell">Company Code</th>
+                      <th className="header-cell">Net Value</th>
+                      <th className="header-cell">Payer</th>
+                      <th className="header-cell">Sold To Party</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {salesTableData.map((record, index) => {
+                      return (
+                        <tr key={index + 10}>
+                          <td>{index + 1}</td>
+                          <td
+                            key={record.VBELN}
+                            className="document-number"
+                            onClick={() =>
+                              getTheSalesBillingItemDetails(record.VBELN)
+                            }
+                          >
+                            {record.VBELN}
+                          </td>
+                          <td>{record.FKART}</td>
+                          <td>{record.VBTYP}</td>
+                          <td>{record.WAERK}</td>
+                          <td>{record.VKORG}</td>
+                          <td>{record.VTWEG}</td>
+                          <td>{record.KONDA}</td>
+                          <td>{record.INCO1}</td>
+                          <td>{record.INCO2}</td>
+                          <td>{record.ZTERM}</td>
+                          <td>{record.BUKRS}</td>
+                          <td>{record.NETWR}</td>
+                          <td>{record.KUNRG}</td>
+                          <td>{record.KUNAG}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </>
@@ -1293,7 +1129,7 @@ const SalesTableData = (props) => {
                 <h3 className="sales-order-item-heading">
                   Sales Billing Item Data - VBRP
                 </h3>
-                <p>
+                <div>
                   <div className="item-doc-details">
                     Billing Item Details for billing Number -
                     <span>{documentNum}</span>
@@ -1301,7 +1137,8 @@ const SalesTableData = (props) => {
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
                   </div>
-                </p>
+                </div>
+                <div className="table-scroll-container">
                 <table>
                   <thead>
                     <tr>
@@ -1345,6 +1182,7 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <div style={{ textAlign: "center" }}>
                   <button
                     className="close-item-data-button"
@@ -1370,89 +1208,84 @@ const SalesTableData = (props) => {
           {!loadSalesData && (
             <>
               <h4>{salesTableName.toUpperCase()} - Sales Billing Item Table</h4>
-              <table style={{ width: "200%", overflow: scroll }}>
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Billing Document Number</th>
-                    <th className="header-cell">Billing Item</th>
-                    <th className="header-cell">Actual Billed Quantity</th>
-                    <th className="header-cell">Base Unit Of Measure</th>
-                    <th className="header-cell">Required Quantity</th>
-                    <th className="header-cell">Net Value</th>
-                    <th className="header-cell">Net Weight</th>
-                    <th className="header-cell">Gross Weight</th>
-                    <th className="header-cell">Material</th>
-                    <th className="header-cell">Material Description</th>
-                    <th className="header-cell">Shipping Point</th>
-                    <th className="header-cell">Plant</th>
-                    <th className="header-cell">Division</th>
-                    <th className="header-cell">Cost</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 12}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.VBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getTheSalesBillingItemDetails(record.VBELN)
-                          }
-                        >
-                          {record.VBELN}
-                        </td>
-                        <td>{record.POSNR}</td>
-                        <td>{record.FKIMG}</td>
-                        <td>{record.MEINS}</td>
-                        <td>{record.LMENG}</td>
-                        <td>{record.NETWR}</td>
-                        <td>{record.NTGEW}</td>
-                        <td>{record.BRGEW}</td>
-                        <td>{record.MATNR}</td>
-                        <td>{record.ARKTX}</td>
-                        <td>{record.VSTEL}</td>
-                        <td>{record.WERKS}</td>
-                        <td>{record.SPART}</td>
-                        <td>{record.WAVWR}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div className="table-scroll-container">
+                <table style={{ width: "200%" }}>
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Billing Document Number</th>
+                      <th className="header-cell">Billing Item</th>
+                      <th className="header-cell">Actual Billed Quantity</th>
+                      <th className="header-cell">Base Unit Of Measure</th>
+                      <th className="header-cell">Required Quantity</th>
+                      <th className="header-cell">Net Value</th>
+                      <th className="header-cell">Net Weight</th>
+                      <th className="header-cell">Gross Weight</th>
+                      <th className="header-cell">Material</th>
+                      <th className="header-cell">Material Description</th>
+                      <th className="header-cell">Shipping Point</th>
+                      <th className="header-cell">Plant</th>
+                      <th className="header-cell">Division</th>
+                      <th className="header-cell">Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {salesTableData.map((record, index) => {
+                      return (
+                        <tr key={index + 12}>
+                          <td>{index + 1}</td>
+                          <td
+                            key={record.VBELN}
+                            className="document-number"
+                            onClick={() =>
+                              getTheSalesBillingItemDetails(record.VBELN)
+                            }
+                          >
+                            {record.VBELN}
+                          </td>
+                          <td>{record.POSNR}</td>
+                          <td>{record.FKIMG}</td>
+                          <td>{record.MEINS}</td>
+                          <td>{record.LMENG}</td>
+                          <td>{record.NETWR}</td>
+                          <td>{record.NTGEW}</td>
+                          <td>{record.BRGEW}</td>
+                          <td>{record.MATNR}</td>
+                          <td>{record.ARKTX}</td>
+                          <td>{record.VSTEL}</td>
+                          <td>{record.WERKS}</td>
+                          <td>{record.SPART}</td>
+                          <td>{record.WAVWR}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </>
       )}
       {salesTableName === "ekko" && (
         <>
-          <div className="search-icon-container">
-            <div>
-              <h4>Get Procurement Item Details</h4>
-              <span className="doc-search-container">
-                <input
-                  type="search"
-                  placeholder="Enter Purchase Number"
-                  className="doc-input"
-                  // value={documentNum}
-                  onChange={(e) => setDocumentNum(e.target.value)}
-                />
-                <IoSearch
-                  className="doc-search-icon"
-                  onClick={() => getProcurementItemTableData(documentNum)}
-                />
-              </span>
+          <div className="search-box-container">
+            <div className="search-icon-container">
+              <div>
+                <h4>Get Procurement Item Details</h4>
+                <span className="doc-search-container">
+                  <input
+                    type="search"
+                    placeholder="Enter Purchase Number"
+                    className="doc-input"
+                    onChange={(e) => setDocumentNum(e.target.value)}
+                  />
+                  <IoSearch
+                    className="doc-search-icon"
+                    onClick={() => getProcurementItemTableData(documentNum)}
+                  />
+                </span>
+              </div>
             </div>
-            {/* <div>
-              <button
-                className="back-table-data-button"
-                onClick={removeTableDataForProcurement}
-              >
-                Back
-              </button>
-            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -1460,7 +1293,7 @@ const SalesTableData = (props) => {
                 <h3 className="sales-order-item-heading">
                   Procurement Header Data
                 </h3>
-                <p>
+                <div>
                   <div className="item-doc-details">
                     Procurement Header Details for PO Number -
                     <span>{documentNum}</span>
@@ -1468,7 +1301,8 @@ const SalesTableData = (props) => {
                   {/* <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
                   </div> */}
-                </p>
+                </div>
+                <div className="table-scroll-container">
                 <table>
                   <thead>
                     <tr>
@@ -1531,6 +1365,7 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <div style={{ textAlign: "center" }}>
                   <button
                     className="close-item-data-button"
@@ -1547,7 +1382,6 @@ const SalesTableData = (props) => {
             <div>
               <Spinner
                 size="45px"
-                // color="#000"
                 color="#00308F"
                 message="Processing your request, one moment please..."
               />
@@ -1561,93 +1395,86 @@ const SalesTableData = (props) => {
                   ? " - " + salesTableData.length + " records"
                   : salesTableData.length}
               </h4>
-              <table
-                style={{ width: "100%", overflow: scroll }}
-                className={showItemData ? "header-table" : ""}
-              >
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Purchase Order Number</th>
-                    <th className="header-cell">Vendor Number</th>
-                    <th className="header-cell">Document Date</th>
-                    <th className="header-cell">Currency</th>
-                    <th className="header-cell">Document Category</th>
-                    {/* <th className="header-cell">Payment Terms</th> */}
-                    {/* <th className="header-cell">Release Indicator</th> */}
-                    <th className="header-cell">Purchasing Organization</th>
-                    <th className="header-cell">Last Item Number</th>
-                    <th className="header-cell">
-                      <p className="attachment-name">
-                        Attachments
-                        <FaFileAlt
-                          style={{ marginLeft: "5px" }}
-                          className="attachment-icon"
-                        />
-                      </p>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 6}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.EBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getProcurementItemTableData(record.EBELN)
-                          }
-                        >
-                          {record.EBELN}
-                        </td>
-                        <td>{record.LIFNR}</td>
-                        <td>{convertToDate(record.BEDAT)}</td>
-                        <td>{record.WAERS}</td>
-                        <td>{record.BSTYP}</td>
-                        {/* <td>{record.ZTERM}</td> */}
-                        {/* <td>{record.FRGKE}</td> */}
-                        <td>{record.EKORG}</td>
-                        <td>{record.LPONR}</td>
-                        <td>{getAttachment(record.fileName, record.UUID)}</td>
-                        {/* <td>{`${record.fileName} ${record.UUID}`}</td> */}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <div className="table-scroll-container">
+                <table
+                  style={{ width: "100%" }}
+                  className={showItemData ? "header-table" : ""}
+                >
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Purchase Order Number</th>
+                      <th className="header-cell">Vendor Number</th>
+                      <th className="header-cell">Document Date</th>
+                      <th className="header-cell">Currency</th>
+                      <th className="header-cell">Document Category</th>
+                      <th className="header-cell">Purchasing Organization</th>
+                      <th className="header-cell">Last Item Number</th>
+                      <th className="header-cell">
+                        <p className="attachment-name">
+                          Attachments
+                          <FaFileAlt
+                            style={{ marginLeft: "5px" }}
+                            className="attachment-icon"
+                          />
+                        </p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {salesTableData.map((record, index) => {
+                      return (
+                        <tr key={index + 6}>
+                          <td>{index + 1}</td>
+                          <td
+                            key={record.EBELN}
+                            className="document-number"
+                            onClick={() =>
+                              getProcurementItemTableData(record.EBELN)
+                            }
+                          >
+                            {record.EBELN}
+                          </td>
+                          <td>{record.LIFNR}</td>
+                          <td>{convertToDate(record.BEDAT)}</td>
+                          <td>{record.WAERS}</td>
+                          <td>{record.BSTYP}</td>
+                          {/* <td>{record.ZTERM}</td> */}
+                          {/* <td>{record.FRGKE}</td> */}
+                          <td>{record.EKORG}</td>
+                          <td>{record.LPONR}</td>
+                          <td>{getAttachment(record.fileName, record.UUID)}</td>
+                          {/* <td>{`${record.fileName} ${record.UUID}`}</td> */}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </>
       )}
       {salesTableName === "ekpo" && (
         <>
-          <div className="search-icon-container">
-            <div>
-              <h4>Get Procurement Item Details</h4>
-              <span className="doc-search-container">
-                <input
-                  type="search"
-                  placeholder="Enter Purchase Number"
-                  className="doc-input"
-                  // value={documentNum}
-                  onChange={(e) => setDocumentNum(e.target.value)}
-                />
-                <IoSearch
-                  className="doc-search-icon"
-                  onClick={() => getProcurementItemTableEKPOData(documentNum)}
-                />
-              </span>
+          <div className="search-box-container">
+            <div className="search-icon-container">
+              <div>
+                <h4>Get Procurement Item Details</h4>
+                <span className="doc-search-container">
+                  <input
+                    type="search"
+                    placeholder="Enter Purchase Number"
+                    className="doc-input"
+                    onChange={(e) => setDocumentNum(e.target.value)}
+                  />
+                  <IoSearch
+                    className="doc-search-icon"
+                    onClick={() => getProcurementItemTableEKPOData(documentNum)}
+                  />
+                </span>
+              </div>
             </div>
-            {/* <div>
-              <button
-                className="back-table-data-button"
-                onClick={removeTableDataForProcurement}
-              >
-                Back
-              </button>
-            </div> */}
           </div>
           {showItemData && (
             <div className="item-table-container">
@@ -1655,7 +1482,7 @@ const SalesTableData = (props) => {
                 <h3 className="sales-order-item-heading">
                   Procurement Item Data
                 </h3>
-                <p>
+                <div>
                   <div className="item-doc-details">
                     Procurement Item Details for purchase Number -
                     <span>{documentNum}</span>
@@ -1663,7 +1490,8 @@ const SalesTableData = (props) => {
                   <div className="item-doc-details">
                     Number Of Items -<span>{itemData.length}</span>
                   </div>
-                </p>
+                </div>
+                <div className="table-scroll-container">
                 <table>
                   <thead>
                     <tr>
@@ -1706,6 +1534,7 @@ const SalesTableData = (props) => {
                     })}
                   </tbody>
                 </table>
+                </div>
                 <div style={{ textAlign: "center" }}>
                   <button
                     className="close-item-data-button"
@@ -1722,7 +1551,6 @@ const SalesTableData = (props) => {
             <div>
               <Spinner
                 size="45px"
-                // color="#000"
                 color="#00308F"
                 message="Processing your request, one moment please..."
               />
@@ -1736,56 +1564,48 @@ const SalesTableData = (props) => {
                   ? " - " + salesTableData.length + " records"
                   : salesTableData.length}
               </h4>
-              <table style={{ width: "100%", overflow: scroll }}>
-                <thead>
-                  <tr>
-                    <th className="header-cell">S.No</th>
-                    <th className="header-cell">Purchase Order Number</th>
-                    <th className="header-cell">Material</th>
-                    <th className="header-cell">Material Description</th>
-                    <th className="header-cell">Quantity</th>
-                    {/* <th className="header-cell">Delivery Date</th> */}
-                    <th className="header-cell">Net Price</th>
-                    <th className="header-cell">Plant</th>
-                    {/* <th className="header-cell">Account Assignment</th> */}
-                    {/* <th className="header-cell">
-                      <p className="attachment-name">
-                        Attachments
-                        <FaFileAlt
-                          style={{ marginLeft: "5px" }}
-                          className="attachment-icon"
-                        />
-                      </p>
-                    </th> */}
-                  </tr>
-                </thead>
-                <tbody>
-                  {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 6}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.EBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getProcurementItemTableEKPOData(record.EBELN)
-                          }
-                        >
-                          {record.EBELN}
-                        </td>
-                        <td>{record.MATNR}</td>
-                        <td>{record.TXZ01}</td>
-                        <td>{record.MENGE}</td>
-                        {/* <td>{convertToDate(record.EILDT)}</td> */}
-                        <td>{record.NETPR}</td>
-                        <td>{record.WERKS}</td>
-                        {/* <td>{record.KNTTP}</td> */}
-                        {/* <td>{getAttachment(record.fileName, record.UUID)}</td> */}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>{" "}
+              <div className="table-scroll-container">
+                <table style={{ width: "100%" }}>
+                  <thead>
+                    <tr>
+                      <th className="header-cell">S.No</th>
+                      <th className="header-cell">Purchase Order Number</th>
+                      <th className="header-cell">Material</th>
+                      <th className="header-cell">Material Description</th>
+                      <th className="header-cell">Quantity</th>
+                      {/* <th className="header-cell">Delivery Date</th> */}
+                      <th className="header-cell">Net Price</th>
+                      <th className="header-cell">Plant</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {salesTableData.map((record, index) => {
+                      return (
+                        <tr key={index + 6}>
+                          <td>{index + 1}</td>
+                          <td
+                            key={record.EBELN}
+                            className="document-number"
+                            onClick={() =>
+                              getProcurementItemTableEKPOData(record.EBELN)
+                            }
+                          >
+                            {record.EBELN}
+                          </td>
+                          <td>{record.MATNR}</td>
+                          <td>{record.TXZ01}</td>
+                          <td>{record.MENGE}</td>
+                          {/* <td>{convertToDate(record.EILDT)}</td> */}
+                          <td>{record.NETPR}</td>
+                          <td>{record.WERKS}</td>
+                          {/* <td>{record.KNTTP}</td> */}
+                          {/* <td>{getAttachment(record.fileName, record.UUID)}</td> */}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </>
           )}
         </>
