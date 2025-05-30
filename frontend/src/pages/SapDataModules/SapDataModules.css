@@ -8,12 +8,8 @@
     height: 80vh;
     gap: 10px;
 
-    .modules-section {
-      /* overflow: auto; */
-      /* border-radius: 5px; */
-      /* border: 1px solid #807f7f44; */
-      /* padding: 20px; */
-    }
+
+    
 
     .section-one {
       width: 100%;
@@ -97,7 +93,6 @@
     .section-two {
       flex: 3;
       background-color: #e6e9e838;
-      overflow: auto;
       padding: 20px;
       min-height: 80vh;
 
@@ -112,8 +107,8 @@
         justify-content: center;
         align-items: center;
         min-height: 100%;
-        /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736344887/sapImage_ipblzl.jpg"); */
-        /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736345311/sapImage1_cnoqqt.avif"); */
+        background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736344887/sapImage_ipblzl.jpg");
+        background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736345311/sapImage1_cnoqqt.avif");
         background-image: url("./SAP-SD.jpg");
 
         background-size: cover;
@@ -165,8 +160,8 @@ h1 {
       flex-direction: column;
 
       .section-two {
-        height: 80vh;
-        overflow: auto;
+        /* height: 80vh; */ /* Remove this to prevent extra scroll bar on mobile */
+        /* overflow: auto; */
 
         .table-section {
           overflow: auto;
