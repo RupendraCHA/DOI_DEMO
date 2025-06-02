@@ -2,11 +2,10 @@
   min-height: 100vh;
   padding: 20px;
 
-  .sales-data-modules-section {
-    display: flex;
+  .sales-data-modules-section {    display: flex;
     flex-direction: column;
     height: 80vh;
-    gap: 10px;
+    gap: 0px;
 
 
     
