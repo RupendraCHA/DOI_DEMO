@@ -244,23 +244,29 @@ const SalesTableData = (props) => {
       // console.log(dates);
       setLoadSalesData(true);
 
-      const response = await axios.get(url + `/doi/sales/vbak`, {
+      let endpoint;
+      let dateField;
+      if (salesTableName === "vbak") {
+        endpoint = "vbak";
+        dateField = "ERDAT";
+      } else if (salesTableName === "likp") {
+        endpoint = "likp";
+        dateField = "WADAT";
+      }
+
+      const response = await axios.get(url + `/doi/sales/${endpoint}`, {
         headers: {
           "Content-Type": "application/json",
         },
       });
 
       const filteredData = response.data.data.filter((record) => {
-        const date = getDateString(record.ERDAT);
-        console.log(date);
+        const date = getDateString(record[dateField]);
         return date >= startingDate && date <= endingDate;
       });
-      console.log(filteredData);
+
       setLoadSalesData(false);
       setTableData(filteredData);
-      console.log(response.data.data);
-      console.log(startingDate);
-      console.log(endingDate);
     }
   };
 
@@ -768,20 +774,88 @@ const SalesTableData = (props) => {
         <>
           <div className="search-box-container">
             <div className="search-icon-container">
-              <div>
-                <h4>Get Sales Delivery Item Details</h4>
-                <span className="doc-search-container">
+              <div className="doc-date-search-container">
+                <div className="doc-date-section">
                   <input
-                    type="search"
-                    placeholder="Enter Delivery Number"
-                    className="doc-input"
-                    onChange={(e) => setDocumentNum(e.target.value)}
+                    type="radio"
+                    id="select1"
+                    className="radio-button"
+                    name="process"
+                    value="Document"
+                    checked={searchType === "Document" ? "checked" : ""}
+                    onClick={getSearchType}
                   />
-                  <IoSearch
-                    className="doc-search-icon"
-                    onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
-                  />
-                </span>
+                  <div>
+                    <h4>Get Sales Delivery Item Details</h4>
+                    <span className="doc-search-container">
+                      <input
+                        type="search"
+                        placeholder="Enter Delivery Number"
+                        className="doc-input"
+                        onChange={(e) => setDocumentNum(e.target.value)}
+                      />
+                      <IoSearch
+                        className="doc-search-icon"
+                        onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div className="process-button">
+                    <input
+                      type="radio"
+                      id="select2"
+                      name="process" 
+                      value="Date"
+                      checked={searchType === "Date" ? "checked" : ""}
+                      className="radio-button"
+                      onClick={getSearchType}
+                    />
+                    <div className="date-fields-container">
+                      <div className="from-date-section">
+                        <label
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "16px",
+                          }}
+                          htmlFor="fromDate"
+                        >
+                          From Date
+                        </label>
+                        <input
+                          type="date"
+                          id="fromDate"
+                          name="fromDate"
+                          pattern="\d{4}-\d{2}-\d{2}"
+                          onChange={(e) => setStartingDate(e.target.value)}
+                        />
+                      </div>
+                      <div className="to-date-section">
+                        <label
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "16px",
+                          }}
+                          htmlFor="toDate"
+                        >
+                          To Date
+                        </label>
+                        <input
+                          type="date"
+                          id="toDate"
+                          name="toDate"
+                          pattern="\d{4}-\d{2}-\d{2}"
+                          onChange={(e) => setEndingDate(e.target.value)}
+                        />
+                      </div>
+                      <IoSearch
+                        className="doc-search-icon date-search-icon"
+                        onClick={getDataBetweenDates}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -865,12 +939,19 @@ const SalesTableData = (props) => {
             </div>
           )}
           {!loadSalesData && (
-            <>
-              <h4>
+            <>              <h4>
                 Sales Delivery Header Table
-                {salesTableData.length > 0
-                  ? " - " + salesTableData.length + " records"
-                  : salesTableData.length}
+                {searchType === "Document" && searchType !== "Date" 
+                  ? salesTableData.length > 0
+                    ? " - " + salesTableData.length + " records"
+                    : salesTableData.length
+                  : ""}
+                <span>
+                  {searchType === "Date"
+                    ? ` from ${getDateFormat(startingDate)} To
+            ${getDateFormat(endingDate)} are ${salesTableData.length}`
+                    : ""}
+                </span>
               </h4>
               <div className="table-scroll-container">
                 <table style={{ width: "200%" }}>
@@ -878,10 +959,9 @@ const SalesTableData = (props) => {
                     <tr>
                       <th className="header-cell">S.No</th>
                       <th className="header-cell">Delivery Number</th>
-                      <th className="header-cell">Shipping Point</th>
-                      <th className="header-cell">Sales Organization</th>
+                      <th className="header-cell">Shipping Point</th>                      <th className="header-cell">Sales Organization</th>
                       <th className="header-cell">Delivery Type</th>
-                      <th className="header-cell">Goods Issued Dater</th>
+                      <th className="header-cell">Goods Issued Date</th>
                       <th className="header-cell">Inco Terms1</th>
                       <th className="header-cell">Inco Terms2</th>
                       <th className="header-cell">Sold To Party</th>
@@ -929,14 +1009,12 @@ const SalesTableData = (props) => {
       {salesTableName === "vbrk" && (
         <>
           <div className="search-box-container">
-            <div className="search-icon-container">
-              <div>
-                <h4>Get Sales Billing Item Details</h4>
+            <div className="search-icon-container">              <div>                <h4>Get Sales Billing Item Details</h4>
                 <span className="doc-search-container">
                   <input
                     type="search"
-                    placeholder="Enter Delivery Number"
-                    className="doc-input"
+                    placeholder="Enter Billing Document Number"
+                    className="billing-doc-input"
                     onChange={(e) => setDocumentNum(e.target.value)}
                   />
                   <IoSearch
