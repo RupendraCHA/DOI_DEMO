@@ -252,6 +252,9 @@ const SalesTableData = (props) => {
       } else if (salesTableName === "likp") {
         endpoint = "likp";
         dateField = "WADAT";
+      } else if (salesTableName === "ekko") {
+        endpoint = "procurement/ekko";
+        dateField = "BEDAT"; // Document date field in EKKO table
       }
 
       const response = await axios.get(url + `/doi/sales/${endpoint}`, {
@@ -939,7 +942,8 @@ const SalesTableData = (props) => {
             </div>
           )}
           {!loadSalesData && (
-            <>              <h4>
+            <>
+              <h4>
                 Sales Delivery Header Table
                 {searchType === "Document" && searchType !== "Date" 
                   ? salesTableData.length > 0
@@ -1348,20 +1352,88 @@ const SalesTableData = (props) => {
         <>
           <div className="search-box-container">
             <div className="search-icon-container">
-              <div>
-                <h4>Get Procurement Item Details</h4>
-                <span className="doc-search-container">
+              <div className="doc-date-search-container">
+                <div className="doc-date-section">
                   <input
-                    type="search"
-                    placeholder="Enter Purchase Number"
-                    className="doc-input"
-                    onChange={(e) => setDocumentNum(e.target.value)}
+                    type="radio"
+                    id="select1"
+                    className="radio-button"
+                    name="process"
+                    value="Document"
+                    checked={searchType === "Document" ? "checked" : ""}
+                    onClick={getSearchType}
                   />
-                  <IoSearch
-                    className="doc-search-icon"
-                    onClick={() => getProcurementItemTableData(documentNum)}
-                  />
-                </span>
+                  <div>
+                    <h4>Get Procurement Item Details</h4>
+                    <span className="doc-search-container">
+                      <input
+                        type="search"
+                        placeholder="Enter Purchase Number"
+                        className="doc-input"
+                        onChange={(e) => setDocumentNum(e.target.value)}
+                      />
+                      <IoSearch
+                        className="doc-search-icon"
+                        onClick={() => getProcurementItemTableData(documentNum)}
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div className="process-button">
+                    <input
+                      type="radio"
+                      id="select2"
+                      name="process"
+                      value="Date"
+                      checked={searchType === "Date" ? "checked" : ""}
+                      className="radio-button"
+                      onClick={getSearchType}
+                    />
+                    <div className="date-fields-container">
+                      <div className="from-date-section">
+                        <label
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "16px",
+                          }}
+                          htmlFor="fromDate"
+                        >
+                          From Date 
+                        </label>
+                        <input
+                          type="date"
+                          id="fromDate"
+                          name="fromDate"
+                          pattern="\d{4}-\d{2}-\d{2}"
+                          onChange={(e) => setStartingDate(e.target.value)}
+                        />
+                      </div>
+                      <div className="to-date-section">
+                        <label
+                          style={{
+                            fontWeight: "600",
+                            fontSize: "16px",
+                          }}
+                          htmlFor="toDate"
+                        >
+                          To Date
+                        </label>
+                        <input
+                          type="date"
+                          id="toDate"
+                          name="toDate"
+                          pattern="\d{4}-\d{2}-\d{2}"
+                          onChange={(e) => setEndingDate(e.target.value)}
+                        />
+                      </div>
+                      <IoSearch
+                        className="doc-search-icon date-search-icon"
+                        onClick={getDataBetweenDates}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1468,10 +1540,18 @@ const SalesTableData = (props) => {
           {!loadProcurementData && (
             <>
               <h4>
-                Procurement Header Table{" "}
-                {salesTableData.length > 0
-                  ? " - " + salesTableData.length + " records"
-                  : salesTableData.length}
+                Procurement Header Table
+                {searchType === "Document" && searchType !== "Date"
+                  ? salesTableData.length > 0
+                    ? " - " + salesTableData.length + " records"
+                    : salesTableData.length
+                  : ""}
+                <span>
+                  {searchType === "Date"
+                    ? ` from ${getDateFormat(startingDate)} To 
+                      ${getDateFormat(endingDate)} are ${salesTableData.length}`
+                    : ""}
+                </span>
               </h4>
               <div className="table-scroll-container">
                 <table
@@ -1517,8 +1597,6 @@ const SalesTableData = (props) => {
                           <td>{convertToDate(record.BEDAT)}</td>
                           <td>{record.WAERS}</td>
                           <td>{record.BSTYP}</td>
-                          {/* <td>{record.ZTERM}</td> */}
-                          {/* <td>{record.FRGKE}</td> */}
                           <td>{record.EKORG}</td>
                           <td>{record.LPONR}</td>
                           <td>{getAttachment(record.fileName, record.UUID)}</td>
