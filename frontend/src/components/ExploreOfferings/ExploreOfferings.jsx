@@ -47,6 +47,18 @@ const ExploreOfferings = () => {
     setSalesTable("");
   };
 
+
+const handleFinance = () => {
+  setMenu("finance");
+  setSapIntroText(false);
+  setSapSalesModuleText(false);
+  setSapMaterialsModuleText(false);
+  setLoading(false);
+  setHomeText(true);
+  setSalesTable("");
+};
+
+
   return (
     <div
       className="container explore-container"
@@ -83,9 +95,16 @@ const ExploreOfferings = () => {
                   <p>PROCUREMENT</p>
                 </li>
               </Link>
-              <li className="data-card image3">
-                <p>FINANCE</p>
-              </li>
+              <Link
+                title="click here"
+                to="/sapDataModules"
+                className="data-card image3"
+                onClick={handleFinance}
+              >
+                <li>
+                  <p>FINANCE</p>
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

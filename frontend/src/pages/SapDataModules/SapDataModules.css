@@ -2,13 +2,13 @@
   min-height: 100vh;
   padding: 20px;
 
-  .sales-data-modules-section {    display: flex;
+  .sales-data-modules-section {
+    display: flex;
     flex-direction: column;
     height: 80vh;
-    gap: 0px;
+    gap: 10px;
 
-
-    
+  
 
     .section-one {
       width: 100%;
@@ -92,6 +92,7 @@
     .section-two {
       flex: 3;
       background-color: #e6e9e838;
+      overflow: auto;
       padding: 20px;
       min-height: 80vh;
 
@@ -106,8 +107,8 @@
         justify-content: center;
         align-items: center;
         min-height: 100%;
-        background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736344887/sapImage_ipblzl.jpg");
-        background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736345311/sapImage1_cnoqqt.avif");
+        /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736344887/sapImage_ipblzl.jpg"); */
+        /* background-image: url("https://res.cloudinary.com/dvxkeeeqs/image/upload/v1736345311/sapImage1_cnoqqt.avif"); */
         background-image: url("./SAP-SD.jpg");
 
         background-size: cover;
@@ -153,14 +154,38 @@ h1 {
   font-weight: 600;
   font-size: 32px;
 }
+
+.finance-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  background-image: url("../../components/ExploreOfferings/bitcoin.jpg");
+  background-size: cover;
+  background-position: -80px;
+  
+  .finance-data-heading {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 15px #000;
+  }
+  
+  h1 {
+    color: #000;
+    font-weight: 600;
+    font-size: 32px;
+  }
+}
+
 @media (max-width: 768px) {
   .sales-data-modules-container {
     .sales-data-modules-section {
       flex-direction: column;
 
       .section-two {
-        /* height: 80vh; */ /* Remove this to prevent extra scroll bar on mobile */
-        /* overflow: auto; */
+        height: 80vh;
+        overflow: auto;
 
         .table-section {
           overflow: auto;

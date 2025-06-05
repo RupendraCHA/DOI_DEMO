@@ -401,6 +401,33 @@ const SapDataModules = () => {
                       )}
                     </>
                   )}
+                  {menu === "finance" && (
+                    <>
+                      <div className="modules-section section-one" data-aos="fade-down">
+                        <ul className="sales-section image1">
+                          <li>
+                            <button
+                              id={`${salesTable === "finance_table1" ? "active-button" : ""}`}
+                              onClick={() => {/* Add your handler for finance table 1 */}}
+                            >
+                              Finance Table 1
+                            </button>
+                          </li>
+                          {/* Add more finance buttons as needed */}
+                        </ul>
+                      </div>
+                      <div className="modules-section section-two">
+                        <div className="finance-data-container" data-aos="zoom-in">
+                          <div className="finance-data-heading">
+                            <h1>
+                              View Archived FINANCE Data from S4 HANA by selecting one of the tabs above
+                            </h1>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                    {/* Add table or data display for finance here */}
                   <ScrollToTopButton />
                 </div>
               </div>
