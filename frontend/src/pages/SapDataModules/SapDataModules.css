@@ -160,9 +160,9 @@ h1 {
   justify-content: center;
   align-items: center;
   min-height: 100%;
-  background-image: url("../../components/ExploreOfferings/bitcoin.jpg");
+  background-image: url("./bitcoin.jpg");
   background-size: cover;
-  background-position: -80px;
+  background-position: center;
   
   .finance-data-heading {
     background-color: #fff;

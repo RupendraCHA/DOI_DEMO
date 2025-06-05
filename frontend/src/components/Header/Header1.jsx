@@ -147,7 +147,6 @@ const Header = ({
     setLoading1(false);
     setHomeText1(true);
   };
-
   const showMaterialModuleData = () => {
     setMenu("materials");
     setSapMaterialsModuleText(true);
@@ -156,6 +155,18 @@ const Header = ({
     setLoading(false);
     setHomeText(true);
     setSalesTable("");
+    navigate("/sapDataModules");
+  };
+
+  const showFinanceModuleData = () => {
+    setMenu("finance");
+    setSapMaterialsModuleText(false);
+    setSapSalesModuleText(false);
+    setSapIntroText(false);
+    setLoading(false);
+    setHomeText(true);
+    setSalesTable("");
+    navigate("/sapDataModules");
   };
 
   const getRoute = () => {
@@ -271,24 +282,22 @@ const Header = ({
                 >
                   ORDER TO CASH
                 </Link>
-              </li>
-              <li>
-                <a
-                  href="#"
+              </li>              <li>
+                <Link
+                  to="/sapDataModules"
                   onClick={showMaterialModuleData}
                   className={menu === "materials" ? "active" : "tab"}
                 >
                   PROCUREMENT
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  onClick={() => setMenu("finance")}
+                </Link>
+              </li>              <li>
+                <Link
+                  to="/sapDataModules"
+                  onClick={showFinanceModuleData}
                   className={menu === "finance" ? "active" : "tab"}
                 >
                   FINANCE
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="menu-icon-section" onClick={handleTabClick}>

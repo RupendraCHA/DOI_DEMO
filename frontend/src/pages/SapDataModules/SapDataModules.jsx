@@ -38,6 +38,8 @@ const SapDataModules = () => {
     setLoadOTC,
     loadProcurement,
     setLoadProcurement,
+    loadFinance,
+    setLoadFinance
   } = useContext(StoreContext);
   // console.log(sapSalesModuleText);
   const navigate = useNavigate();
@@ -65,9 +67,7 @@ const SapDataModules = () => {
     setTimeout(() => {
       navigate("/login");
     }, 8640000);
-  }, []);
-
-  const getTableData = async (table) => {
+  }, []);  const getTableData = async (table) => {
     // setSapMaterialsModuleText(false);
     setSalesTable("");
     setLoadOTC(false);
@@ -109,9 +109,7 @@ const SapDataModules = () => {
       setSapIntroText(false);
     }
     console.log(response.data);
-  };
-
-  const getProcurementTablesData = async (table) => {
+  };  const getProcurementTablesData = async (table) => {
     // setProcurementTable(table);
     setSalesTable(table);
     console.log(table);
@@ -140,6 +138,38 @@ const SapDataModules = () => {
       console.log(response.data.data);
     }
   };
+  const getFinanceTablesData = async (table) => {
+    setSalesTable(table);
+    setLoadProcurement(false);
+    setLoadOTC(false);
+    setHomeText(false);
+    setLoading(true);
+    setLoading1(false);
+
+    let endpoint;
+    if (table === "general_ledger") {
+      endpoint = "gl";
+      setSalesTable(table);
+    } else if (table === "accounts_payable") {
+      endpoint = "ap";
+      setSalesTable(table);
+    } else if (table === "accounts_receivable") {
+      endpoint = "ar";
+      setSalesTable(table);
+    }
+
+    try {
+      const response = await axios.get(url + `/doi/finance/${endpoint}`);
+      if (response.data.success) {
+        setLoading(false);
+        setLoadFinance(true);
+        setTableData(response.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching finance data:", error);
+      setLoading(false);
+    }
+  };
 
   const handleIntroSection = () => {
     setMenu("intro");
@@ -156,15 +186,6 @@ const SapDataModules = () => {
     <>
       <div className="sales-data-modules-container" data-aos="zoom-in">
         <div className="sales-data-modules-section">
-          {/* {sapIntroText && (
-            <div className="module-intro-container" data-aos="zoom-in">
-              <div className="data-header-section">
-                <h1>
-                  View Archived Data from S4 HANA by selecting the options above
-                </h1>
-              </div>
-            </div>
-          )} */}
           {sapSalesModuleText && (
             <>
               <div className="modules-section section-one" data-aos="fade-down">
@@ -310,7 +331,7 @@ const SapDataModules = () => {
               </div>
             </>
           )}
-          {sapMaterialsModuleText && (
+          {!sapSalesModuleText && sapMaterialsModuleText && (
             <>
               <div className="modules-section section-one" data-aos="fade-down">
                 <ul className="sales-section image1">
@@ -401,38 +422,77 @@ const SapDataModules = () => {
                       )}
                     </>
                   )}
-                  {menu === "finance" && (
-                    <>
-                      <div className="modules-section section-one" data-aos="fade-down">
-                        <ul className="sales-section image1">
-                          <li>
-                            <button
-                              id={`${salesTable === "finance_table1" ? "active-button" : ""}`}
-                              onClick={() => {/* Add your handler for finance table 1 */}}
-                            >
-                              Finance Table 1
-                            </button>
-                          </li>
-                          {/* Add more finance buttons as needed */}
-                        </ul>
-                      </div>
-                      <div className="modules-section section-two">
-                        <div className="finance-data-container" data-aos="zoom-in">
-                          <div className="finance-data-heading">
-                            <h1>
-                              View Archived FINANCE Data from S4 HANA by selecting one of the tabs above
-                            </h1>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                    {/* Add table or data display for finance here */}
-                  <ScrollToTopButton />
                 </div>
               </div>
             </>
           )}
+          {!sapSalesModuleText && !sapMaterialsModuleText && menu === "finance" && (
+            <>
+              <div className="modules-section section-one" data-aos="fade-down">
+                <ul className="sales-section image1">
+                  <li>
+                    <button
+                      id={`${salesTable === "general_ledger" ? "active-button" : ""}`}
+                      onClick={() => getFinanceTablesData("general_ledger")}
+                    >
+                      General Ledger
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      id={`${salesTable === "accounts_payable" ? "active-button" : ""}`}
+                      onClick={() => getFinanceTablesData("accounts_payable")}
+                    >
+                      Accounts Payable
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      id={`${salesTable === "accounts_receivable" ? "active-button" : ""}`}
+                      onClick={() => getFinanceTablesData("accounts_receivable")}
+                    >
+                      Accounts Receivable
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <div className="modules-section section-two">
+                {homeText && (
+                  <div className="finance-data-container" data-aos="zoom-in">
+                    <div className="finance-data-heading">
+                      <h1>
+                        View Archived FINANCE Data from S4 HANA by selecting one of the tabs above
+                      </h1>
+                    </div>
+                  </div>
+                )}
+                <div className="table-section">
+                  {isLoading && (
+                    <div>
+                      <Spinner
+                        size="45px"
+                        color="#00308F"
+                        message="Processing your request, one moment please..."
+                      />
+                    </div>
+                  )}
+                  {loadFinance && (
+                    <SalesTableData
+                      salesTableName={salesTable}
+                      salesTableData={tableData}
+                      setHomeText={setHomeText}
+                      setSalesTable={setSalesTable}
+                      setLoading={setLoading}
+                      setTableData={setTableData}
+                      getTableData={getTableData}
+                      setHomeText1={setHomeText1}
+                    />
+                  )}
+                </div>
+              </div>
+            </>
+          )}
+          <ScrollToTopButton />
         </div>
       </div>
     </>

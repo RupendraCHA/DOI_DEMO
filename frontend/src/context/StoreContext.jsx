@@ -23,6 +23,7 @@ const StoreContextProvider = (props) => {
   const [loadSalesData, setLoadSalesData] = useState(false);
   const [loadOTC, setLoadOTC] = useState(false);
   const [loadProcurement, setLoadProcurement] = useState(false);
+  const [loadFinance, setLoadFinance] = useState(false);
 
   const fromDate = "2023-08-19";
   const lastDate = "2025-01-13";
@@ -35,7 +36,6 @@ const StoreContextProvider = (props) => {
       setUsername(localStorage.getItem("username"));
     }
   }, []);
-
   const contextValue = {
     url,
     username,
@@ -44,6 +44,8 @@ const StoreContextProvider = (props) => {
     setUsername,
     sapSalesModuleText,
     setSapSalesModuleText,
+    loadFinance,
+    setLoadFinance,
     fromDate,
     lastDate,
     sapMaterialsModuleText,
@@ -70,6 +72,8 @@ const StoreContextProvider = (props) => {
     setLoadOTC,
     loadProcurement,
     setLoadProcurement,
+    loadFinance,
+    setLoadFinance,
   };
 
   return (

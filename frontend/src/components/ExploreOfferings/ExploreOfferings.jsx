@@ -6,9 +6,7 @@ import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 
-const ExploreOfferings = () => {
-
-  const {sapSalesModuleText,
+const ExploreOfferings = () => {  const {sapSalesModuleText,
     setSapSalesModuleText,
     sapMaterialsModuleText,
     setSapMaterialsModuleText,
@@ -22,29 +20,39 @@ const ExploreOfferings = () => {
     setLoading,
     setHomeText,
     setHomeText1,
-    setSalesTable,} = useContext(StoreContext);
+    setSalesTable,
+    setLoadProcurement,
+    setLoadOTC,
+    setLoadFinance} = useContext(StoreContext);
   
   useEffect(() => {
     aos.init({ duration: 2000 });
-  }, []);
-
-  const handleOrderToCash = () => {
+  }, []);  const handleOrderToCash = () => {
     setSapIntroText(false);
     setMenu("sales");
     setSapSalesModuleText(true);
     setSapMaterialsModuleText(false);
+    setLoading(false);
     setLoading1(false);
+    setHomeText(true);
     setHomeText1(true);
-  };
-
-  const showMaterialModuleData = () => {
+    setSalesTable("");
+    setLoadOTC(false);
+    setLoadProcurement(false);
+    setLoadFinance(false);
+  };  const showMaterialModuleData = () => {
     setMenu("materials");
     setSapMaterialsModuleText(true);
     setSapSalesModuleText(false);
     setSapIntroText(false);
     setLoading(false);
+    setLoading1(false);
     setHomeText(true);
+    setHomeText1(true);
     setSalesTable("");
+    setLoadOTC(false);
+    setLoadProcurement(false);
+    setLoadFinance(false);
   };
 
 
@@ -54,8 +62,9 @@ const handleFinance = () => {
   setSapSalesModuleText(false);
   setSapMaterialsModuleText(false);
   setLoading(false);
+  setLoading1(false);
   setHomeText(true);
-  setSalesTable("");
+  setHomeText1(true);
 };
 
 
