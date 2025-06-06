@@ -232,44 +232,51 @@ const SalesTableData = (props) => {
     const day = date.slice(8, 10);
     return `${day}-${month}-${year}`;
   };
-
   const getDataBetweenDates = async () => {
-    // alert("Check Date Radion Button is selected");
     if (
       startingDate &&
       endingDate &&
       startingDate <= endingDate &&
       searchType === "Date"
     ) {
-      // console.log(dates);
       setLoadSalesData(true);
+      setLoadProcurementData(true);
 
       let endpoint;
       let dateField;
       if (salesTableName === "vbak") {
-        endpoint = "vbak";
+        endpoint = "/sales/vbak";
         dateField = "ERDAT";
       } else if (salesTableName === "likp") {
-        endpoint = "likp";
+        endpoint = "/sales/likp";
         dateField = "WADAT";
       } else if (salesTableName === "ekko") {
-        endpoint = "procurement/ekko";
-        dateField = "BEDAT"; // Document date field in EKKO table
+        endpoint = "/procurement/ekko";
+        dateField = "BEDAT";
+      }      try {
+        const response = await axios.get(url + "/doi" + endpoint, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.data.success) {
+          const filteredData = response.data.data.filter((record) => {
+            const recordDate = getDateString(record[dateField]);
+            return recordDate >= startingDate && recordDate <= endingDate;
+          });
+
+          setLoadSalesData(false);
+          setLoadProcurementData(false);
+          setTableData(filteredData);
+        }
+      } catch (error) {
+        console.error("Error fetching date range data:", error);
+        setLoadSalesData(false);
+        setLoadProcurementData(false);
       }
-
-      const response = await axios.get(url + `/doi/sales/${endpoint}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const filteredData = response.data.data.filter((record) => {
-        const date = getDateString(record[dateField]);
-        return date >= startingDate && date <= endingDate;
-      });
-
-      setLoadSalesData(false);
-      setTableData(filteredData);
+    } else {
+      alert("Please select valid dates and ensure Date search is selected");
     }
   };
 
