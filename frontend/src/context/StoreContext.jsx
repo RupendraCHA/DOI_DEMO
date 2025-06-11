@@ -3,10 +3,10 @@ import { createContext, useEffect, useState } from "react";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-  // let url = "http://localhost:5000";
+  //let url = "http://localhost:5000";
   // let url = "https://doi-demo.onrender.com";
 
-  let url = "https://hanelytics-reporting-backend.onrender.com"
+   let url = "https://hanelytics-reporting-backend.onrender.com"
 
   const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
@@ -72,8 +72,6 @@ const StoreContextProvider = (props) => {
     setLoadOTC,
     loadProcurement,
     setLoadProcurement,
-    loadFinance,
-    setLoadFinance,
   };
 
   return (

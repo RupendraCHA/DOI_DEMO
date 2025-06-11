@@ -9,7 +9,7 @@ import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
 import salesRouter from "./routes/salesTableDataRoute.js";
 import procurementRouter from "./routes/procurementTableDataRoute.js";
-
+import financeRouter from "./routes/financeTableDataRoute.js";
 import File from "./models/fileSchema.js";
 
 const app = express();
@@ -30,6 +30,7 @@ app.use(cors());
 app.use("/doi/user", userRouter);
 app.use("/doi/sales", salesRouter);
 app.use("/doi/procurement", procurementRouter);
+app.use("/doi/finance", financeRouter);
 
 const upload = multer({
   storage: multer.memoryStorage(),

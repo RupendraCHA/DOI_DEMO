@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     height: 80vh;
-    gap: 10px;
+    gap: 0px;
 
   
 
@@ -92,7 +92,6 @@
     .section-two {
       flex: 3;
       background-color: #e6e9e838;
-      overflow: auto;
       padding: 20px;
       min-height: 80vh;
 
@@ -184,8 +183,8 @@ h1 {
       flex-direction: column;
 
       .section-two {
-        height: 80vh;
-        overflow: auto;
+        /*height: 80vh;
+        overflow: auto;*/
 
         .table-section {
           overflow: auto;
@@ -230,3 +229,5 @@ h1 {
     box-shadow: 2px 2px 5px #000;
   }
 }
+
+
