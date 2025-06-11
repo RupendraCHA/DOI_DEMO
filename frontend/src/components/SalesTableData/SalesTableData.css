@@ -98,7 +98,7 @@ h4 {
     left: 0;
     width: 100vw;
     height: 100vh;
-    backdrop-filter: blur(5px);
+    /*backdrop-filter: blur(5px);*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -318,4 +318,10 @@ h4{
   font-weight: bold;
   background: #e3e9f7; /* Match the sticky header background */
   border-bottom: 1px solid #ddd;
+}
+
+/* Hide the pagination controls for previous/next/page number */
+.pagination,
+.pagination-container {
+  display: none !important;
 }
