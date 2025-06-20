@@ -4,7 +4,7 @@ import "./SapDataModules.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import SalesTableData from "../../components/SalesTableData/SalesTableData";
-import FinanceTableData from "../../components/FinanceTableData/FinanceTableData";
+import FinanceTableData from "../../components/financeTableData/FinanceTableData";
 import Spinner from "../../components/spinner/spinner";
 import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
 
