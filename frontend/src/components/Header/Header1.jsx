@@ -194,8 +194,12 @@ const Header = ({
                 src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952055/logo-removebg-preview_prabm4.png"
                 className="website-logo"
               /> */}
-              <img
+              {/*<img
                 src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1750422945/DMAG_IMAGE_aggr1i.jpg"
+                className="website-logo"
+              />*/}
+              <img
+                src ="https://res.cloudinary.com/dthkbawxo/image/upload/v1750426973/dmag_n4vkpp.jpg"
                 className="website-logo"
               />
               {/* <img
