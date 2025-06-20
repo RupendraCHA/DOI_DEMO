@@ -190,8 +190,12 @@ const Header = ({
         <div className="logo-container">
           <div>
             <Link to={getRoute()} className="website-logo">
-              <img
+              {/* <img
                 src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952055/logo-removebg-preview_prabm4.png"
+                className="website-logo"
+              /> */}
+              <img
+                src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1750422945/DMAG_IMAGE_aggr1i.jpg"
                 className="website-logo"
               />
               {/* <img
