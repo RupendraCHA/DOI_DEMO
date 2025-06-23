@@ -561,7 +561,7 @@ const SalesTableData = (props) => {
                   <thead>
                     <tr>
                       <th className="header-cell">S.No</th>
-                      <th className="header-cell">Sales Document No</th>
+                      <th className="header-cell">Sales Document Number</th>
                       <th className="header-cell">Creation Date</th>
                       <th className="header-cell">Sold to Party</th>
                       <th className="header-cell">Ship to Party</th>

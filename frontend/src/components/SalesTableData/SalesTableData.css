@@ -17,23 +17,50 @@
   }
 }
 .sales-order-item-heading {
-  /* text-align: center; */
   text-decoration: underline;
   font-weight: 600;
   font-size: 22px;
   margin-bottom: 10px;
 }
-.header-cell {
-  background-color: #cfe3f7f1;
-  /* width: 200px; */
-  color: #000;
-  border: 1px solid #000;
-  font-size: 16px;
+.table-scroll-container th.header-cell,
+.table-scroll-container thead th {
+  background-color: #e3e9f7 !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  padding: 1px 3px !important;   margin: 0 !important;
+  text-align: center !important;
+  width: fit-content !important; 
 }
+.table-scroll-container td {
+  padding: 1px 3px !important; 
+  margin: 0 !important;
+  text-align: center !important;
+  width: fit-content !important; 
+  border: 1px solid #000 !important; 
+}
+
+
+.table-scroll-container table {
+  width: 100% !important; 
+  display: table !important; 
+  table-layout: auto !important; 
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+}
+
+
+.table-scroll-container.o2c-table {
+  overflow-x: auto !important; 
+  overflow-y: auto !important; 
+  max-height: 400px; 
+  width: 100%; 
+}
+
 .get-item-details-heading,
 h4 {
   font-weight: 600;
-  /* text-decoration: underline; */
   text-align: left;
 
   span {
@@ -64,12 +91,11 @@ h4 {
   padding: 2px 4px;
   outline: none;
   font-weight: 600;
-  /* width: 20%; */
   border-radius: 4px;
   border: 1px solid #000;
 }
 .billing-doc-input {
-  width: 250px;  /* Increased width for billing input */
+  width: 250px;
   padding: 2px 4px;
   outline: none;
   font-weight: 600;
@@ -77,39 +103,22 @@ h4 {
   border: 1px solid #000;
 }
 .item-table-container {
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0px;
-  padding: 20px;
-  overflow: auto;
-  border: 3px solid #0000ff;
-  border-radius: 10px;
-  overflow: auto;
-  z-index: 1;
-  position: absolute;
-  bottom: 20%;
-  left: 3%;
-  background-color: #87a6c5;
-  padding: 15px 20px; */
-
   position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /*backdrop-filter: blur(5px);*/
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    background-color: #38393a90;
-    padding: 15px 20px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  background-color: #38393a90;
+  padding: 15px 20px;
 
-    div{
-      border: 2px solid #ffffff54;
-      background-color: #a5bdda89;
-    }
+  div {
+    border: 2px solid #ffffff54;
+    background-color: #a5bdda89;
+  }
 
   .item-table-section {
     .sales-order-item-heading {
@@ -126,8 +135,6 @@ h4 {
 
     span {
       color: #000;
-      /* background-color: #000; */
-      /* color: #fff; */
       padding: 2px;
       border-radius: 2px;
     }
@@ -152,8 +159,6 @@ h4 {
 }
 .doc-date-search-container {
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
   gap: 100px;
 }
 @media (max-width: 768px) {
@@ -161,11 +166,17 @@ h4 {
     flex-direction: column;
     gap: 30px;
   }
+  .table-scroll-container th.header-cell,
+  .table-scroll-container thead th,
+  .table-scroll-container td {
+    padding: 0px 2px !important; 
+    font-size: 12px !important;
+    width: fit-content !important; 
+  }
 }
 .date-fields-container {
   display: flex;
   gap: 20px;
-  /* max-width: 700px; */
 
   .from-date-section {
     display: flex;
@@ -184,7 +195,6 @@ h4 {
     flex-direction: column;
 
     input {
-      /* font-size: 20px; */
       font-weight: 600;
       padding: 2px;
       font-size: 14px;
@@ -196,7 +206,6 @@ h4 {
   height: 20px;
   cursor: pointer;
   accent-color: #000;
-  /* accent-color: #0663f0; */
   border: 3px solid #000;
 }
 .search-date {
@@ -209,8 +218,6 @@ h4 {
   border: none;
   box-shadow: 2px 2px 5px #000;
   font-size: 18px;
-  /* min-height: 50px; */
-  /* width: 20%; */
 }
 .search-date:hover {
   background-color: #121ec7;
@@ -242,7 +249,6 @@ h4 {
 }
 .attachment-container {
   .attachment-name {
-    /* font-size: 16px; */
     margin-right: 10px;
     padding: 0px;
     margin: 0px;
@@ -250,8 +256,6 @@ h4 {
   .attachment-icon {
     width: 26px;
     height: 26px;
-    /* box-shadow: 0px 0px 2px #000; */
-    /* padding: 0px; */
   }
   .download-section {
     margin-top: 5px;
@@ -265,20 +269,17 @@ h4 {
     margin: 0;
     padding: 0;
   }
-  /* align-items: center; */
-  /* text-align: center; */
 }
 .procurement-header-item-search-section {
   display: flex;
   gap: 100px;
 }
-tbody{
-  td{
+tbody {
+  td {
     font-size: 13px;
   }
 }
-
-h4{
+h4 {
   font-size: 16px;
 }
 .search-box-container {
@@ -295,32 +296,16 @@ h4{
 }
 .table-scroll-container {
   max-height: 400px;
-  overflow: auto;
+  overflow: auto; 
   width: 100%;
 }
-
-.table-scroll-container table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
 .table-scroll-container th {
   position: sticky;
   top: 0;
-  background: #e3e9f7; /* Changed to a light blue for better visibility */
+  background: #e3e9f7;
   z-index: 2;
-  /* Optional: add a subtle shadow for better separation */
-  box-shadow: 0 2px 2px -1px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.05);
 }
-
-/* Optional: style for .header-cell if not already present */
-.header-cell {
-  font-weight: bold;
-  background: #e3e9f7; /* Match the sticky header background */
-  border-bottom: 1px solid #ddd;
-}
-
-/* Hide the pagination controls for previous/next/page number */
 .pagination,
 .pagination-container {
   display: none !important;
