@@ -15,8 +15,10 @@ import File from "./models/fileSchema.js";
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://localhost:5173'],
+    credentials: true,
+}));
 // const connOptions = {
 //   host: process.env.HOST,
 //   // port: process.env.PORT,

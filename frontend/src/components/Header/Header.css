@@ -224,3 +224,27 @@
     }
   }
 }
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.auth-buttons button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.auth-buttons button:hover {
+    background-color: #000;
+    color: #fff;
+    transform: scale(1.02);
+}

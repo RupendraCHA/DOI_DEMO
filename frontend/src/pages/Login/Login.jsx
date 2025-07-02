@@ -1,210 +1,193 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Login.css";
-
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
 import ScrollToTopButton from "../../components/ScrollToTopButton/ScrollToTopButton";
-
 import aos from "aos";
 import "aos/dist/aos.css";
-
-import { BiSolidShow } from "react-icons/bi";
-import { BiSolidHide } from "react-icons/bi";
+import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 
 const Login = () => {
-  const { url } = useContext(StoreContext);
+    const { url, setToken, setUsername } = useContext(StoreContext);
+    const [showHide, setShowHide] = useState(true);
+    const [forgotPassword, setForgotPassword] = useState(false);
+    const [loginDetails, setLoginDetails] = useState({
+        email: "",
+        password: "",
+        confirmPassword: "",
+    });
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    aos.init({ duration: 2000 });
-  }, []);
+    useEffect(() => {
+        aos.init({ duration: 2000 });
 
-  const [showHide, setShowHide] = useState(true);
+        const checkToken = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                try {
+                    const response = await axios.post(`${url}/doi/user/validateToken`, { token });
+                    if (response.data.valid) {
+                        navigate("/home");
+                    } else {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("username");
+                    }
+                } catch (error) {
+                    console.error("Token validation error:", error);
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("username");
+                }
+            }
+        };
 
-  const navigate = useNavigate();
+        checkToken();
+    }, [navigate, url]);
 
-  const [loginDetails, setLoginDetails] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
-  const [forgotPassword, setForgotPassword] = useState(false);
+    const getLoginData = (e) => {
+        const { name, value } = e.target;
+        setLoginDetails((prev) => ({ ...prev, [name]: value }));
+    };
 
-  const getLoginData = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setLoginDetails((loginDetails) => ({
-      ...loginDetails,
-      [name]: value,
-    }));
-  };
-
-  const sendLoginDetails = async (e) => {
+    const sendLoginDetails = async (e) => {
     e.preventDefault();
-    const response = await axios.post(url + "/doi/user/login", loginDetails);
-    console.log(response.data);
-    if (response.data.success === true) {
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("username", response.data.name);
-      navigate("/home");
-    } else {
-      console.log(response.data);
+    try {
+        const response = await axios.post(`${url}/doi/user/login`, loginDetails);
+        if (response.data.success) {
+            console.log("✅ Login Response:", response.data);
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("username", response.data.username || response.data.name); // ✅ FIXED LINE
+            localStorage.setItem("loginMethod", "DOI");
+            navigate("/home");
+        } else {
+            alert(response.data.message || "Login failed.");
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Error during login.");
     }
-    console.log(loginDetails);
-  };
+};
 
-  const handleForgotPassword = () => {
-    setForgotPassword(!forgotPassword);
-  };
 
-  const handleUpdatePassword = async (e) => {
-    e.preventDefault();
 
-    const response = await axios.post(
-      url + "/doi/user/updatePassword",
-      loginDetails
-    );
+    const handleForgotPassword = () => setForgotPassword(!forgotPassword);
 
-    if (response.data.success) {
-      setForgotPassword(!forgotPassword);
+    const handleUpdatePassword = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${url}/doi/user/updatePassword`, loginDetails);
+            if (response.data.success) {
+                alert("Password updated successfully. Please login.");
+                setForgotPassword(false);
+                navigate("/");
+            } else {
+                alert(response.data.message || "Password update failed.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Error updating password.");
+        }
+    };
 
-      navigate("/");
-    }
-    console.log(response.data);
-    // console.log(loginDetails);
-  };
-
-  const setShowHidePassword = () => {
-    setShowHide(!showHide);
-  };
-
-  return (
-    <div className="login-container" data-aos="zoom-in">
-      {!forgotPassword && (
-        <div className="container login-section">
-          <form onSubmit={sendLoginDetails} className="login-section-container">
-            <h1>Login</h1>
-
-            <div className="login-info-section">
-              <div>
-                <label id="email">Email<span style={{ color: "red" }}>*</span></label>
-                <br />
-                <input
-                  type="text"
-                  htmlFor="email"
-                  name="email"
-                  required
-                  placeholder="Enter Email address"
-                  onChange={getLoginData}
-                  className="input"
-                />
-              </div>
-            </div>
-            <div className="login-info-show-hide-section">
-              <div>
-                <label id="password"
-                    style={{fontWeight: "600"}}
-                
-                >Password<span style={{ color: "red" }}>*</span></label>
-                <br />
-                <div className="user-hide-show-login-container">
-                  <input
-                    type={showHide === true ? "password" : "type"}
-                    htmlFor="password"
-                    name="password"
-                    required
-                    placeholder="Enter Password"
-                    className="login-input"
-                    onChange={getLoginData}
-                  />
-                  {showHide === true ? (
-                    <BiSolidHide
-                      className="login-show-hide-icon"
-                      onClick={setShowHidePassword}
-                    />
-                  ) : (
-                    <BiSolidShow
-                      className="login-show-hide-icon"
-                      onClick={setShowHidePassword}
-                    />
-                  )}
+    return (
+        <div className="login-container" data-aos="zoom-in">
+            {!forgotPassword ? (
+                <div className="container login-section">
+                    <form onSubmit={sendLoginDetails} className="login-section-container">
+                        <h1>Login</h1>
+                        <div className="login-info-section">
+                            <div>
+                                <label id="email">Email<span style={{ color: "red" }}>*</span></label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    required
+                                    placeholder="Enter Email address"
+                                    onChange={getLoginData}
+                                    className="input"
+                                />
+                            </div>
+                        </div>
+                        <div className="login-info-show-hide-section">
+                            <div>
+                                <label id="password">Password<span style={{ color: "red" }}>*</span></label>
+                                <div className="user-hide-show-login-container">
+                                    <input
+                                        type={showHide ? "password" : "text"}
+                                        name="password"
+                                        required
+                                        placeholder="Enter Password"
+                                        className="login-input"
+                                        onChange={getLoginData}
+                                    />
+                                    {showHide ? (
+                                        <BiSolidHide className="login-show-hide-icon" onClick={() => setShowHide(!showHide)} />
+                                    ) : (
+                                        <BiSolidShow className="login-show-hide-icon" onClick={() => setShowHide(!showHide)} />
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="Register-button">
+                            <button type="submit">Login</button>
+                        </div>
+                        <div className="forgot-password">
+                            <span onClick={handleForgotPassword}>Forgot Password</span>
+                        </div>
+                        <div className="new-here">
+                            <p>
+                                New here? <Link to="/signup" className="login-link"><span>Register</span></Link>
+                            </p>
+                        </div>
+                    </form>
                 </div>
-              </div>
-            </div>
-
-            <div className="Register-button">
-              <button type="submit">Login</button>
-            </div>
-            <div className="forgot-password">
-              <span onClick={handleForgotPassword}>Forgot Password</span>
-            </div>
-            <div className="new-here">
-              <p>
-                New here ?
-                <Link to="/signup" className="login-link">
-                  <span>Register</span>
-                </Link>
-              </p>
-            </div>
-          </form>
-          {/* <a href="https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fdoi-demo-52o9.onrender.com%2Fhome">
-            Sign In Using Cognito
-          </a> */}
+            ) : (
+                <div className="change-password-container" data-aos="zoom-in">
+                    <h1>Update Your Password</h1>
+                    <form onSubmit={handleUpdatePassword} className="change-password-card">
+                        <div>
+                            <label htmlFor="email">Your Email</label>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                                className="change-password"
+                                onChange={getLoginData}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password">New Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter new password"
+                                required
+                                className="change-password"
+                                onChange={getLoginData}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                placeholder="Confirm new password"
+                                required
+                                className="change-password"
+                                onChange={getLoginData}
+                            />
+                        </div>
+                        <button type="submit" id="update-password-button">Update Password</button>
+                        <div className="go-to-login">
+                            <span onClick={handleForgotPassword}>Go to Login</span>
+                        </div>
+                    </form>
+                </div>
+            )}
+            <ScrollToTopButton />
         </div>
-      )}
-      {forgotPassword && (
-        <div className="change-password-container" data-aos="zoom-in">
-          <h1>Update Your Password</h1>
-          <form
-            onSubmit={handleUpdatePassword}
-            className="change-password-card"
-          >
-            <div>
-              <label htmlFor="email">Your Email</label>
-              <input
-                type="text"
-                name="email"
-                placeholder="Enter your email"
-                required
-                className="change-password"
-                onChange={getLoginData}
-              />
-            </div>
-            <div>
-              <label htmlFor="newPassword">New Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter new password"
-                required
-                className="change-password"
-                onChange={getLoginData}
-              />
-            </div>
-            <div>
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm new password"
-                required
-                className="change-password"
-                onChange={getLoginData}
-              />
-            </div>
-            <button type="submit" id="update-password-button">
-              Update Password
-            </button>
-            <div className="go-to-login">
-              <span onClick={handleForgotPassword}>Go to Login</span>
-            </div>
-          </form>
-        </div>
-      )}
-      <ScrollToTopButton />
-    </div>
-  );
+    );
 };
 
 export default Login;

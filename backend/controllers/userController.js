@@ -1,3 +1,5 @@
+// backend/controllers/userController.js (FINAL CLEANED FILE)
+
 import UserModel from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -46,71 +48,50 @@ export const registerUser = async (req, res) => {
 
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-      const verificationCode = Math.floor(
-        100000 + Math.random() * 900000
-      ).toString();
+      const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
       const newUser = new UserModel({
-        firstname: firstname,
-        lastname: lastname,
-        mobileNumber: mobileNumber,
-        email: email,
+        firstname,
+        lastname,
+        mobileNumber,
+        email,
         password: hashedPassword,
         confirmPassword: hashedPassword,
-        verificationCode: verificationCode,
+        verificationCode,
       });
 
-      const user = await newUser.save();
-      const token = createToken(user._id);
-      SendVerificationCode(
-        newUser.email,
-        verificationCode,
-        newUser.firstname,
-        newUser.lastname
-      );
+      await newUser.save();
+      const token = createToken(newUser._id);
+      SendVerificationCode(email, verificationCode, firstname, lastname);
 
-      const userName = `${newUser.firstname} ${newUser.lastname.slice(0, 2)}`;
-      return res
-        .status(200)
-        .json({ success: true, token, userName, verificationCode });
+      const userName = `${firstname} ${lastname.slice(0, 2)}`;
+      return res.status(200).json({ success: true, token, userName, verificationCode });
     } else {
-      return res
-        .status(400)
-        .json({ success: false, message: "Enter Valid email" });
+      return res.status(400).json({ success: false, message: "Enter Valid email" });
     }
   } catch (error) {
     console.log(error.message);
-    return res
-      .status(500)
-      .json({ success: false, message: `${error.message}` });
+    return res.status(500).json({ success: false, message: `${error.message}` });
   }
 };
 
 export const verifyEmail = async (req, res) => {
   try {
     const { userCode } = req.body;
-    const user = await UserModel.findOne({
-      verificationCode: userCode,
-    });
+    const user = await UserModel.findOne({ verificationCode: userCode });
 
-    console.log(user);
     if (!user) {
-      return res.jso({ success: false, message: "Invalid or Code Expired" });
+      return res.json({ success: false, message: "Invalid or Code Expired" });
     }
 
     user.isVerified = true;
     user.verificationCode = undefined;
-    // console.log(user);
     await user.save();
     await WelcomeEmail(user.email, user.firstname, user.lastname);
-    return res
-      .status(200)
-      .json({ success: true, message: "Email Verified Successfully" });
+    return res.status(200).json({ success: true, message: "Email Verified Successfully" });
   } catch (error) {
     console.log(`Error: ${error.message}`);
-    return res
-      .status(500)
-      .json({ success: false, message: "Internal server error" });
+    return res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
@@ -121,29 +102,25 @@ export const loginUser = async (req, res) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-      return res
-        .status(400)
-        .json({ success: false, message: "*User doesn't exist*" });
+      return res.status(400).json({ success: false, message: "*User doesn't exist*" });
     }
 
     const isMatched = await bcrypt.compare(password, user.password);
 
     if (!isMatched) {
-      return res
-        .status(400)
-        .json({ success: false, message: "*Password is Incorrect*" });
+      return res.status(400).json({ success: false, message: "*Password is Incorrect*" });
     }
 
     const token = createToken(user._id);
-    return res.json({
+    return res.status(200).json({
       success: true,
       token,
-      name: `${user.firstname} ${user.lastname}`,
+      username: `${user.firstname} ${user.lastname}`, // ✅ ensured correct key for frontend
       message: "Login Successful",
     });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: "*Error*" });
+    res.status(500).json({ success: false, message: "*Error*" });
   }
 };
 
@@ -156,19 +133,14 @@ export const updatePassword = async (req, res) => {
     if (user) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-
       user.password = hashedPassword;
-
       await user.save();
-      return res
-        .status(200)
-        .json({ success: true, message: "Password Updated Successfully!" });
+      return res.status(200).json({ success: true, message: "Password Updated Successfully!" });
     } else {
-      return res
-        .status(400)
-        .json({ success: false, message: "Email doesn't exist!" });
+      return res.status(400).json({ success: false, message: "Email doesn't exist!" });
     }
   } catch (error) {
     console.log(`Error: ${error.message}`);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };

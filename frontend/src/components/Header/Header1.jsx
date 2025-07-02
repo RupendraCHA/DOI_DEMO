@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import "./Header.css";
 import { FaUserTie } from "react-icons/fa";
-
 import aos from "aos";
 import "aos/dist/aos.css";
 import { StoreContext } from "../../context/StoreContext";
@@ -18,10 +16,9 @@ const Header = ({
   financeText = "",
   tabText = "",
 }) => {
-  // const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenActive, setIsOpenActive] = useState(false);
-  const [username, setUserName] = useState("");
+  const [username, setUserName] = useState("Guest");
 
   const {
     sapSalesModuleText,
@@ -48,7 +45,7 @@ const Header = ({
   };
 
   useEffect(() => {
-    startTheServer()
+    startTheServer();
     aos.init({ duration: 2000 });
 
     if (tabText === "contact") {
@@ -58,32 +55,33 @@ const Header = ({
     const jwtToken = localStorage.getItem("token");
     const userName = localStorage.getItem("username");
 
-    if (jwtToken) {
+    if (jwtToken && userName) {
       setUserName(userName);
     }
   }, []);
 
   const navigate = useNavigate();
 
-
   const handleTabClick = () => {
     setIsOpen(!isOpen);
     setIsOpenActive(!isOpenActive);
   };
-  // console.log(message);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    navigate("/");
-    // const signInLinkUrl =
-    //   "https://ap-south-1nmrg96rqu.auth.ap-south-1.amazoncognito.com/login?client_id=1esfsaanp9ncgms41753687pd8&redirect_uri=https%3A%2F%2Fdoi-demo-52o9.onrender.com%2Fhome&response_type=code&scope=email+openid+phone";
+    const loginMethod = localStorage.getItem("loginMethod");
+    localStorage.clear();
+    sessionStorage.clear();
 
-    // window.location.href = signInLinkUrl;
-    // navigate("/login");
+    if (loginMethod === "SSO") {
+      window.location.href = "http://localhost:3000"; // adjust to your SSO URL
+    } else {
+      navigate("/");
+    }
   };
 
   const getButton = () => {
+    const isLoggedIn = !!localStorage.getItem("token");
+
     if (message === "Register" || message === "signup") {
       return (
         <Link to="/">
@@ -96,37 +94,22 @@ const Header = ({
           <button>Register</button>
         </Link>
       );
-    } else if (message === "modules") {
+    } else if (
+      message === "modules" ||
+      message === "" ||
+      message === "contact"
+    ) {
       return (
         <>
           <div className="user-icon-section">
             <FaUserTie className="user-icon-symbol" />
-            <p className="user-name">{username}</p>
+            <p className="user-name">{username || "Guest"}</p>
           </div>
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      );
-    } else if (message === "" || message === "contact") {
-      return (
-        <>
-          <div className="user-icon-section">
-            <FaUserTie className="user-icon-symbol" />
-            <p className="user-name">{username}</p>
-          </div>
-          <button onClick={handleLogout}>Logout</button>
-        </>
-      );
-    } else if (message === "contact") {
-      return (
-        <>
-          <div className="user-icon-section">
-            <FaUserTie className="user-icon-symbol" />
-            <p className="user-name">{username}</p>
-          </div>
-          <button onClick={handleLogout}>Logout</button>
+          {isLoggedIn && <button onClick={handleLogout}>Logout</button>}
         </>
       );
     }
+
     return (
       <>
         <Link to="/">
@@ -157,7 +140,6 @@ const Header = ({
     setSalesTable("");
     navigate("/sapDataModules");
   };
-
   const showFinanceModuleData = () => {
     setMenu("finance");
     setSapMaterialsModuleText(false);
@@ -170,14 +152,10 @@ const Header = ({
   };
 
   const getRoute = () => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
+    return token ? "/home" : "/";
+  };
 
-    if (token) {
-      return "/home"
-    } else {
-      return "/"
-    }
-  }
   return (
     <div className="header-container" data-aos="zoom-in">
       <nav
@@ -190,31 +168,17 @@ const Header = ({
         <div className="logo-container">
           <div>
             <Link to={getRoute()} className="website-logo">
-              {/* <img
-                src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1724952055/logo-removebg-preview_prabm4.png"
-                className="website-logo"
-              /> */}
-              {/*<img
-                src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1750422945/DMAG_IMAGE_aggr1i.jpg"
-                className="website-logo"
-              />*/}
               <img
-                src ="https://res.cloudinary.com/dthkbawxo/image/upload/v1750426973/dmag_n4vkpp.jpg"
+                src="https://res.cloudinary.com/dthkbawxo/image/upload/v1750426973/dmag_n4vkpp.jpg"
                 className="website-logo"
               />
-              {/* <img
-                src="https://res.cloudinary.com/dvxkeeeqs/image/upload/v1727239316/vs_syjood.jpg"
-                className="website-logo"
-              /> */}
-              {/* <h3>Data Archiving & Decommissioning Demo</h3> */}
             </Link>
           </div>
         </div>
+
         {message === "" ? (
           <div className="tabs-bar-section">
-            <ul
-              className={isOpen ? "tabs-container active1" : "tabs-container"}
-            >
+            <ul className={isOpen ? "tabs-container active1" : "tabs-container"}>
               <li>
                 <a
                   href="/home"
@@ -276,21 +240,20 @@ const Header = ({
         ) : (
           ""
         )}
+
         {message === "modules" ? (
           <div className="tabs-bar-section" style={{ marginRight: "200px" }}>
-            <ul
-              className={isOpen ? "tabs-container active1" : "tabs-container"}
-            >
+            <ul className={isOpen ? "tabs-container active1" : "tabs-container"}>
               <li>
                 <Link
                   to="/sapDataModules"
-                  href=""
                   onClick={showModuleData}
                   className={menu === "sales" ? "active" : "tab"}
                 >
                   ORDER TO CASH
                 </Link>
-              </li>              <li>
+              </li>
+              <li>
                 <Link
                   to="/sapDataModules"
                   onClick={showMaterialModuleData}
@@ -298,7 +261,8 @@ const Header = ({
                 >
                   PROCUREMENT
                 </Link>
-              </li>              <li>
+              </li>
+              <li>
                 <Link
                   to="/sapDataModules"
                   onClick={showFinanceModuleData}
@@ -319,6 +283,7 @@ const Header = ({
         ) : (
           ""
         )}
+
         <div className="user-icon-container">{getButton()}</div>
       </nav>
     </div>
