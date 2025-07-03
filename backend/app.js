@@ -18,6 +18,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
   "http://localhost:5174",
+  "https://hanelytics-reporting-frontend.onrender.com",
   "https://hanelytics-reporting-backend.onrender.com", // 🔁 Replace with your real deployed frontend domain
 ];
 
