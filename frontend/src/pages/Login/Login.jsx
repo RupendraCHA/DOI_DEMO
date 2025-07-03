@@ -26,7 +26,7 @@ const Login = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.post(`${url}/doi/user/validateToken`, { token });
+                    await axios.post(`${url}/doi/user/validateToken`, { token }, { withCredentials: true });
                     if (response.data.valid) {
                         navigate("/home");
                     } else {
@@ -52,7 +52,10 @@ const Login = () => {
     const sendLoginDetails = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post(`${url}/doi/user/login`, loginDetails);
+        const response = await axios.post(`${url}/doi/user/login`, loginDetails, {
+            withCredentials: true,
+        });
+
         if (response.data.success) {
             console.log("✅ Login Response:", response.data);
             localStorage.setItem("token", response.data.token);
@@ -75,7 +78,8 @@ const Login = () => {
     const handleUpdatePassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${url}/doi/user/updatePassword`, loginDetails);
+            await axios.post(`${url}/doi/user/updatePassword`, loginDetails, { withCredentials: true });
+
             if (response.data.success) {
                 alert("Password updated successfully. Please login.");
                 setForgotPassword(false);
