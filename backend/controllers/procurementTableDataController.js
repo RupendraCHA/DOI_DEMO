@@ -17,6 +17,25 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
     clientConn.connect();
     const result = await clientConn.exec("SELECT * FROM EKKO");
 
+    // console.log(result);
+    const a = result.slice(0, 3);
+    const todayDate = new Date();
+    // console.log("Today's Date: ", todayDate);
+    const formatDate = todayDate.toISOString().split("T")[0];
+    const updatedDate = formatDate.replace(/-/g, "");
+
+    let latestInfo = [];
+    result.map((object) => {
+      if (object.AEDAT === updatedDate) {
+        latestInfo.push(object.AEDAT);
+      }
+    });
+
+    const b = a + latestInfo;
+    console.log("B", b.length);
+
+    console.log("Latest Records Dates: ", latestInfo);
+
     const mongoURI = process.env.MONGO_URI;
     const client = new MongoClient(mongoURI);
     client.connect();
@@ -26,6 +45,274 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
 
     const allDocuments = await collection.find().toArray();
 
+    let archivedDocuments = [];
+    let pastDocuments = [];
+    result.map((object) => {
+      
+      const randomNumber = Math.floor(Math.random() * allDocuments.length);
+      if (object.AEDAT === updatedDate){
+        let arcObj = {
+          ...object,
+          fileName: allDocuments[randomNumber].name,
+          UUID: allDocuments[randomNumber]._id,
+        }
+        archivedDocuments.push(arcObj);
+      }
+      else{
+        if (object.EBELN === "4400002345") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[0].name,
+          UUID: allDocuments[0]._id,
+        })
+      }
+      else if (object.EBELN === "4400002278") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[2].name,
+          UUID: allDocuments[2]._id,
+        })
+      } else if (object.EBELN === "4400002279") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[3].name,
+          UUID: allDocuments[3]._id,
+        })
+      } else if (object.EBELN === "4400002280") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[4].name,
+          UUID: allDocuments[4]._id,
+        })
+      } else if (object.EBELN === "4400002281") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[5].name,
+          UUID: allDocuments[5]._id,
+        })
+      } else if (object.EBELN === "4400002282") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[6].name,
+          UUID: allDocuments[6]._id,
+        })
+      } else if (object.EBELN === "4400002283") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[7].name,
+          UUID: allDocuments[7]._id,
+        })
+      } else if (object.EBELN === "4400002284") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[8].name,
+          UUID: allDocuments[8]._id,
+        })
+      } else if (object.EBELN === "4400002286") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[9].name,
+          UUID: allDocuments[9]._id,
+        })
+      } else if (object.EBELN === "4400002287") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[10].name,
+          UUID: allDocuments[10]._id,
+        })
+      } else if (object.EBELN === "4400002288") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[11].name,
+          UUID: allDocuments[11]._id,
+        })
+      } else if (object.EBELN === "4400002289") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[12].name,
+          UUID: allDocuments[12]._id,
+        })
+      } else if (object.EBELN === "4400002290") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[13].name,
+          UUID: allDocuments[13]._id,
+        })
+      } else if (object.EBELN === "4400002291") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[14].name,
+          UUID: allDocuments[14]._id,
+        })
+      } else if (object.EBELN === "4400002292") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[15].name,
+          UUID: allDocuments[15]._id,
+        })
+      } else if (object.EBELN === "4400002293") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[16].name,
+          UUID: allDocuments[16]._id,
+        })
+      } else if (object.EBELN === "4400002294") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[17].name,
+          UUID: allDocuments[17]._id,
+        })
+      } else if (object.EBELN === "4400002295") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[18].name,
+          UUID: allDocuments[18]._id,
+        })
+      } else if (object.EBELN === "4400002296") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[19].name,
+          UUID: allDocuments[19]._id,
+        })
+      } else if (object.EBELN === "4400002297") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[20].name,
+          UUID: allDocuments[20]._id,
+        })
+      } else if (object.EBELN === "4400002298") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[21].name,
+          UUID: allDocuments[21]._id,
+        })
+      } else if (object.EBELN === "4400002299") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[22].name,
+          UUID: allDocuments[22]._id,
+        })
+      } else if (object.EBELN === "4400002300") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[23].name,
+          UUID: allDocuments[23]._id,
+        })
+      } else if (object.EBELN === "4400002301") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[24].name,
+          UUID: allDocuments[24]._id,
+        })
+      } else if (object.EBELN === "4400002302") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[25].name,
+          UUID: allDocuments[25]._id,
+        })
+      } else if (object.EBELN === "4400002303") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[26].name,
+          UUID: allDocuments[26]._id,
+        })
+      } else if (object.EBELN === "4400002304") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[27].name,
+          UUID: allDocuments[27]._id,
+        })
+      } else if (object.EBELN === "4400002305") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[28].name,
+          UUID: allDocuments[28]._id,
+        })
+      } else if (object.EBELN === "4400002306") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[29].name,
+          UUID: allDocuments[29]._id,
+        })
+      } else if (object.EBELN === "4400002307") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[30].name,
+          UUID: allDocuments[30]._id,
+        })
+      } else if (object.EBELN === "4400002308") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[31].name,
+          UUID: allDocuments[31]._id,
+        })
+      } else if (object.EBELN === "4400002309") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[32].name,
+          UUID: allDocuments[32]._id,
+        })
+      } else if (object.EBELN === "4400002310") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[33].name,
+          UUID: allDocuments[33]._id,
+        })
+      } else if (object.EBELN === "4400002363") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[34].name,
+          UUID: allDocuments[34]._id,
+        })
+      } else if (object.EBELN === "4400002364") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[35].name,
+          UUID: allDocuments[35]._id,
+        })
+      } else if (object.EBELN === "4400002365") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[36].name,
+          UUID: allDocuments[36]._id,
+        })
+      } else if (object.EBELN === "4400002467") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[38].name,
+          UUID: allDocuments[38]._id,
+        })
+      } else if (object.EBELN === "4400002370") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[39].name,
+          UUID: allDocuments[39]._id,
+        })
+      } else if (object.EBELN === "4400002371") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[40].name,
+          UUID: allDocuments[40]._id,
+        })
+      } else if (object.EBELN === "4400002372") {
+        pastDocuments.push({
+          ...object,
+          fileName: allDocuments[41].name,
+          UUID: allDocuments[41]._id,
+        })
+      }else{
+        pastDocuments.push(object);
+      }
+      
+      }
+    })
+
+    // console.log("Archived Documents: ", archivedDocuments.length);
+    // console.log("Past Documents: ", pastDocuments.length);
+
+    const totalDocuments = pastDocuments.concat(archivedDocuments);
+    // console.log("Total Documents: ", totalDocuments.length);
+
     const updatedArray1 = result.map((object, index) => {
       if (object.EBELN === "4400002345") {
         return {
@@ -33,13 +320,8 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
           fileName: allDocuments[0].name,
           UUID: allDocuments[0]._id,
         };
-      } else if (object.EBELN === "4400002349") {
-        return {
-          ...object,
-          fileName: allDocuments[1].name,
-          UUID: allDocuments[1]._id,
-        };
-      } else if (object.EBELN === "4400002278") {
+      }
+      else if (object.EBELN === "4400002278") {
         return {
           ...object,
           fileName: allDocuments[2].name,
@@ -249,28 +531,25 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
           fileName: allDocuments[36].name,
           UUID: allDocuments[36]._id,
         };
-      }
-      else if (object.EBELN === "4400002467") {
+      } else if (object.EBELN === "4400002467") {
         return {
           ...object,
           fileName: allDocuments[38].name,
           UUID: allDocuments[38]._id,
         };
-      }
-      else if (object.EBELN === "4400002370") {
+      } else if (object.EBELN === "4400002370") {
         return {
           ...object,
           fileName: allDocuments[39].name,
           UUID: allDocuments[39]._id,
         };
-      }else if (object.EBELN === "4400002371") {
+      } else if (object.EBELN === "4400002371") {
         return {
           ...object,
           fileName: allDocuments[40].name,
           UUID: allDocuments[40]._id,
         };
-      }
-      else if (object.EBELN === "4400002372") {
+      } else if (object.EBELN === "4400002372") {
         return {
           ...object,
           fileName: allDocuments[41].name,
@@ -279,9 +558,10 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
       }
       return object;
     });
+
     await clientConn.disconnect();
-     
-    res.status(200).json({ success: true, data: updatedArray1 });
+
+    res.status(200).json({ success: true, data: totalDocuments });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching data");
@@ -767,27 +1047,25 @@ export const getProcurementItemData = async (req, res) => {
           fileName: allDocuments[36].name,
           UUID: allDocuments[36]._id,
         };
-      }
-      else if (object.EBELN === "4400002467") {
+      } else if (object.EBELN === "4400002467") {
         return {
           ...object,
           fileName: allDocuments[38].name,
           UUID: allDocuments[38]._id,
         };
-      }else if (object.EBELN === "4400002370") {
+      } else if (object.EBELN === "4400002370") {
         return {
           ...object,
           fileName: allDocuments[39].name,
           UUID: allDocuments[39]._id,
         };
-      }else if (object.EBELN === "4400002371") {
+      } else if (object.EBELN === "4400002371") {
         return {
           ...object,
           fileName: allDocuments[40].name,
           UUID: allDocuments[40]._id,
         };
-      }
-      else if (object.EBELN === "4400002372") {
+      } else if (object.EBELN === "4400002372") {
         return {
           ...object,
           fileName: allDocuments[41].name,
