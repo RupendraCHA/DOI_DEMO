@@ -14,9 +14,26 @@ const app = express();
 app.use(express.json());
 
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://hanelytics-reporting-frontend.onrender.com",
+  "https://hanelytics-reporting-backend.onrender.com",
+  "https://doi-demo.onrender.com",
+  "https://doi-demo-52o9.onrender.com" // 🔁 Replace with your real deployed frontend domain
+];
 
-
-app.use(cors());
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
 // ✅ Enable preflight OPTIONS requests for all routes
 // app.options("*", cors());
