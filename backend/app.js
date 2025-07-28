@@ -13,28 +13,13 @@ import File from "./models/fileSchema.js";
 const app = express();
 app.use(express.json());
 
-// ✅ Allow both local and hosted frontends (including credentials)
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "https://hanelytics-reporting-frontend.onrender.com",
-  "https://hanelytics-reporting-backend.onrender.com", // 🔁 Replace with your real deployed frontend domain
-];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+
+
+app.use(cors());
 
 // ✅ Enable preflight OPTIONS requests for all routes
-app.options("*", cors());
+// app.options("*", cors());
 
 // 🔁 Routes
 app.use("/doi/user", userRouter);
