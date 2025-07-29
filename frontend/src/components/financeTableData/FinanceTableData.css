@@ -7,17 +7,21 @@
   border-radius: 16px;
   border: 2px solid #000;
   box-shadow: 2px 2px 8px #00000030;
-  margin: 8px 0;
+  margin: 0px;
   padding: 8px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 32px;
+  height: 60px;
+  margin-bottom: 5px;
+  padding-top: 30px;
 }
 
 .search-type-container {
   display: flex;
   gap: 100px;
+  font-size: 12px;
 }
 
 @media (max-width: 768px) {
@@ -41,16 +45,16 @@
 }
 
 .doc-input {
-  padding: 2px 4px;
   outline: none;
   font-weight: 600;
   border-radius: 4px;
   border: 1px solid #000;
+  height: 20px;
 }
 
 .doc-search-icon {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border: 1px solid #000;
   border-radius: 4px;
   cursor: pointer;
@@ -62,13 +66,13 @@
 
 .date-fields-container {
   display: flex;
-  gap: 20px;
+  gap: 5px;
 }
 
 .from-date-section,
 .to-date-section {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: column;
 }
 
@@ -77,10 +81,11 @@
   font-weight: 600;
   padding: 2px;
   font-size: 14px;
+  gap: 5px;
 }
 
 .date-search-icon {
-  margin-top: 38px;
+  margin-top: 25px;
 }
 
 @media (max-width: 768px) {
@@ -94,11 +99,12 @@
 }
 
 .radio-button {
-  width: 20px;
+  width: 15px;
   height: 20px;
   cursor: pointer;
   accent-color: #000;
   border: 3px solid #000;
+  padding-bottom: 10px;
 }
 
 .table-scroll-container {
@@ -222,4 +228,87 @@ h4 span {
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+}
+
+/* Pagination and header controls styling for SalesTableData */
+.header-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.header-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-controls-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.header-controls-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-controls-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.records-dropdown {
+  padding: 3px 3px;
+  border-radius: 6px;
+  border: 1px solid black;
+  font-size: 12px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Custom pagination button styles for page numbers */
+.pagination-controls button.page {
+  border: none;
+  padding: 0px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  box-shadow: 2px 2px 2px #000;
+  cursor: pointer;
+  background-color: #8080806b;
+  margin: 0 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.pagination-controls button.active-page {
+  background-color: #1d58c5;
+}
+.pagination-controls button.inactive-page {
+  background-color: #2423236b;
+}
+.pagination-controls button:disabled {
+  background: #e0e0e0;
+  color: #888;
+  cursor: not-allowed;
 }

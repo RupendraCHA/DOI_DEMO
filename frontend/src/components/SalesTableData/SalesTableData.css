@@ -185,7 +185,7 @@ h4 {
 
   .from-date-section {
     display: flex;
-    gap: 10px;
+    gap: 0px;
     flex-direction: column;
 
     input {
@@ -196,7 +196,7 @@ h4 {
   }
   .to-date-section {
     display: flex;
-    gap: 10px;
+    gap: 0px;
     flex-direction: column;
 
     input {
@@ -207,8 +207,8 @@ h4 {
   }
 }
 .radio-button {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
   accent-color: #000;
   border: 3px solid #000;
@@ -267,7 +267,7 @@ h4 {
     font-size: 13px;
     margin: 0;
     padding: 0;
-
+    white-space: nowrap;
   }
 
   .attachment-icon {
@@ -332,6 +332,110 @@ h4 {
 .pagination-container {
   display: none !important;
 }
+
+/* Pagination and header controls styling for SalesTableData */
+.header-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.header-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-controls-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.header-controls-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-controls-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.records-dropdown {
+  padding: 3px 3px;
+  border-radius: 6px;
+  border: 1px solid black;
+  font-size: 12px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Custom pagination button styles for page numbers */
+.pagination-controls button.page {
+  border: none;
+  padding: 0px 6px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  box-shadow: 2px 2px 2px #000;
+  cursor: pointer;
+  background-color: #8080806b;
+  margin: 0 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.pagination-controls button.active-page {
+  background-color: #1d58c5;
+}
+.pagination-controls button.inactive-page {
+  background-color: #3e3b3b6b;
+}
+.pagination-controls button:disabled {
+  background: #e0e0e0;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Apply flex layout only to the attachments column
+.table-scroll-container th.attachment-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2px 4px !important;
+  gap: 4px;
+  white-space: nowrap !important;
+  width: 100% !important;
+  border: none !important;
+  position: ;
+}
+
+
+/* Optional: size tweak for the icon *
+.table-scroll-container th.attachment-header .attachment-icon {
+  width: 18px;
+  height: 18px;
+}
+
 
 /*.spinner-container p {
   font-size: 10px !important;

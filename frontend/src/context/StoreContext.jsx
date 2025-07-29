@@ -6,7 +6,7 @@ const StoreContextProvider = (props) => {
   // let url = "http://localhost:5000";
   // let url = "https://doi-demo.onrender.com";
 
-  let url = "https://hanelytics-reporting-backend.onrender.com" // Vsoft
+    let url = "https://hanelytics-reporting-backend.onrender.com" // Vsoft
 
   const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
@@ -14,7 +14,7 @@ const StoreContextProvider = (props) => {
   const [sapMaterialsModuleText, setSapMaterialsModuleText] = useState(false);
   const [sapIntroText, setSapIntroText] = useState(true);
   const [menu, setMenu] = useState("home");
-  const [isLoading1, setLoading1] = useState(false);
+  const [isLoading1, setLoading1] = useState(false);  
   const [isLoading, setLoading] = useState(false);
   const [salesTable, setSalesTable] = useState("");
   const [homeText, setHomeText] = useState(true);

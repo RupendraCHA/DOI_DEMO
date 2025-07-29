@@ -8,17 +8,9 @@ import { IoSearch } from "react-icons/io5";
 import Spinner from "../spinner/spinner";
 import { FaFileAlt } from "react-icons/fa";
 
-const SalesTableData = (props) => {
-  const {
-    url,
-    loadProcurementData,
-    setLoadProcurementData,
-    setLoading1,
-    isLoading,
-    loadSalesData,
-    setLoadSalesData,
-  } = useContext(StoreContext);
 
+const SalesTableData = (props) => {
+  // Destructure props at the very top
   let {
     salesTableName,
     salesTableData,
@@ -29,11 +21,12 @@ const SalesTableData = (props) => {
     getTableData,
     setHomeText1,
   } = props;
-  // console.log("Rupendra Retrieved Data:", salesTableData[0]);
-  // console.log(salesTableName);
 
-  const tableRecords = [...salesTableData];
-
+  // All useState hooks at the top
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage, setRecordsPerPage] = useState(40);
+  const [itemCurrentPage, setItemCurrentPage] = useState(1);
+  const [itemRecordsPerPage, setItemRecordsPerPage] = useState(40);
   const [documentNum, setDocumentNum] = useState("");
   const [itemData, setItemData] = useState([]);
   const [showItemData, setShowItemData] = useState(false);
@@ -42,6 +35,104 @@ const SalesTableData = (props) => {
   const [endingDate, setEndingDate] = useState("");
   // 20250113
   const [searchType, setSearchType] = useState("Document");
+  const [fileUrl, setFileUrl] = useState("");
+  const [downloadScroll, setDownloadScroll] = useState("");
+
+  // Helper for paginated data
+  const paginate = (data, page, perPage) => {
+    const start = (page - 1) * perPage;
+    return data.slice(start, start + perPage);
+  };
+
+  // Reset page when data changes
+  useEffect(() => { setCurrentPage(1); }, [salesTableData]);
+  useEffect(() => { setItemCurrentPage(1); }, [itemData]);
+
+  // Use paginated data for rendering
+  const paginatedSalesTableData = paginate(salesTableData, currentPage, recordsPerPage);
+  const paginatedItemData = paginate(itemData, itemCurrentPage, itemRecordsPerPage);
+
+  // Pagination controls
+  const renderPagination = (total, page, setPage, perPage) => {
+    const totalPages = Math.ceil(total / perPage);
+    if (totalPages <= 1) return null;
+    const pageButtons = [];
+    const maxButtons = 5; // Show up to 5 page numbers, with ellipsis if needed
+    let startPage = Math.max(1, page - 2);
+    let endPage = Math.min(totalPages, page + 2);
+
+    if (endPage - startPage < maxButtons - 1) {
+      if (startPage === 1) {
+        endPage = Math.min(totalPages, startPage + maxButtons - 1);
+      } else if (endPage === totalPages) {
+        startPage = Math.max(1, endPage - maxButtons + 1);
+      }
+    }
+
+
+    // Prev button
+    pageButtons.push(
+      <button key="prev" onClick={() => setPage(page - 1)} disabled={page === 1} className="page inactive-page">&lt; Prev</button>
+    );
+
+    // First page and ellipsis
+    if (startPage > 1) {
+      pageButtons.push(
+        <button key={1} onClick={() => setPage(1)} className={`page ${page === 1 ? 'active-page' : 'inactive-page'}`}>1</button>
+      );
+      if (startPage > 2) {
+        pageButtons.push(<span key="start-ellipsis">...</span>);
+      }
+    }
+
+    // Page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      pageButtons.push(
+        <button
+          key={i}
+          onClick={() => setPage(i)}
+          className={`page ${page === i ? 'active-page' : 'inactive-page'}`}
+        >
+          {i}
+        </button>
+      );
+    }
+
+    // Last page and ellipsis
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        pageButtons.push(<span key="end-ellipsis">...</span>);
+      }
+      pageButtons.push(
+        <button key={totalPages} onClick={() => setPage(totalPages)} className={`page ${page === totalPages ? 'active-page' : 'inactive-page'}`}>{totalPages}</button>
+      );
+    }
+
+    // Next button
+    pageButtons.push(
+      <button key="next" onClick={() => setPage(page + 1)} disabled={page === totalPages} className="page inactive-page">Next &gt;</button>
+    );
+
+    return (
+      <div className="pagination-controls" style={{marginTop: 8, marginBottom: 8, textAlign: 'center'}}>
+        {pageButtons}
+      </div>
+    );
+  };
+  const {
+    url,
+    loadProcurementData,
+    setLoadProcurementData,
+    setLoading1,
+    isLoading,
+    loadSalesData,
+    setLoadSalesData,
+  } = useContext(StoreContext);
+
+
+
+  // 20230819
+  // 20250113
 
   const convertToDate = (rawDate) => {
     if (!rawDate || typeof rawDate !== "string" || rawDate.length < 8) {
@@ -280,8 +371,7 @@ const SalesTableData = (props) => {
     }
   };
 
-  const [fileUrl, setFileUrl] = useState("");
-  const [downloadScroll, setDownloadScroll] = useState("");
+
 
   const handleDownload = async (fileName, fileId) => {
     setDownloadScroll(fileId);
@@ -496,9 +586,23 @@ const SalesTableData = (props) => {
           {showItemData && (
             <div className="item-table-container">
               <div className="item-table-section">
-                <h3 className="sales-order-item-heading">
-                  Sales Order Item Data
-                </h3>
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                  <h3 className="sales-order-item-heading" style={{margin: 0}}>
+                    Sales Order Item Data
+                  </h3>
+                  <div>
+                    <label htmlFor="itemRecordsPerPage">Records per page: </label>
+                    <select
+                      id="itemRecordsPerPage"
+                      value={itemRecordsPerPage}
+                      onChange={e => { setItemRecordsPerPage(Number(e.target.value)); setItemCurrentPage(1); }}
+                    >
+                      {[10, 20, 40, 80, 100].map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
                 <div>
                   <div className="item-doc-details">
                     Order Item Details for document Number -
@@ -509,57 +613,50 @@ const SalesTableData = (props) => {
                   </div>
                 </div>
                 <div className="table-scroll-container">
-                <table>
-                  <thead>
-                    <tr>
-                      <th className="header-cell">S.No</th>
-                      <th className="header-cell">Sales Document Number</th>
-                      <th className="header-cell">Item Number</th>
-                      <th className="header-cell">Material</th>
-                      <th className="header-cell">Material Description</th>
-                      <th className="header-cell">Order Quantity</th>
-                      <th className="header-cell">Schedule Line Quantity</th>
-                      <th className="header-cell">Delivery Date</th>
-                      <th className="header-cell">Net price</th>
-                      <th className="header-cell">Net Value</th>
-                      <th className="header-cell">Sale Unit</th>
-                      <th className="header-cell">Plant</th>
-                      <th className="header-cell">Item Category</th>
-                      <th className="header-cell">Billing Relevance</th>
-                      {/* <th className="header-cell">Gross Weight</th>
-                      <th className="header-cell">Net Weight</th>
-                      <th className="header-cell">Plant</th>
-                      <th className="header-cell">Shipping Point</th>
-                      <th className="header-cell">Storage Location</th> */}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {itemData.map((record, index) => {
-                      return (
-                        <tr key={index + 1}>
-                          <td>{index + 1}</td>
-                          <td> {record.VBELN}</td>
-                          <td> {record.POSNR}</td>
-                          <td>{record.MATNR}</td>
-                          <td>{record.ARKTX}</td>
-                          <td>{record.KWMENG}</td>
-                          <td>{record.KBMENG}</td>
-                          <td>{convertToDate(record.VDATU_ANA)}</td>
-                          <td>{record.NETPR}</td>
-                          <td>{record.NETWR}</td>
-                          <td>{record.VRKME}</td>
-                          <td>{record.WERKS}</td>
-                          <td>{record.PSTYV}</td>
-                          <td>{record.FKREL}</td>
-                          {/* <td>{record.NTGEW}</td>
-                          <td>{record.WERKS}</td>
-                          <td>{record.VSTEL}</td>
-                          <td>{record.LGORT}</td> */}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th className="header-cell">S.No</th>
+                        <th className="header-cell">Sales Document Number</th>
+                        <th className="header-cell">Item Number</th>
+                        <th className="header-cell">Material</th>
+                        <th className="header-cell">Material Description</th>
+                        <th className="header-cell">Order Quantity</th>
+                        <th className="header-cell">Schedule Line Quantity</th>
+                        <th className="header-cell">Delivery Date</th>
+                        <th className="header-cell">Net price</th>
+                        <th className="header-cell">Net Value</th>
+                        <th className="header-cell">Sale Unit</th>
+                        <th className="header-cell">Plant</th>
+                        <th className="header-cell">Item Category</th>
+                        <th className="header-cell">Billing Relevance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {paginatedItemData.map((record, index) => {
+                        const globalIndex = (itemCurrentPage - 1) * itemRecordsPerPage + index + 1;
+                        return (
+                          <tr key={globalIndex}>
+                            <td>{globalIndex}</td>
+                            <td> {record.VBELN}</td>
+                            <td> {record.POSNR}</td>
+                            <td>{record.MATNR}</td>
+                            <td>{record.ARKTX}</td>
+                            <td>{record.KWMENG}</td>
+                            <td>{record.KBMENG}</td>
+                            <td>{convertToDate(record.VDATU_ANA)}</td>
+                            <td>{record.NETPR}</td>
+                            <td>{record.NETWR}</td>
+                            <td>{record.VRKME}</td>
+                            <td>{record.WERKS}</td>
+                            <td>{record.PSTYV}</td>
+                            <td>{record.FKREL}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                  {renderPagination(itemData.length, itemCurrentPage, setItemCurrentPage, itemRecordsPerPage)}
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <button
@@ -587,20 +684,40 @@ const SalesTableData = (props) => {
           )}
           {!loadSalesData && (
             <>
-              <h4>
-                Sales Order Header Table Data
-                {searchType === "Document" && searchType !== "Date"
-                  ? salesTableData.length > 0
-                    ? " - " + salesTableData.length + " records"
-                    : salesTableData.length
-                  : ""}
-                <span>
-                  {searchType === "Date"
-                    ? ` from ${getDateFormat(startingDate)} To
-            ${getDateFormat(endingDate)} are ${salesTableData.length}`
-                    : ""}
-                </span>
-              </h4>
+              <div className="header-controls-row">
+                <div className="header-controls-center" style={{justifyContent: 'flex-start', gap: '1.5rem'}}>
+                  <h4 className="header-controls-title" style={{marginRight: '1rem', display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                    <span>Sales Order Header Table Data
+                      {searchType === "Document" && searchType !== "Date"
+                        ? salesTableData.length > 0
+                          ? " - " + salesTableData.length + " records"
+                          : salesTableData.length
+                        : ""}
+                      <span>
+                        {searchType === "Date"
+                          ? ` from ${getDateFormat(startingDate)} To ${getDateFormat(endingDate)} are ${salesTableData.length}`
+                          : ""}
+                      </span>
+                    </span>
+                    <label htmlFor="recordsPerPage" style={{margin: 0, marginLeft: '1.5rem'}}>Records per page:</label>
+                    <select
+                      id="recordsPerPage"
+                      className="records-dropdown"
+                      value={recordsPerPage}
+                      onChange={e => { setRecordsPerPage(Number(e.target.value)); setCurrentPage(1); }}
+                    >
+                      {[10, 20, 40, 80, 100].map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </h4>
+                </div>
+                <div className="header-controls-right">
+                  <div className="pagination-controls">
+                    {renderPagination(salesTableData.length, currentPage, setCurrentPage, recordsPerPage)}
+                  </div>
+                </div>
+              </div>
               <div className="table-scroll-container">
                 <table style={{ width: "200%" }}>
                   <thead>
@@ -622,40 +739,39 @@ const SalesTableData = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {salesTableData.map((record, index) => {
-                    return (
-                      <tr key={index + 2}>
-                        <td>{index + 1}</td>
-                        <td
-                          key={record.VBELN}
-                          className="document-number"
-                          onClick={() =>
-                            getTheSalesOrderItemDetails(record.VBELN)
-                          }
-                        >
-                          {record.VBELN}
-                        </td>
-                        <td>{convertToDate(record.ERDAT)}</td>
-                        <td>{record.KUNNR}</td>
-                        <td>{record.KUNWE_ANA}</td>
-                        <td>{convertToDate(record.AUDAT)}</td>
-                        <td>{convertToDate(record.VDATU)}</td>
-                        <td>{record.VKORG}</td>
-                        <td>{record.VTWEG}</td>
-                        <td>{record.SPART}</td>
-                        <td>{record.NETWR}</td>
-                        <td>{record.WAERK}</td>
-                        <td>{record.ZTERM}</td>
-                        <td>{record.GBSTK}</td>
-                        {/* <td>{record.AUGRU}</td> */}
-                        {/* <td>{record.VBTYP}</td>
-                    <td>{record.AUART}</td>
-                    <td>{record.VSBED}</td> */}
-                      </tr>
-                    );
-                  })}
+                    {paginatedSalesTableData.map((record, index) => {
+                      const globalIndex = (currentPage - 1) * recordsPerPage + index + 1;
+                      return (
+                        <tr key={globalIndex}>
+                          <td>{globalIndex}</td>
+                          <td
+                            key={record.VBELN}
+                            className="document-number"
+                            onClick={() => getTheSalesOrderItemDetails(record.VBELN)}
+                          >
+                            {record.VBELN}
+                          </td>
+                          <td>{convertToDate(record.ERDAT)}</td>
+                          <td>{record.KUNNR}</td>
+                          <td>{record.KUNWE_ANA}</td>
+                          <td>{convertToDate(record.AUDAT)}</td>
+                          <td>{convertToDate(record.VDATU)}</td>
+                          <td>{record.VKORG}</td>
+                          <td>{record.VTWEG}</td>
+                          <td>{record.SPART}</td>
+                          <td>{record.NETWR}</td>
+                          <td>{record.WAERK}</td>
+                          <td>{record.ZTERM}</td>
+                          <td>{record.GBSTK}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
+                {/* Pagination controls at the bottom (optional, for usability) */}
+                <div style={{marginTop: '10px'}}>
+                  {renderPagination(salesTableData.length, currentPage, setCurrentPage, recordsPerPage)}
+                </div>
               </div>
             </>
           )}
@@ -1679,20 +1795,40 @@ const SalesTableData = (props) => {
           )}
           {!loadProcurementData && (
             <>
-              <h4>
-                Procurement Header Table
-                {searchType === "Document" && searchType !== "Date"
-                  ? salesTableData.length > 0
-                    ? " - " + salesTableData.length + " records"
-                    : salesTableData.length
-                  : ""}
-                <span>
-                  {searchType === "Date"
-                    ? ` from ${getDateFormat(startingDate)} To 
-                      ${getDateFormat(endingDate)} are ${salesTableData.length}`
-                    : ""}
-                </span>
-              </h4>
+              <div className="header-controls-row">
+                <div className="header-controls-center" style={{justifyContent: 'flex-start', gap: '1.5rem'}}>
+                  <h4 className="header-controls-title" style={{marginRight: '1rem', display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                    <span>Procurement Header Table
+                      {searchType === "Document" && searchType !== "Date"
+                        ? salesTableData.length > 0
+                          ? " - " + salesTableData.length + " records"
+                          : salesTableData.length
+                        : ""}
+                      <span>
+                        {searchType === "Date"
+                          ? ` from ${getDateFormat(startingDate)} To ${getDateFormat(endingDate)} are ${salesTableData.length}`
+                          : ""}
+                      </span>
+                    </span>
+                    <label htmlFor="procRecordsPerPage" style={{margin: 0, marginLeft: '1.5rem'}}>Records per page:</label>
+                    <select
+                      id="procRecordsPerPage"
+                      className="records-dropdown"
+                      value={recordsPerPage}
+                      onChange={e => { setRecordsPerPage(Number(e.target.value)); setCurrentPage(1); }}
+                    >
+                      {[10, 20, 40, 80, 100].map(opt => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                  </h4>
+                </div>
+                <div className="header-controls-right">
+                  <div className="pagination-controls">
+                    {renderPagination(salesTableData.length, currentPage, setCurrentPage, recordsPerPage)}
+                  </div>
+                </div>
+              </div>
               <div className="table-scroll-container">
                 <table
                   style={{ width: "100%" }}
@@ -1708,22 +1844,18 @@ const SalesTableData = (props) => {
                       <th className="header-cell">Document Category</th>
                       <th className="header-cell">Purchasing Organization</th>
                       <th className="header-cell">Last Item Number</th>
-                      <th className="header-cell">
-                        <p className="attachment-name">
-                          Attachments
-                          <FaFileAlt
-                            style={{ marginLeft: "5px" }}
-                            className="attachment-icon"
-                          />
-                        </p>
+                      <th className="header-cell attachment-header">
+                        Attachments
+                        <FaFileAlt className="attachment-icon" />
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {salesTableData.map((record, index) => {
+                    {paginatedSalesTableData.map((record, index) => {
+                      const globalIndex = (currentPage - 1) * recordsPerPage + index + 1;
                       return (
-                        <tr key={index + 6}>
-                          <td>{index + 1}</td>
+                        <tr key={globalIndex}>
+                          <td>{globalIndex}</td>
                           <td
                             key={record.EBELN}
                             className="document-number"
@@ -1740,12 +1872,15 @@ const SalesTableData = (props) => {
                           <td>{record.EKORG}</td>
                           <td>{record.LPONR}</td>
                           <td>{getAttachment(record.fileName, record.UUID)}</td>
-                          {/* <td>{`${record.fileName} ${record.UUID}`}</td> */}
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
+                {/* Pagination controls at the bottom */}
+                <div style={{marginTop: '10px'}}>
+                  {renderPagination(salesTableData.length, currentPage, setCurrentPage, recordsPerPage)}
+                </div>
               </div>
             </>
           )}

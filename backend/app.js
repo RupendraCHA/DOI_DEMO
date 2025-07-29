@@ -38,13 +38,13 @@ app.use(cors({
 // ✅ Enable preflight OPTIONS requests for all routes
 // app.options("*", cors());
 
-// 🔁 Routes
+// Routes
 app.use("/doi/user", userRouter);
 app.use("/doi/sales", salesRouter);
 app.use("/doi/procurement", procurementRouter);
 app.use("/doi/finance", financeRouter);
 
-// 🔁 File upload
+// File upload
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
@@ -88,7 +88,7 @@ app.get("/file/:id", async (req, res) => {
   }
 });
 
-// 🔁 Home route
+// Home route
 app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -119,10 +119,10 @@ app.get("/", (req, res) => {
   `);
 });
 
-// 🔁 DB & Start Server
+
 const port = process.env.DB_PORT || 5000;
 connectDB();
 
 app.listen(port, () => {
-  console.log(`🚀 Server running at http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
