@@ -27,7 +27,7 @@
   background-color: #e3e9f7 !important;
   color: #000 !important;
   border: 1px solid #000 !important;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: bold !important;
   padding: 1px 3px !important;   margin: 0 !important;
   text-align: center !important;
@@ -117,13 +117,18 @@ h4 {
 
   div {
     border: 2px solid #ffffff54;
-    background-color: #a5bdda89;
+    /*background-color: #a5bdda89;*/
+    background-color: white;
+    color: black;
+    
   }
 
   .item-table-section {
     .sales-order-item-heading {
-      color: #fff;
-      padding: 10px;
+      color: black;
+      padding: 0px;
+      background-color: #e3e9ef;
+
     }
   }
 
@@ -142,7 +147,7 @@ h4 {
 
   .close-item-data-button {
     padding: 4px 16px;
-    margin-top: 10px;
+    margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #000;
     font-weight: bold;
@@ -153,9 +158,9 @@ h4 {
   }
 }
 .item-doc-details {
-  background-color: gray;
+  /*background-color: gray;*/
   color: #fff;
-  padding: 4px 12px;
+  padding: 0px;
 }
 .doc-date-search-container {
   display: flex;
@@ -248,18 +253,30 @@ h4 {
   }
 }
 .attachment-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  
+
   .attachment-name {
-    margin-right: 10px;
-    padding: 0px;
-    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap: 5px;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
   }
+
   .attachment-icon {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
   }
   .download-section {
-    margin-top: 5px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
   .download-section:hover {
     color: #008000;
@@ -270,6 +287,9 @@ h4 {
     padding: 0;
   }
 }
+
+
+
 .procurement-header-item-search-section {
   display: flex;
   gap: 100px;

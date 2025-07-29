@@ -19,6 +19,7 @@
       width: 100%;
       margin: 0 auto;
       /* height: 60vh; */
+      background-color: #f0f8ff;
 
       h1 {
         text-align: center;
@@ -47,7 +48,7 @@
             font-size: 18px;
             font-weight: 600;
             border: 1px solid #808080;
-            background-color: #f0f8ff8e;
+            background-color: white;
           }
         }
       }
@@ -170,6 +171,7 @@
     color: red;
     font-weight: bold;
     font-size: 16px;
+    
   }
 
   h1 {
@@ -214,14 +216,14 @@
   width: 97%;
   padding: 0px 6px;
   border-radius: 4px;
-  background-color: #f0f8ff8e;
+  background-color: white;
 
   .hide-unhide-password {
     /* border: 1px solid #fff; */
     outline: none;
     padding: 6px 12px;
     border-radius: 4px;
-    background-color: #f0f8ff8e;
+    background-color: white;
     cursor: pointer;
     font-weight: 600;
   }

@@ -153,9 +153,10 @@ h4 span {
 .finance-doc-heading {
   text-decoration: underline;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 20px;
   margin-bottom: 10px;
-  color: #fff;
+  color: black;
+  background-color: #e3e9f7
 }
 
 .item-table-container {
@@ -176,18 +177,18 @@ h4 span {
 
 .item-table-container div {
   border: 2px solid #ffffff54;
-  background-color: #a5bdda89;
-  padding: 15px;
+  /*background-color: #a5bdda89;*/
+  padding: 0px;
   border-radius: 10px;
   max-height: 80vh;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
 }
 
 .item-doc-details {
   background-color: gray;
   color: #fff;
   padding: 4px 12px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 }
 

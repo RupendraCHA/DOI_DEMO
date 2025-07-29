@@ -59,7 +59,7 @@ const Login = () => {
         if (response.data.success) {
             console.log("✅ Login Response:", response.data);
             localStorage.setItem("token", response.data.token);
-            localStorage.setItem("username", response.data.username || response.data.name); // ✅ FIXED LINE
+            localStorage.setItem("username", response.data.username || response.data.name); 
             localStorage.setItem("loginMethod", "DOI");
             navigate("/home");
         } else {
@@ -114,7 +114,7 @@ const Login = () => {
                         </div>
                         <div className="login-info-show-hide-section">
                             <div>
-                                <label id="password">Password<span style={{ color: "red" }}>*</span></label>
+                                <label id="password" style={ {fontSize: "14px", fontWeight: "600"} }>Password<span style={{ color: "red" }}>*</span></label>
                                 <div className="user-hide-show-login-container">
                                     <input
                                         type={showHide ? "password" : "text"}

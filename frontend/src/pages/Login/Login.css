@@ -3,23 +3,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 
   .login-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 10px;
+    /*padding: 30px 10px;*/
+    
 
     .login-section-container {
       border: 1px solid #80808094;
       border-radius: 20px;
-      padding: 20px;
-      width: 50%;
+      /*padding: 20px;*/
+      width: 45%;
+      background-color: #f0f8ff;
 
       h1 {
         text-align: center;
         font-family: "Bree Serif";
-        margin-bottom: 5vh;
+        margin-bottom: 0px;
       }
 
       .login-info-section {
@@ -27,21 +30,21 @@
 
         div {
           label {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 0px;
           }
 
           .input {
-            padding: 10px;
+            padding: 5px;
             border-radius: 4px;
             outline: none;
             cursor: pointer;
             border: 1px solid #808080;
-            background-color: #f0f8ff8e;
+            background-color: white;
             width: 100%;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 12px;
           }
         }
       }
@@ -71,7 +74,7 @@
       margin-left: 20px;
       margin-top: 20px;
       p {
-        font-size: 16px;
+        font-size: 14px;
 
         span {
           color: #2c67b0;
@@ -90,22 +93,22 @@
     border: 1px solid #808080;
     align-items: center;
     border-radius: 4px;
-    background-color: #f0f8ff8e;
+    background-color: white;
 
     .login-input {
-      padding: 10px;
+      padding: 5px;
       outline: none;
       cursor: pointer;
-      background: transparent;
+      background: white;
       width: 100%;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 12px;
       border: none;
     }
     .login-show-hide-icon {
       font-size: 24px;
-      padding: 4px;
-      margin-right: 3px;
+      padding: 0px;
+      margin-right: 0px;
       background: transparent;
       border-radius: 50%;
       cursor: pointer;
@@ -126,9 +129,9 @@
   cursor: pointer;
 
   span {
-    background-color: #fff;
+    background-color: #f0f8ff;
     color: black;
-    margin-top: 8px;
+    margin-top: 0px;
     padding: 2px 10px;
     border-radius: 4px;
   }
@@ -172,12 +175,12 @@
       flex-direction: column;
 
       label {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
       }
 
       input {
-        font-size: 18px;
+        font-size: 12px;
         padding: 10px;
         border-radius: 6px;
         border: 1px solid gray;
@@ -193,7 +196,7 @@
       background-color: #8080801c;
       outline: none;
       padding: 6px 40px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       border-radius: 18px;
       margin-top: 20px;
@@ -214,7 +217,7 @@
       color: black;
       width: 100px;
       text-align: center;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       border-radius: 3px;
     }

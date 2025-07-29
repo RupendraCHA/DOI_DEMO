@@ -206,28 +206,26 @@ const Header = ({
                   About Us
                 </a>
               </li>
-              <Link to="/support">
-                <li>
-                  <a
-                    href="#"
-                    onClick={() => setMenu("support")}
-                    className={menu === "support" ? "active" : "tab"}
-                  >
-                    Support
-                  </a>
-                </li>
-              </Link>
-              <Link to="/charts">
-                <li>
-                  <a
-                    href="#"
-                    onClick={() => setMenu("reports")}
-                    className={menu === "reports" ? "active" : "tab"}
-                  >
-                    Reports
-                  </a>
-                </li>
-              </Link>
+              <li>
+                <Link
+                  to="/support"
+                  onClick={() => setMenu("support")}
+                  className={menu === "support" ? "active" : "tab"}
+                >
+                  Support
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/charts"
+                  onClick={() => setMenu("reports")}
+                  className={menu === "reports" ? "active" : "tab"}
+                >
+                  Reports
+                </Link>
+              </li>
+
             </ul>
             <div className="menu-icon-section" onClick={handleTabClick}>
               {isOpenActive === false ? (

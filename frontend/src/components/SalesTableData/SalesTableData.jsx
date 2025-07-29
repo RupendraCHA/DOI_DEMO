@@ -357,8 +357,8 @@ const SalesTableData = (props) => {
                   className="radio-button"
                   name="process"
                   value="Document"
-                  checked={searchType === "Document" ? "checked" : ""}
-                  onClick={getSearchType}
+                  checked={searchType === "Document"}
+                  onChange={getSearchType}
                 />
                 <div>
                   <h4 className="get-item-details-heading">
@@ -387,9 +387,9 @@ const SalesTableData = (props) => {
                     id="select1"
                     name="process"
                     value="Date"
-                    checked={searchType === "Date" ? "checked" : ""}
+                    checked={searchType === "Date"}
+                    onChange={getSearchType}
                     className="radio-button"
-                    onClick={getSearchType}
                   />
                   <div className="date-fields-container">
                     <div className="from-date-section">
@@ -792,8 +792,8 @@ const SalesTableData = (props) => {
                     className="radio-button"
                     name="process"
                     value="Document"
-                    checked={searchType === "Document" ? "checked" : ""}
-                    onClick={getSearchType}
+                    checked={searchType === "Document"}
+                    onChange={getSearchType}
                   />
                   <div>
                     <h4>Get Sales Delivery Item Details</h4>
@@ -818,9 +818,9 @@ const SalesTableData = (props) => {
                       id="select2"
                       name="process" 
                       value="Date"
-                      checked={searchType === "Date" ? "checked" : ""}
+                      checked={searchType === "Date"}
+                      onChange={getSearchType}
                       className="radio-button"
-                      onClick={getSearchType}
                     />
                     <div className="date-fields-container">
                       <div className="from-date-section">
@@ -1367,8 +1367,8 @@ const SalesTableData = (props) => {
                     className="radio-button"
                     name="process"
                     value="Document"
-                    checked={searchType === "Document" ? "checked" : ""}
-                    onClick={getSearchType}
+                    checked={searchType === "Document"}
+                    onChange={getSearchType}
                   />
                   <div>
                     <h4>Get Procurement Item Details</h4>
@@ -1393,9 +1393,9 @@ const SalesTableData = (props) => {
                       id="select2"
                       name="process"
                       value="Date"
-                      checked={searchType === "Date" ? "checked" : ""}
+                      checked={searchType === "Date"}
+                      onChange={getSearchType}
                       className="radio-button"
-                      onClick={getSearchType}
                     />
                     <div className="date-fields-container">
                       <div className="from-date-section">
