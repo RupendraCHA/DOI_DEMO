@@ -1,12 +1,13 @@
 import React from "react";
-import "./spinner.css"; // Import CSS for styling
+import "./spinner.css";
 
-// Spinner component
 const Spinner = ({
   size = "40px",
   color = "#3498db",
   message = "Processing your request, one moment please...",
 }) => {
+  const isDownloading = message.trim().toLowerCase() === "downloading"; 
+
   return (
     <div className="spinner-container">
       <div
@@ -17,7 +18,15 @@ const Spinner = ({
           borderTopColor: color,
         }}
       ></div>
-      <p>{message}</p>
+      <p
+        style={{
+          fontSize: isDownloading ? "10px" : "16px", 
+          color: "#000",
+          margin: "4px 0",
+        }}
+      >
+        {message}
+      </p>
     </div>
   );
 };

@@ -116,9 +116,9 @@ h4 {
   padding: 15px 20px;
 
   div {
-    border: 2px solid #ffffff54;
+    /*border: 2px solid #ffffff54;*/
     /*background-color: #a5bdda89;*/
-    background-color: white;
+    background-color: #e3e9f7;
     color: black;
     
   }
@@ -267,11 +267,13 @@ h4 {
     font-size: 13px;
     margin: 0;
     padding: 0;
+
   }
 
   .attachment-icon {
     width: 20px;
     height: 20px;
+    font-size: 5px;
   }
   .download-section {
     cursor: pointer;
@@ -330,3 +332,42 @@ h4 {
 .pagination-container {
   display: none !important;
 }
+
+/*.spinner-container p {
+  font-size: 10px !important;
+}*/
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-attachments-header {
+  padding: 4px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.custom-attachments-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-attachments-wrapper svg {
+  width: 16px !important;
+  height: 16px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+
+
+
+

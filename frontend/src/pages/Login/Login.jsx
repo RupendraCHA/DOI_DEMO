@@ -135,14 +135,17 @@ const Login = () => {
                         <div className="Register-button">
                             <button type="submit">Login</button>
                         </div>
-                        <div className="forgot-password">
-                            <span onClick={handleForgotPassword}>Forgot Password</span>
-                        </div>
-                        <div className="new-here">
-                            <p>
-                                New here? <Link to="/signup" className="login-link"><span>Register</span></Link>
-                            </p>
-                        </div>
+                        <div className="login-bottom-links">
+    <div className="new-here">
+        <p>
+            New here? <Link to="/signup" className="login-link"><span>Register</span></Link>
+        </p>
+    </div>
+    <div className="forgot-password">
+        <span onClick={handleForgotPassword}>Forgot Password</span>
+    </div>
+</div>
+
                     </form>
                 </div>
             ) : (

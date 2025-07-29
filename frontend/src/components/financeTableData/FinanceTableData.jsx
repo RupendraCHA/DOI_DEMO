@@ -9,8 +9,8 @@ const FinanceTableData = ({ financeTableName, financeTableData, setHomeText, set
   const { url } = useContext(StoreContext);
   const [documentNum, setDocumentNum] = useState("");
   const [searchType, setSearchType] = useState("Document");
-  const [startingDate, setStartingDate] = useState("20230401"); // Default: April 1, 2023
-  const [endingDate, setEndingDate] = useState("20250606"); // Default: Today, June 6, 2025
+  const [startingDate, setStartingDate] = useState(""); // Default: April 1, 2023
+  const [endingDate, setEndingDate] = useState(""); // Default: Today, June 6, 2025
   const [isLoading, setIsLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
   const [showItemData, setShowItemData] = useState(false);
@@ -187,8 +187,21 @@ const FinanceTableData = ({ financeTableName, financeTableData, setHomeText, set
                 />
                 <IoSearch
                   className="doc-search-icon"
-                  onClick={() => getDocumentDetails(documentNum)}
+                  onClick={() => {
+                    if (searchType !== "Document") {
+                      alert("Please select 'Document' search option.");
+                      return;
+                    }
+
+                    if (!documentNum?.trim()) {
+                      alert("Please enter a Document Number.");
+                      return;
+                    }
+
+                    getDocumentDetails(documentNum);
+                  }}
                 />
+
               </span>
             </div>
           </div>
@@ -242,8 +255,29 @@ const FinanceTableData = ({ financeTableName, financeTableData, setHomeText, set
                 </div>
                 <IoSearch
                   className="doc-search-icon date-search-icon"
-                  onClick={getDataBetweenDates}
+                  onClick={() => {
+                    if (searchType !== "Date") {
+                      alert("Please select 'Date Range' search option.");
+                      return;
+                    }
+
+                    const trimmedFrom = startingDate?.trim?.() || "";
+                    const trimmedTo = endingDate?.trim?.() || "";
+
+                    if (!trimmedFrom || !trimmedTo) {
+                      alert("Please select both From Date and To Date.");
+                      return;
+                    }
+
+                    if (new Date(trimmedFrom) > new Date(trimmedTo)) {
+                      alert("From Date cannot be after To Date.");
+                      return;
+                    }
+
+                    getDataBetweenDates();
+                  }}
                 />
+
               </div>
             </div>
           </div>

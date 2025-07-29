@@ -37,9 +37,9 @@ const SalesTableData = (props) => {
   const [documentNum, setDocumentNum] = useState("");
   const [itemData, setItemData] = useState([]);
   const [showItemData, setShowItemData] = useState(false);
-  const [startingDate, setStartingDate] = useState("2023-08-19");
+  const [startingDate, setStartingDate] = useState("");
   // 20230819
-  const [endingDate, setEndingDate] = useState("2025-01-16");
+  const [endingDate, setEndingDate] = useState("");
   // 20250113
   const [searchType, setSearchType] = useState("Document");
 
@@ -328,15 +328,31 @@ const SalesTableData = (props) => {
           >
             <FaFileAlt className="attachment-icon" />
             {downloadScroll === fileId && (
-              <div>
-                <Spinner
-                  size="15px"
-                  // color="#000"
-                  color="#00308F"
-                  message="Downloading"
-                />
-              </div>
-            )}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "4px",
+                height: "100%",
+              }}
+            >
+              <div
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  border: "2px solid #00308F",
+                  borderTop: "2px solid transparent",
+                  borderRadius: "50%",
+                  animation: "spin 0.6s linear infinite",
+                }}
+              ></div>
+              <span style={{ fontSize: "10px", color: "#00308F", fontWeight: 600 }}>
+                Downloading...
+              </span>
+            </div>
+          )}
+
           </div>
         </div>
       );
@@ -374,9 +390,19 @@ const SalesTableData = (props) => {
                     />
                     <IoSearch
                       className="doc-search-icon"
-                      onClick={() => getTheSalesOrderItemDetails(documentNum)}
-                      // onClick={() => getItemDetails(documentNum)}
+                      onClick={() => {
+                        if (searchType !== "Document") {
+                          alert("Please select 'Get Sales Order Item Details'.");
+                          return;
+                        }
+                        if (!documentNum || documentNum.trim() === "") {
+                          alert("Please enter a Document Number.");
+                          return;
+                        }
+                        getTheSalesOrderItemDetails(documentNum);
+                      }}
                     />
+
                   </div>
                 </div>
               </div>
@@ -430,9 +456,28 @@ const SalesTableData = (props) => {
                       />
                     </div>
                     <IoSearch
-                      // className="search-date"
                       className="doc-search-icon date-search-icon"
-                      onClick={getDataBetweenDates}
+                      onClick={() => {
+                        if (searchType !== "Date") {
+                          alert("Please select 'Date Range' search option.");
+                          return;
+                        }
+
+                        const start = startingDate?.trim();
+                        const end = endingDate?.trim();
+
+                        if (!start || !end) {
+                          alert("Please select both From Date and To Date.");
+                          return;
+                        }
+
+                        if (new Date(start) > new Date(end)) {
+                          alert("From Date cannot be after To Date.");
+                          return;
+                        }
+
+                        getDataBetweenDates();
+                      }}
                     />
                   </div>
                 </div>
@@ -631,7 +676,17 @@ const SalesTableData = (props) => {
                 />
                 <IoSearch
                   className="doc-search-icon"
-                  onClick={() => getTheSalesOrderItemDetails(documentNum)}
+                  onClick={() => {
+                    if (searchType !== "Document") {
+                      alert("Please select 'Get Sales Order Item Details'.");
+                      return;
+                    }
+                    if (!documentNum || documentNum.trim() === "") {
+                      alert("Please enter a Document Number.");
+                      return;
+                    }
+                    getTheSalesOrderItemDetails(documentNum);
+                  }}
                 />
               </span>
             </div>
@@ -784,7 +839,7 @@ const SalesTableData = (props) => {
         <>
           <div className="search-box-container">
             <div className="search-icon-container">
-              <div className="doc-date-search-container">
+              <div className="doc-date-search-container">  
                 <div className="doc-date-section">
                   <input
                     type="radio"
@@ -806,17 +861,27 @@ const SalesTableData = (props) => {
                       />
                       <IoSearch
                         className="doc-search-icon"
-                        onClick={() => getTheSalesDeliveryItemDetails(documentNum)}
+                        onClick={() => {
+                          if (searchType !== "Document") {
+                            alert("Please select 'Document' search option.");
+                            return;
+                          }
+                          if (!documentNum?.trim()) {
+                            alert("Please enter a Delivery Number.");
+                            return;
+                          }
+                          getTheSalesDeliveryItemDetails(documentNum);
+                        }}
                       />
                     </span>
                   </div>
-                </div>
+                </div>               
                 <div>
                   <div className="process-button">
                     <input
                       type="radio"
                       id="select2"
-                      name="process" 
+                      name="process"
                       value="Date"
                       checked={searchType === "Date"}
                       onChange={getSearchType}
@@ -825,10 +890,7 @@ const SalesTableData = (props) => {
                     <div className="date-fields-container">
                       <div className="from-date-section">
                         <label
-                          style={{
-                            fontWeight: "600",
-                            fontSize: "16px",
-                          }}
+                          style={{ fontWeight: "600", fontSize: "16px" }}
                           htmlFor="fromDate"
                         >
                           From Date
@@ -843,10 +905,7 @@ const SalesTableData = (props) => {
                       </div>
                       <div className="to-date-section">
                         <label
-                          style={{
-                            fontWeight: "600",
-                            fontSize: "16px",
-                          }}
+                          style={{ fontWeight: "600", fontSize: "16px" }}
                           htmlFor="toDate"
                         >
                           To Date
@@ -861,7 +920,21 @@ const SalesTableData = (props) => {
                       </div>
                       <IoSearch
                         className="doc-search-icon date-search-icon"
-                        onClick={getDataBetweenDates}
+                        onClick={() => {
+                          if (searchType !== "Date") {
+                            alert("Please select 'Date Range' search option.");
+                            return;
+                          }
+                          if (!startingDate || !endingDate) {
+                            alert("Please select both From Date and To Date.");
+                            return;
+                          }
+                          if (new Date(startingDate) > new Date(endingDate)) {
+                            alert("From Date cannot be after To Date.");
+                            return;
+                          }
+                          getDataBetweenDates();
+                        }}
                       />
                     </div>
                   </div>
@@ -869,6 +942,7 @@ const SalesTableData = (props) => {
               </div>
             </div>
           </div>
+
           {showItemData && (
             <div className="item-table-container">
               <div className="item-table-section">
@@ -970,7 +1044,8 @@ const SalesTableData = (props) => {
                     <tr>
                       <th className="header-cell">S.No</th>
                       <th className="header-cell">Delivery Number</th>
-                      <th className="header-cell">Shipping Point</th>                      <th className="header-cell">Sales Organization</th>
+                      <th className="header-cell">Shipping Point</th>                      
+                      <th className="header-cell">Sales Organization</th>
                       <th className="header-cell">Delivery Type</th>
                       <th className="header-cell">Goods Issued Date</th>
                       <th className="header-cell">Inco Terms1</th>
@@ -1020,7 +1095,9 @@ const SalesTableData = (props) => {
       {salesTableName === "vbrk" && (
         <>
           <div className="search-box-container">
-            <div className="search-icon-container">              <div>                <h4>Get Sales Billing Item Details</h4>
+            <div className="search-icon-container">
+              <div>
+                <h4>Get Sales Billing Item Details</h4>
                 <span className="doc-search-container">
                   <input
                     type="search"
@@ -1030,8 +1107,21 @@ const SalesTableData = (props) => {
                   />
                   <IoSearch
                     className="doc-search-icon"
-                    onClick={() => getTheSalesBillingItemDetails(documentNum)}
+                    onClick={() => {
+                      if (searchType !== "Document") {
+                        alert("Please select 'Document' search option.");
+                        return;
+                      }
+
+                      if (!documentNum?.trim()) {
+                        alert("Please enter a Billing Document Number.");
+                        return;
+                      }
+
+                      getTheSalesBillingItemDetails(documentNum);
+                    }}
                   />
+
                 </span>
               </div>
             </div>
@@ -1199,8 +1289,21 @@ const SalesTableData = (props) => {
                 />
                 <IoSearch
                   className="doc-search-icon"
-                  onClick={() => getTheSalesBillingItemDetails(documentNum)}
+                  onClick={() => {
+                    if (searchType !== "Document") {
+                      alert("Please select 'Document' search option.");
+                      return;
+                    }
+
+                    if (!documentNum?.trim()) {
+                      alert("Please enter a Billing Document Number.");
+                      return;
+                    }
+
+                    getTheSalesBillingItemDetails(documentNum);
+                  }}
                 />
+
               </span>
             </div>
             {/* <div>
@@ -1381,8 +1484,21 @@ const SalesTableData = (props) => {
                       />
                       <IoSearch
                         className="doc-search-icon"
-                        onClick={() => getProcurementItemTableData(documentNum)}
+                        onClick={() => {
+                          if (searchType !== "Document") {
+                            alert("Please select 'Document' search option.");
+                            return;
+                          }
+
+                          if (!documentNum?.trim()) {
+                            alert("Please enter a Procurement Document Number.");
+                            return;
+                          }
+
+                          getProcurementItemTableData(documentNum);
+                        }}
                       />
+
                     </span>
                   </div>
                 </div>
@@ -1436,8 +1552,26 @@ const SalesTableData = (props) => {
                       </div>
                       <IoSearch
                         className="doc-search-icon date-search-icon"
-                        onClick={getDataBetweenDates}
+                        onClick={() => {
+                          if (searchType !== "Date") {
+                            alert("Please select 'Date' search option.");
+                            return;
+                          }
+
+                          if (!startingDate?.trim() || !endingDate?.trim()) {
+                            alert("Please select both From Date and To Date.");
+                            return;
+                          }
+
+                          if (new Date(startingDate) > new Date(endingDate)) {
+                            alert("From Date cannot be after To Date.");
+                            return;
+                          }
+
+                          getDataBetweenDates();
+                        }}
                       />
+
                     </div>
                   </div>
                 </div>
@@ -1476,15 +1610,14 @@ const SalesTableData = (props) => {
                       <th className="header-cell">Procedure (Pricing,..)</th>
                       <th className="header-cell">Document Type</th>
                       <th className="header-cell">Country/Region</th>
-                      <th className="header-cell">
-                        <p className="attachment-name">
-                          Attachments
-                          <FaFileAlt
-                            style={{ marginLeft: "5px" }}
-                            className="attachment-icon"
-                          />
-                        </p>
-                      </th>
+                      <th style={{ padding: "4px", textAlign: "center", verticalAlign: "middle" }}>
+  <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "6px", whiteSpace: "nowrap" }}>
+    <span style={{ fontWeight: 600 }}>Attachments</span>
+    <FaFileAlt style={{ width: "16px", height: "16px", verticalAlign: "middle" }} />
+  </div>
+</th>
+
+
 
                       {/* <th className="header-cell">Account Assignment</th> */}
                       {/* <th className="header-cell">Attachment</th> */}
@@ -1633,8 +1766,21 @@ const SalesTableData = (props) => {
                   />
                   <IoSearch
                     className="doc-search-icon"
-                    onClick={() => getProcurementItemTableEKPOData(documentNum)}
+                    onClick={() => {
+                      if (searchType !== "Document") {
+                        alert("Please select 'Document' search option.");
+                        return;
+                      }
+
+                      if (!documentNum?.trim()) {
+                        alert("Please enter a Procurement Document Number.");
+                        return;
+                      }
+
+                      getProcurementItemTableEKPOData(documentNum);
+                    }}
                   />
+
                 </span>
               </div>
             </div>
