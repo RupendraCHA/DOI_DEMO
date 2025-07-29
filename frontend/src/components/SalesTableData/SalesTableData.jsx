@@ -410,7 +410,7 @@ const SalesTableData = (props) => {
     if (fileName) {
       return (
         <div className="attachment-container">
-          <p className="attachment-name">{fileName}</p>
+          {/* <p className="attachment-name">{fileName}</p> */}
 
           <div
             onClick={() => handleDownload(fileName, fileId)}
@@ -418,34 +418,20 @@ const SalesTableData = (props) => {
           >
             <FaFileAlt className="attachment-icon" />
             {downloadScroll === fileId && (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "4px",
-                height: "100%",
-              }}
-            >
-              <div
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  border: "2px solid #00308F",
-                  borderTop: "2px solid transparent",
-                  borderRadius: "50%",
-                  animation: "spin 0.6s linear infinite",
-                }}
-              ></div>
-              <span style={{ fontSize: "10px", color: "#00308F", fontWeight: 600 }}>
-                Downloading...
-              </span>
-            </div>
-          )}
-
+                <Spinner
+                // style={{ fontSize: "12px" }}
+                  size="10px"
+                  // color="#000"
+                  color="#00308F"
+                  message="..."
+                />
+            )}
           </div>
+          
         </div>
       );
+    }else{
+      return "N/A"
     }
   };
 
@@ -1726,14 +1712,15 @@ const SalesTableData = (props) => {
                       <th className="header-cell">Procedure (Pricing,..)</th>
                       <th className="header-cell">Document Type</th>
                       <th className="header-cell">Country/Region</th>
-                      <th style={{ padding: "4px", textAlign: "center", verticalAlign: "middle" }}>
-  <div style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "6px", whiteSpace: "nowrap" }}>
-    <span style={{ fontWeight: 600 }}>Attachments</span>
-    <FaFileAlt style={{ width: "16px", height: "16px", verticalAlign: "middle" }} />
-  </div>
-</th>
-
-
+                      <th className="header-cell">
+                        <p className="attachment-name">
+                          Attachments
+                          {/* <FaFileAlt
+                            style={{ marginLeft: "5px" }}
+                            className="attachment-icon"
+                          /> */}
+                        </p>
+                      </th>
 
                       {/* <th className="header-cell">Account Assignment</th> */}
                       {/* <th className="header-cell">Attachment</th> */}
@@ -1844,9 +1831,16 @@ const SalesTableData = (props) => {
                       <th className="header-cell">Document Category</th>
                       <th className="header-cell">Purchasing Organization</th>
                       <th className="header-cell">Last Item Number</th>
-                      <th className="header-cell attachment-header">
+                      <th className="header-cell">
                         Attachments
-                        <FaFileAlt className="attachment-icon" />
+                        
+                        {/* <p className="attachment-name">
+                          Attachments
+                          <FaFileAlt
+                            style={{ marginLeft: "5px" }}
+                            className="attachment-icon"
+                          />
+                        </p> */}
                       </th>
                     </tr>
                   </thead>

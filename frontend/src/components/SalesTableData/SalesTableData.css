@@ -260,10 +260,10 @@ h4 {
   
 
   .attachment-name {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center; 
-    gap: 5px;
+    justify-content: center;  */
+    /* gap: 5px; */
     font-size: 13px;
     margin: 0;
     padding: 0;
@@ -274,12 +274,13 @@ h4 {
     width: 20px;
     height: 20px;
     font-size: 5px;
+    margin: 3px;
   }
-  .download-section {
+  /* .download-section {
     cursor: pointer;
     display: flex;
     align-items: center;
-  }
+  } */
   .download-section:hover {
     color: #008000;
     transition: all ease-in-out 0.3s;

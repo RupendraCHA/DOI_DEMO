@@ -51,12 +51,15 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
     let archivedDocuments = [];
     let pastDocuments = [];
     result.map((object) => {
-      const randomNumber = Math.floor(Math.random() * allDocuments.length);
+      
+      const randomNumber = Math.floor(Math.random() * 2);
+      // const randomNumber1 = Math.floor(Math.random() * 5);
+      // console.log("Random Number: ", randomNumber);
       if (object.AEDAT === updatedDate) {
         let arcObj = {
           ...object,
-          // fileName: allDocuments[randomNumber].name,
-          fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
+          fileName: allDocuments[randomNumber].name,
+          // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
           UUID: allDocuments[randomNumber]._id,
         };
         archivedDocuments.push(arcObj);
@@ -67,29 +70,60 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
             fileName: allDocuments[0].name,
             UUID: allDocuments[0]._id,
           });
-        } else if (object.EBELN === "4400002278") {
+        } 
+        else if (object.EBELN === "4400002278") {
           pastDocuments.push({
             ...object,
             fileName: allDocuments[2].name,
             UUID: allDocuments[2]._id,
           });
-        } else if (object.EBELN === "4400003675") {
+        } 
+        else if (object.EBELN === "4400002279") {
           pastDocuments.push({
             ...object,
-            // fileName: allDocuments[1].name,
-            fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
+            fileName: allDocuments[11].name,
+            UUID: allDocuments[11]._id,
+          });
+        } 
+        else if (object.EBELN === "4400003674") {
+          pastDocuments.push({
+            ...object,
+            fileName: allDocuments[0].name,
+            // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
+            UUID: allDocuments[0]._id,
+          });
+          console.log("ID",object.UUID)
+        } 
+        else if (object.EBELN === "4400003671") {
+          pastDocuments.push({
+            ...object,
+            fileName: allDocuments[1].name,
+            // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
             UUID: allDocuments[1]._id,
           });
-        } else if (object.EBELN === "4400003676") {
+          console.log("ID",object.UUID)
+        } 
+        else if (object.EBELN === "4400003675") {
           pastDocuments.push({
             ...object,
-            fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
+            fileName: allDocuments[2].name,
+            // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
             UUID: allDocuments[2]._id,
+          });
+          // console.log("ID",object.UUID)
+        } 
+        else if (object.EBELN === "4400003676") {
+          pastDocuments.push({
+            ...object,
+            fileName: allDocuments[3].name,
+            // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
+            UUID: allDocuments[3]._id,
           });
         } else if (object.EBELN === "4400003677") {
           pastDocuments.push({
             ...object,
-            fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
+            fileName: allDocuments[7].name,
+            // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
 
             UUID: allDocuments[7]._id,
           });
