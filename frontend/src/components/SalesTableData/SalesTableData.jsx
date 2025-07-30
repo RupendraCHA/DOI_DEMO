@@ -1576,7 +1576,7 @@ const SalesTableData = (props) => {
                     onChange={getSearchType}
                   />
                   <div>
-                    <h4>Get Procurement Item Details</h4>
+                    <h4>Get Procurement Header Details</h4>
                     <span className="doc-search-container">
                       <input
                         type="search"
