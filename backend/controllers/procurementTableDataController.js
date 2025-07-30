@@ -23,7 +23,7 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
     // console.log("Today's Date: ", todayDate);
     const formatDate = todayDate.toISOString().split("T")[0];
     const updatedDate = formatDate.replace(/-/g, "");
-    // const updatedDate = "20250728";
+    // const updatedDate = "20250729";
 
     console.log(updatedDate);
 
@@ -88,46 +88,47 @@ export const getProcurementTableDataFromEKKO = async (req, res) => {
         else if (object.EBELN === "4400003674") {
           pastDocuments.push({
             ...object,
-            fileName: allDocuments[0].name,
+            fileName: allDocuments[5].name,
             // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
-            UUID: allDocuments[0]._id,
+            UUID: allDocuments[5]._id,
           });
           console.log("ID",object.UUID)
         } 
         else if (object.EBELN === "4400003671") {
           pastDocuments.push({
             ...object,
-            fileName: allDocuments[1].name,
+            fileName: allDocuments[6].name,
             // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
-            UUID: allDocuments[1]._id,
+            UUID: allDocuments[6]._id,
           });
           console.log("ID",object.UUID)
         } 
         else if (object.EBELN === "4400003675") {
           pastDocuments.push({
             ...object,
-            fileName: allDocuments[2].name,
+            fileName: allDocuments[7].name,
             // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
-            UUID: allDocuments[2]._id,
+            UUID: allDocuments[7]._id,
           });
           // console.log("ID",object.UUID)
         } 
         else if (object.EBELN === "4400003676") {
           pastDocuments.push({
             ...object,
-            fileName: allDocuments[3].name,
+            fileName: allDocuments[8].name,
             // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
-            UUID: allDocuments[3]._id,
+            UUID: allDocuments[8]._id,
           });
         } else if (object.EBELN === "4400003677") {
           pastDocuments.push({
             ...object,
-            fileName: allDocuments[7].name,
+            fileName: allDocuments[9].name,
             // fileName: object.EBELN + allDocuments[randomNumber].name.slice(10),
 
-            UUID: allDocuments[7]._id,
+            UUID: allDocuments[9]._id,
           });
-        } else if (object.EBELN === "4400002279") {
+        } 
+        else if (object.EBELN === "4400002279") {
           pastDocuments.push({
             ...object,
             fileName: allDocuments[3].name,
@@ -896,17 +897,48 @@ export const getProcurementItemData = async (req, res) => {
           fileName: allDocuments[2].name,
           UUID: allDocuments[2]._id,
         };
-      } else if (object.EBELN === "4400002279") {
+      } 
+      else if (object.EBELN === "4400002279") {
         return {
           ...object,
           fileName: allDocuments[3].name,
           UUID: allDocuments[3]._id,
         };
-      } else if (object.EBELN === "4400002280") {
+      } 
+      else if (object.EBELN === "4400003671") {
         return {
           ...object,
-          fileName: allDocuments[4].name,
-          UUID: allDocuments[4]._id,
+          fileName: allDocuments[6].name,
+          UUID: allDocuments[6]._id,
+        };
+      } 
+      else if (object.EBELN === "4400003674") {
+        return {
+          ...object,
+          fileName: allDocuments[7].name,
+          UUID: allDocuments[7]._id,
+        };
+      } 
+      else if (object.EBELN === "4400003675") {
+        return {
+          ...object,
+          fileName: allDocuments[8].name,
+          UUID: allDocuments[8]._id,
+        };
+      } 
+      else if (object.EBELN === "4400003676") {
+        return {
+          ...object,
+          fileName: allDocuments[9].name,
+          UUID: allDocuments[9]._id,
+        };
+      } 
+      
+      else if (object.EBELN === "4400003677") {
+        return {
+          ...object,
+          fileName: allDocuments[10].name,
+          UUID: allDocuments[10]._id,
         };
       } else if (object.EBELN === "4400002281") {
         return {

@@ -20,7 +20,7 @@ if (!process.env.HOST || !process.env.USER || !process.env.PASSWORD) {
   });
 } else {
   console.log("SAP HANA Connection Options:", {
-    host: connOptions.host,
+    host: "Host",
     port: connOptions.port,
     user: connOptions.user,
     password: "****",
