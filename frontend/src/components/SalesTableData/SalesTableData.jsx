@@ -393,7 +393,8 @@ const SalesTableData = (props) => {
 
       const link = document.createElement("a");
       link.href = url1;
-      link.download = fileName; // Use the extracted or fallback file name
+      // link.download = fileName; // Use the extracted or fallback file name
+      link.download = "File_Attachment"; // Use the extracted or fallback file name
       link.click();
 
       // Clean up the URL
